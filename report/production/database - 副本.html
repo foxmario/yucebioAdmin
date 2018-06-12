@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>数据库管理</title>
+    <link rel="shortcut icon" href="favicon.png">
+    <!-- Bootstrap -->
+    <link href="../vendors/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- Custom Theme Style -->
+    <link href="../build/css/custom.min.css" rel="stylesheet">
+    <style>
+    .frist-head .font {
+        position: relative;
+    }
+
+    .frist-head .font::after,
+    .frist-head .font::before {
+        font: normal normal normal 14px/1 FontAwesome;
+        font-size: inherit;
+        text-rendering: auto;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        position: absolute;
+        right: 5px;
+        top: 50%;
+        margin-top: -6.5px;
+    }
+    /*   table{
+        table-layout:fixed;
+      }*/
+
+    tbody tr:hover {
+        background: #eee !important;
+    }
+
+    .controllBtn {
+        float: right;
+    }
+
+    table tr td {
+        /*overflow: hidden; */
+        /*white-space: nowrap; */
+        /*text-overflow: ellipsis;*/
+    }
+
+    .table thead tr th {
+        text-align: center;
+        vertical-align: middle;
+        min-width: 86px;
+    }
+
+    .table tbody tr td {
+        vertical-align: middle;
+        /*word-wrap:break-word;
+        word-break:break-all;*/
+    }
+
+    .st-selected {
+        background: #ffd4d4 !important;
+    }
+
+    #timeShow {
+        font-family: 'Share Tech Mono';
+    }
+    </style>
+</head>
+
+<body class="nav-md" ng-app="myApp">
+    <div class="container body">
+        <div class="main_container">
+            <div ng-include="'common/leftCol.html'" scope="" onload=""></div>
+            <!-- page content -->
+            <!-- <div class="right_col" role="main" ng-controller="tableController"> -->
+            <div class="right_col" role="main">
+                <div class="">
+                    <div class="page-title">
+                        <div class="title_left">
+                            <h3>数据库管理</h3>
+                        </div>
+                        <div class="title_right">
+                            <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                                <!-- <div class="input-group"> -->
+                                <!--  <input type="text" class="form-control" placeholder="Search for...">
+                    <span class="input-group-btn">
+                      <button class="btn btn-default" type="button">Go!</button>
+                    </span> -->
+                                <h4 id="timeShow" class="text-center text-primary"></h4>
+                                <!-- </div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                                <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                                    <li role="presentation" class="active" ng-model="current" value="modify"><a id="home-tab" role="tab" data-toggle="tab"  aria-expanded="true" >修改</a>
+                                    </li>
+                                    <li role="presentation" class="" ng-model="current" value="qualimm"><a role="tab" id="profile-tab" data-toggle="tab" ng-model="current" aria-expanded="false">qualimm</a>
+                                    </li>
+                                    <li role="presentation" class="" ng-model="current" value="fqcheck"><a role="tab" id="profile-tab" data-toggle="tab" ng-model="current" aria-expanded="false">fqcheck</a>
+                                    </li>
+                                </ul>
+                                <div id="myTabContent" class="tab-content" ng-switch on="current">
+                                    <div aria-labelledby="home-tab" ng-switch-default>
+                                        <h3>1</h3>
+                                    </div>
+                                    <div aria-labelledby="profile-tab" ng-switch-when="qualimm">
+                                        <h3>2</h3>
+                                    </div>
+                                    <div aria-labelledby="profile-tab" ng-switch-when="fqcheck">
+                                        <h3>3</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <form>
+                                    选择一个选项:
+                                    <input type="radio" ng-model="myVar" value="dogs">Dogs
+                                    <input type="radio" ng-model="myVar" value="tuts">Tutorials
+                                    <input type="radio" ng-model="myVar" value="cars">Cars
+                                </form>
+                                <div ng-switch="myVar">
+                                    <div ng-switch-when="dogs">
+                                        <h1>Dogs</h1>
+                                        <p>Welcome to a world of dogs.</p>
+                                    </div>
+                                    <div ng-switch-when="tuts">
+                                        <h1>Tutorials</h1>
+                                        <p>Learn from examples.</p>
+                                    </div>
+                                    <div ng-switch-when="cars">
+                                        <h1>Cars</h1>
+                                        <p>Read about cars.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /page content -->
+            <!-- footer content -->
+            <footer>
+                <div class="text-center">
+                    2018&nbsp;<i class="fa fa-copyright"></i>&nbsp;YuceBio
+                </div>
+            </footer>
+            <!-- /footer content -->
+        </div>
+    </div>
+    <!-- jQuery -->
+    <script src="../vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="../vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="../vendors/nprogress/nprogress.js"></script>
+    <!-- iCheck -->
+    <!-- <script src="../vendors/iCheck/icheck.min.js"></script> -->
+    <!-- Datatables -->
+    <!-- Custom Theme Scripts -->
+    <script src="../build/js/custom.js"></script>
+    <script src="../vendors/angular/angular.min.js"></script>
+    <script src="../vendors/ui-bootstrap/js/ui-bootstrap-tpls-1.3.2.js"></script>
+    <script src="../vendors/ui-bootstrap/js/angular-locale_zh-cn.js"></script>
+    <script src="../vendors/Smart-Table-master/dist/smart-table.js"></script>
+    <script src="../vendors/node_modules/angular-route/angular-route.min.js"></script>
+    <script src="../vendors/node_modules/ng-file-upload/dist/ng-file-upload-shim.min.js"></script>
+    <script src="../vendors/node_modules/ng-file-upload/dist/ng-file-upload.min.js"></script>
+    <script src="js/tool.js"></script>
+    <script>
+    (function(angualr) {
+        var app = angular.module('myApp', ['tool']);
+    })(angular)
+    </script>
+</body>
+
+</html>

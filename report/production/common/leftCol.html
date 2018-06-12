@@ -1,0 +1,207 @@
+<div ng-controller="listController">
+    <div class="col-md-3 left_col">
+        <div class="left_col scroll-view">
+            <div class="navbar nav_title" style="border: 0;">
+                <a href="home" class="site_title"><i class="fa fa-globe"></i> <span>YUCEONE</span></a>
+            </div>
+            <div class="clearfix"></div>
+            <!-- menu profile quick info -->
+            <div class="profile clearfix">
+                <div class="profile_pic">
+                    <img src="images/user.png" alt="..." class="img-circle profile_img">
+                </div>
+                <div class="profile_info">
+                    <span>欢迎,</span>
+                    <h2 class="name"></h2>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <!-- /menu profile quick info -->
+            <br/>
+            <!-- sidebar menu -->
+            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                <div class="menu_section">
+                    <h3>常规</h3>
+                    <ul class="nav side-menu">
+                        <li><a><i class="fa fa-home"></i>总览<span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                <li><a href="home.html">项目信息总览</a></li>
+                                <li><a href="#">当前需处理的任务</a></li>
+                            </ul>
+                        </li>
+                        <li><a><i class="fa fa-edit"></i>项目管理<span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                <li><a href="contract.html#!/task">任务管理</a></li>
+                                <li><a href="contract.html#!/project">项目列表</a></li>
+                                <li><a href="contract.html#!/product">产品管理</a></li>
+                                <li><a href="contract.html#!/patient">患者信息</a></li>
+                                <li><a href="contract.html#!/addTask">添加项目</a></li>
+                            </ul>
+                        </li>
+                        <li><a><i class="fa fa-desktop"></i>测序管理<span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                <li><a href="sequence.html#!/patientManage">患者管理</a></li>
+                                <li><a href="sequence.html#!/allTask">所有任务</a></li>
+                                <li><a href="sequence.html#!/sample">样本管理</a></li>
+                            </ul>
+                        </li>
+                        <li><a><i class="fa fa-table"></i>分析管理<span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                <li><a href="project.html#!/projectList">分析管理列表</a></li>
+                            </ul>
+                        </li>
+                        <li><a><i class="fa fa-bar-chart-o"></i>解读管理<span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                <li><a href="analysis.html#!/analysisList">解读管理列表</a></li>
+                            </ul>
+                        </li>
+                        <li><a><i class="fa fa-clone"></i>报告管理<span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                <li><a href="javascript:report.html;">报告管理列表</a></li>
+                            </ul>
+                        </li>
+                        <li><a><i class="fa fa-database"></i>数据库管理<span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                <li><a href="database.html#!/abbr">名词解释</a></li>
+                                <li><a href="database.html#!/refer">参考文献</a></li>
+                                <li><a href="database.html#!/dnaInfo">基因信息</a></li>
+                                <li><a href="database.html#!/bianyiInfo">变异信息</a></li>
+                                <li><a href="database.html#!/indications">适应症</a></li>
+                                <li><a href="database.html#!/drugInfo">药物信息</a></li>
+                                <li><a href="database.html#!/targetSite">靶向临床证据</a></li>
+                                <li><a href="database.html#!/immune">免疫临床证据</a></li>
+                                <li><a href="database.html#!/chemoSite">化疗临床证据</a></li>
+                                <li><a href="database.html#!/yiganSite">易感性临床证据</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="menu_section">
+                    <h3>其他</h3>
+                    <ul class="nav side-menu">
+                        <li><a><i class="fa fa-windows"></i> 额外部分 <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                <li><a href="page_403.html">403 Error</a></li>
+                                <li><a href="page_404.html">404 Error</a></li>
+                                <li><a href="page_500.html">500 Error</a></li>
+                                <li><a href="login.html">登陆页面</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="javascript:void(0)"><i class="fa fa-laptop"></i>登陆页<span class="label label-success pull-right">即将到来</span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- /sidebar menu -->
+            <!-- /menu footer buttons -->
+            <div class="sidebar-footer hidden-small">
+                <a data-toggle="tooltip" data-placement="top" title="设置">
+                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+              </a>
+                <a data-toggle="tooltip" data-placement="top" title="全屏">
+                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+              </a>
+                <a data-toggle="tooltip" data-placement="top" title="锁">
+                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+              </a>
+                <a data-toggle="tooltip" data-placement="top" title="注销" href="javascript:;" onclick="logout()">
+                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+              </a>
+            </div>
+            <!-- /menu footer buttons -->
+        </div>
+    </div>
+    <!-- top navigation -->
+    <div class="top_nav">
+        <div class="nav_menu">
+            <nav>
+                <div class="nav toggle">
+                    <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                </div>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="">
+                        <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                          <img src="images/user.png" alt=""><span class="name"></span>
+                          <span class=" fa fa-angle-down"></span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-usermenu pull-right">
+                            <li>
+                                <a href="javascript:;">
+                                  <span class="badge bg-red pull-right">90%</span>
+                                  <span>设置</span>
+                                </a>
+                            </li>
+                            <li><a href="javascript:;">帮助</a></li>
+                            <li><a href="reset.html">修改密码</a></li>
+                            <li><a href="javascript:void(0);" onclick="logout()"><i class="fa fa-sign-out pull-right"></i> 注销</a></li>
+                        </ul>
+                    </li>
+                   <!--  <li role="presentation" class="dropdown">
+                        <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                          <i class="fa fa-envelope-o"></i>
+                          <span class="badge bg-green">6</span>
+                        </a>
+                        <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                            <li>
+                                <a>
+                                  <span class="image"><img src="images/panghu.png" alt="Profile Image" /></span>
+                                  <span>
+                                    <span>John Smith</span>
+                                    <span class="time">3 分钟前</span>
+                                  </span>
+                                  <span class="message">
+                                    Film festivals used to be do-or-die moments for movie makers. They were where...
+                                  </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                  <span class="image"><img src="images/panghu.png" alt="Profile Image" /></span>
+                                  <span>
+                                    <span>John Smith</span>
+                                    <span class="time">3 分钟前</span>
+                                  </span>
+                                  <span class="message">
+                                    Film festivals used to be do-or-die moments for movie makers. They were where...
+                                  </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                   <span class="image"><img src="images/panghu.png" alt="Profile Image" /></span>
+                                   <span>
+                                     <span>John Smith</span>
+                                     <span class="time">3 分钟前</span>
+                                   </span>
+                                   <span class="message">
+                                     Film festivals used to be do-or-die moments for movie makers. They were where...
+                                   </span>
+                                 </a>
+                            </li>
+                            <li>
+                                <a>
+                                    <span class="image"><img src="images/panghu.png" alt="Profile Image" /></span>
+                                    <span>
+                                      <span>John Smith</span>
+                                      <span class="time">3 分钟前</span>
+                                    </span>
+                                    <span class="message">
+                                      Film festivals used to be do-or-die moments for movie makers. They were where...
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <div class="text-center">
+                                    <a>
+                                       <strong>查看消息</strong>
+                                       <i class="fa fa-angle-right"></i>
+                                     </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li> -->
+                </ul>
+            </nav>
+        </div>
+        <!-- /top navigation -->
+    </div>
+</div>

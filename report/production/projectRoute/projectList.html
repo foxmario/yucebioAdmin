@@ -1,0 +1,499 @@
+<div class="x_panel">
+    <div class="x_title">
+        <h2>分析管理列表&nbsp;&nbsp;&nbsp;<span>共{{showData.length}}个任务</span></h2>
+        <ul class="nav navbar-right panel_toolbox">
+            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">设置1</a>
+                    </li>
+                    <li><a href="#">设置2</a>
+                    </li>
+                </ul>
+            </li>
+            <li><a class="close-link"><i class="fa fa-close"></i></a>
+            </li>
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+    <!--stSafeSrc属性控制表格START-->
+    <div class="x_content">
+        <div class="alert alert-danger alert-dismissible fade in" role="alert" ng-if="error">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+            </button>
+            <strong>提示：</strong> {{error}}
+        </div>
+        <div class="alert alert-success alert-dismissible fade in" role="alert" ng-if="success">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+            </button>
+            <strong>提示：</strong> {{success}}
+        </div>
+        <div class="alert alert-warning alert-dismissible fade in" role="alert" ng-if="warning">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+            </button>
+            <strong>提示：</strong> {{warning}}
+        </div>
+        <div class="table-responsive">
+            <table st-table='displayedCollection' st-safe-src="showData" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" style="white-space: nowrap;">
+                <thead>
+                    <tr class="frist-head">
+                        <th st-sort="taskNumber" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">任务编号</th>
+                        <th st-sort="taskStatu" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">产品id</th>
+                        <th st-sort="studyStatu" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">任务状态</th>
+                        <th st-sort="cancerType" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">config</th>
+                        <th st-sort="cancerType" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">癌种</th>
+                        <th st-sort="personNumber" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">患者编号</th>
+                        <th st-sort="personName" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">患者姓名</th>
+                        <th>
+                            <p>分析状态</p>
+                        </th>
+                        <th>实验状态</th>
+                        <th>解读状态</th>
+                        <th>报告状态</th>
+                    </tr>
+                    <tr>
+                        <th colspan="7">
+                            <input st-search="" class="form-control" placeholder="查找 ..." type="text" />
+                        </th>
+                        <th>
+                            <select st-search="anastatus">
+                                <option value="">所有</option>
+                                <option ng-repeat="item in displayedCollection | unique:'anastatus'" value="{{item.anastatus}}">{{item.anastatus}}</option>
+                            </select>
+                        </th>
+                        <th>
+                            <select st-search="expstatus">
+                                <option value="">所有</option>
+                                <option ng-repeat="item in displayedCollection | unique:'expstatus'" value="{{item.expstatus}}">{{item.expstatus}}</option>
+                            </select>
+                        </th>
+                        <th>
+                            <select st-search="jiedu_status">
+                                <option value="">所有</option>
+                                <option ng-repeat="item in displayedCollection | unique:'jiedu_status'" value="{{item.jiedu_status}}">{{item.jiedu_status}}</option>
+                            </select>
+                        </th>
+                        <th>
+                            <select st-search="reportstatus">
+                                <option value="">所有</option>
+                                <option ng-repeat="item in displayedCollection | unique:'reportstatus'" value="{{item.reportstatus}}">{{item.reportstatus}}</option>
+                            </select>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr st-select-row="item" st-select-mode="single" ng-repeat="item in displayedCollection track by $index" ng-click="getDesc(item)">
+                        <td class="text-center">
+                            {{item.taskid}}
+                        </td>
+                        <td>{{item.product}}</td>
+                        <td>{{item.status}}</td>
+                        <td>{{item.config}}</td>
+                        <td>{{item.tumor}}</td>
+                        <td>{{item.patient}}</td>
+                        <td>{{item.patientname}}</td>
+                        <td>{{item.anastatus}}</td>
+                        <td>{{item.expstatus}}</td>
+                        <td>{{item.jiedu_status}}</td>
+                        <td>{{item.reportstatus}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table st-table='displayedCollection' st-safe-src="shortData.data" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0">
+                <tfoot>
+                    <tr>
+                        <td colspan="11" class="text-center">
+                            <div st-pagination="" st-items-by-page="5" st-displayed-pages="7"></div>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+    <!--stSafeSrc属性控制表格END-->
+</div>
+<div class="x_panel">
+    <div class="x_title">
+        <h2>详细信息</h2>
+        <ul class="nav navbar-right panel_toolbox">
+            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Settings 1</a>
+                    </li>
+                    <li><a href="#">Settings 2</a>
+                    </li>
+                </ul>
+            </li>
+            <li><a class="close-link"><i class="fa fa-close"></i></a>
+            </li>
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+        <div class="" role="tabpanel" data-example-id="togglable-tabs">
+            <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                <li role="presentation" class="active"><a id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">修改</a>
+                </li>
+                <li role="presentation" class=""><a role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">qualimm</a>
+                </li>
+                <li role="presentation" class=""><a role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">fqcheck</a>
+                </li>
+                <li role="presentation" class=""><a role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">pairqc</a>
+                </li>
+                <li role="presentation" class=""><a role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">ascat表</a>
+                </li>
+                <li role="presentation" class=""><a role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">ascat图</a>
+                </li>
+                <li role="presentation" class=""><a role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">突变</a>
+                </li>
+            </ul>
+            <div id="myTabContent" class="tab-content">
+                <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
+                    <div class="alert alert-danger alert-dismissible fade in" role="alert" ng-if="error">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                        </button>
+                        <strong>提示：</strong> {{error}}
+                    </div>
+                    <div class="alert alert-success alert-dismissible fade in" role="alert" ng-if="success">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                        </button>
+                        <strong>提示：</strong> {{success}}
+                    </div>
+                    <div class="alert alert-warning alert-dismissible fade in" role="alert" ng-if="warning">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                        </button>
+                        <strong>提示：</strong> {{warning}}
+                    </div>
+                    <div class="col-sm-6">
+                        <form class="form-horizontal form-label-left">
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">样本编号<span class="required">*</span>
+                                </label>
+                                <div class="col-md-10 col-sm-10 col-xs-12">
+                                    <input type="text" class="form-control" ng-model="items.samples" ng-readonly="true">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">患者编号<span class="required">*</span>
+                                </label>
+                                <div class="col-md-10 col-sm-10 col-xs-12">
+                                    <input type="text" class="form-control" ng-model="items.patient" ng-readonly="true">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">癌种<span class="required">*</span>
+                                </label>
+                                <div class="col-md-10 col-sm-10 col-xs-12">
+                                    <input type="text" class="form-control" ng-model="items.tumortype" ng-readonly="true">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">浓度<span class="required">*</span>
+                                </label>
+                                <div class="col-md-10 col-sm-10 col-xs-12">
+                                    <input type="text" class="form-control" ng-model="items.concentration" ng-readonly="true">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">Qsep峰值<span class="required">*</span>
+                                </label>
+                                <div class="col-md-10 col-sm-10 col-xs-12">
+                                    <input type="text" class="form-control" ng-model="items.QsepPeak" ng-readonly="true">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">qPCR浓度<span class="required">*</span>
+                                </label>
+                                <div class="col-md-10 col-sm-10 col-xs-12">
+                                    <input type="text" class="form-control" ng-model="items.qPCRConcentration" ng-readonly="true">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-sm-6">
+                        <form class="form-horizontal form-label-right">
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">测序数据量<span class="required">*</span>
+                                </label>
+                                <div class="col-md-10 col-sm-10 col-xs-12">
+                                    <input type="text" class="form-control" ng-model="items.datasize" ng-readonly="true">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">read1<span class="required">*</span>
+                                </label>
+                                <div class="col-md-10 col-sm-10 col-xs-12">
+                                    <input type="text" class="form-control" ng-model="items.read1" ng-readonly="true">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">read2<span class="required">*</span>
+                                </label>
+                                <div class="col-md-10 col-sm-10 col-xs-12">
+                                    <input type="text" class="form-control" ng-model="items.read2" ng-readonly="true">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">测序平台<span class="required">*</span>
+                                </label>
+                                <div class="col-md-10 col-sm-10 col-xs-12">
+                                    <input type="text" class="form-control" ng-model="items.platform" ng-readonly="true">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">config<span class="required">*</span>
+                                </label>
+                                <div class="col-md-10 col-sm-10 col-xs-12">
+                                    <input type="text" class="form-control" ng-model="items.config">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">备注<span class="required">*</span>
+                                </label>
+                                <div class="col-md-10 col-sm-10 col-xs-12">
+                                    <input type="text" class="form-control" ng-model="items.info">
+                                </div>
+                            </div>
+                        </form>
+                        <div ng-controller="ModalDemoCtrl">
+                            <script type="text/ng-template" id="myModalContent.html">
+                                <div class="modal-header">
+                                    <h3 class="modal-title">消息</h3>
+                                </div>
+                                <div class="modal-body">
+                                    <p>{{infos.name}}</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-primary" type="button" ng-click="ok()">确定</button>
+                                    <button class="btn btn-warning" type="button" ng-click="cancel()">取消</button>
+                                </div>
+                            </script>
+                            <script type="text/ng-template" id="rejectCheckModal.html">
+                                <div class="modal-header">
+                                    <h3 class="modal-title">消息</h3>
+                                </div>
+                                <div class="modal-body">
+                                    <p>{{infos.name}}</p>
+                                    <form class="form-horizontal">
+                                        <textarea class="form-control" rows="3" ng-model="remarks"></textarea>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-primary" type="button" ng-click="ok()">确定</button>
+                                    <button class="btn btn-warning" type="button" ng-click="cancel()">取消</button>
+                                </div>
+                            </script>
+                            <div class="controllBtn">
+                                <button type="button" class="btn btn-default btn-sm" ng-click="modif('sm',items)" ng-disabled="!items||!items.patient">修改</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" aria-labelledby="profile-tab">
+                    <div class="table-responsive">
+                        <table st-table='qualimmCollection' st-safe-src="quality.qualimm" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" style="white-space: nowrap;">
+                            <thead>
+                                <tr class="frist-head">
+                                    <th st-sort="taskNumber" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">名称</th>
+                                    <th st-sort="personName" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">true/false</th>
+                                    <th st-sort="personAge" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">百分数</th>
+                                    <th st-sort="personGender" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">范围</th>
+                                </tr>
+                                <tr>
+                                    <th colspan="7">
+                                        <input st-search="" class="form-control" placeholder="查找 ..." type="text" />
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in qualimmCollection">
+                                    <td>{{item.key}}</td>
+                                    <td>{{item.key0}}</td>
+                                    <td>{{item.key1}}</td>
+                                    <td>{{item.key2}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                       <!--  <table st-table='displayedCollection' st-safe-src="quality.qualimm" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0">
+                            <tfoot>
+                                <tr>
+                                    <td colspan="10" class="text-center">
+                                        <div st-pagination="" st-items-by-page="5" st-displayed-pages="7"></div>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table> -->
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" aria-labelledby="profile-tab">
+                    <div class="table-responsive">
+                        <table st-table='fqcheckCollection' st-safe-src="quality.fqcheck" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" style="white-space: nowrap;">
+                            <thead>
+                                <tr class="frist-head">
+                                    <th st-sort="taskNumber" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">名称</th>
+                                    <th st-sort="personName" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">true/false</th>
+                                    <th st-sort="personAge" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">百分数</th>
+                                    <th st-sort="personGender" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">范围</th>
+                                </tr>
+                                <tr>
+                                    <th colspan="7">
+                                        <input st-search="" class="form-control" placeholder="查找 ..." type="text" />
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in fqcheckCollection">
+                                    <td>
+                                        {{item.key}}
+                                    </td>
+                                    <td>{{item.key0}}</td>
+                                    <td>{{item.key1}}</td>
+                                    <td>{{item.key2}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                       <!--  <table st-table='displayedCollection' st-safe-src="quality.qualimm" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0">
+                            <tfoot>
+                                <tr>
+                                    <td colspan="10" class="text-center">
+                                        <div st-pagination="" st-items-by-page="5" st-displayed-pages="7"></div>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table> -->
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" aria-labelledby="profile-tab">
+                    <div class="table-responsive">
+                        <table st-table='pairqcCollection' st-safe-src="quality.pairqc" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" style="white-space: nowrap;">
+                            <thead>
+                                <tr class="frist-head">
+                                    <th st-sort="taskNumber" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">名称</th>
+                                    <th st-sort="personName" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">true/false</th>
+                                    <th st-sort="personAge" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">百分数</th>
+                                    <th st-sort="personGender" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">范围</th>
+                                </tr>
+                                <tr>
+                                    <th colspan="7">
+                                        <input st-search="" class="form-control" placeholder="查找 ..." type="text" />
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in pairqcCollection">
+                                    <td>
+                                        {{item.key}}
+                                    </td>
+                                    <td>{{item.key0}}</td>
+                                    <td>{{item.key1}}</td>
+                                    <td>{{item.key2}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                       <!--  <table st-table='displayedCollection' st-safe-src="quality.qualimm" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0">
+                            <tfoot>
+                                <tr>
+                                    <td colspan="10" class="text-center">
+                                        <div st-pagination="" st-items-by-page="5" st-displayed-pages="7"></div>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table> -->
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" aria-labelledby="profile-tab">
+                    <div class="table-responsive">
+                        <table st-table='fileCollection' st-safe-src="quality.ascat.file" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" style="white-space: nowrap;">
+                            <thead>
+                                <tr class="frist-head">
+                                    <th st-sort="taskNumber" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">名称</th>
+                                    <th st-sort="personName" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">true/false</th>
+                                </tr>
+                                <tr>
+                                    <th colspan="7">
+                                        <input st-search="" class="form-control" placeholder="查找 ..." type="text" />
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in fileCollection">
+                                    <td>{{item.key0}}</td>
+                                    <td>{{item.key1}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                       <!--  <table st-table='displayedCollection' st-safe-src="quality.qualimm" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0">
+                            <tfoot>
+                                <tr>
+                                    <td colspan="10" class="text-center">
+                                        <div st-pagination="" st-items-by-page="5" st-displayed-pages="7"></div>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table> -->
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" aria-labelledby="profile-tab">
+                    <div >
+                        <img ng-repeat="item in quality.ascat.imgs track by $index" src="http://192.168.1.186:8000{{item}}" alt="" width="500" height="300">
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" aria-labelledby="profile-tab">
+                        <div class="table-responsive">
+                        <table st-table='mutationCollection' st-safe-src="mutationData" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" style="white-space: nowrap;">
+                            <thead>
+                                <tr class="frist-head">
+                                    <th st-sort="taskNumber" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">Chr</th>
+                                    <th st-sort="personName" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">Pos</th>
+                                    <th st-sort="personName" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">Ref</th>
+                                    <th st-sort="personName" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">Alt</th>
+                                    <th st-sort="personName" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">Impact</th>
+                                    <th st-sort="personName" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">Gene</th>
+                                    <th st-sort="personName" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">Effect</th>
+                                    <th st-sort="personName" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">Transcript</th>
+                                    <th st-sort="personName" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">Biotype</th>
+                                    <th st-sort="personName" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">cDNA</th>
+                                    <th st-sort="personName" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">Protein</th>
+                                </tr>
+                                <tr>
+                                    <th colspan="11">
+                                        <input st-search="" class="form-control" placeholder="查找 ..." type="text" />
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in mutationCollection">
+                                    <td>{{item.Chr}}</td>
+                                    <td>{{item.Pos}}</td>
+                                    <td>{{item.Ref}}</td>
+                                    <td>{{item.Alt}}</td>
+                                    <td>{{item.Impact}}</td>
+                                    <td>{{item.Gene}}</td>
+                                    <td>{{item.Effect}}</td>
+                                    <td>{{item.Transcript}}</td>
+                                    <td>{{item.Biotype}}</td>
+                                    <td>{{item.cDNA}}</td>
+                                    <td>{{item.Protein}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                       <!--  <table st-table='displayedCollection' st-safe-src="quality.qualimm" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0">
+                            <tfoot>
+                                <tr>
+                                    <td colspan="10" class="text-center">
+                                        <div st-pagination="" st-items-by-page="5" st-displayed-pages="7"></div>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

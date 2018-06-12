@@ -1,0 +1,271 @@
+<div class="x_panel">
+    <div class="x_title">
+        <h2>项目列表&nbsp;&nbsp;&nbsp;<span>共{{shortData.data.length}}个任务</span></h2>
+        <ul class="nav navbar-right panel_toolbox">
+            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">设置1</a>
+                    </li>
+                    <li><a href="#">设置2</a>
+                    </li>
+                </ul>
+            </li>
+            <li><a class="close-link"><i class="fa fa-close"></i></a>
+            </li>
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+    <!--stSafeSrc属性控制表格START-->
+    <div class="x_content">
+        <div class="alert alert-danger alert-dismissible fade in" role="alert" ng-if="error">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+            </button>
+            <strong>提示：</strong> {{error}}
+        </div>
+        <div class="alert alert-success alert-dismissible fade in" role="alert" ng-if="success">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+            </button>
+            <strong>提示：</strong> {{success}}
+        </div>
+        <div class="alert alert-warning alert-dismissible fade in" role="alert" ng-if="warning">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+            </button>
+            <strong>提示：</strong> {{warning}}
+        </div>
+        <div class="table-responsive">
+            <table st-table='displayedCollection' st-safe-src="shortData.data" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" style="white-space: nowrap;">
+                <thead>
+                    <tr class="frist-head">
+                        <th>项目状态</th>
+                        <th st-sort="itemNumber" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">项目编号</th>
+                        <th st-sort="itemPerson" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">项目负责人</th>
+                        <th st-sort="startTime" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">开始日期</th>
+                        <th st-sort="surplusDay" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">剩余时间(天)</th>
+                        <th st-sort="deadline" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">截止日期</th>
+                        <th st-sort="endTiem" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">完成时间</th>
+                        <th st-sort="completeTime" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">延迟状态</th>
+                        <th>操作</th>
+                    </tr>
+                    <tr>
+                         <th>
+                             <select st-search="status">
+                                <option value="">所有</option>
+                                <option ng-repeat="item in displayedCollection | unique:'status'" value="{{item.status}}">{{item.status}}</option>
+                            </select>
+                         </th>
+                        <th colspan="9">
+                            <input st-search="" class="form-control" placeholder="查找 ..." type="text" />
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr st-select-row="item" st-select-mode="single" ng-repeat="item in displayedCollection" ng-click="getDesc(item)">
+                        <td>{{item.status}}</td>
+                        <td>{{item.projectid}}</td>
+                        <td>{{item.duty}}</td>
+                        <td>{{item.start_time.$date|date:'yyyy-MM-dd HH:mm'}}</td>
+                        <td>{{item.duration}}</td>
+                        <td>{{item.deadline.$date|date:'yyyy-MM-dd HH:mm'}}</td>
+                        <td>{{item.starttime}}</td>
+                        <td>{{item.delay}}</td>
+                        <td>
+                            <button class="btn btn-info btn-xs" ng-click="fee('sm',item)">缴费</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table st-table='displayedCollection' st-safe-src="shortData.data" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0">
+                <tfoot>
+                    <tr>
+                        <td colspan="10" class="text-center">
+                            <div st-pagination="" st-items-by-page="5" st-displayed-pages="7"></div>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div ng-controller="ModalDemoCtrl">
+            <script type="text/ng-template" id="feeModal.html">
+                <div class="modal-header">
+                    <h3 class="modal-title">消息</h3>
+                </div>
+                <div class="modal-body">
+                    <p>是否缴费</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" type="button" ng-click="ok()">确定</button>
+                    <button class="btn btn-warning" type="button" ng-click="cancel()">取消</button>
+                </div>
+            </script>
+        </div>
+    </div>
+    <!--stSafeSrc属性控制表格END-->
+</div>
+<div class="x_panel">
+    <div class="x_title">
+        <h2>详细信息</h2>
+        <ul class="nav navbar-right panel_toolbox">
+            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Settings 1</a>
+                    </li>
+                    <li><a href="#">Settings 2</a>
+                    </li>
+                </ul>
+            </li>
+            <li><a class="close-link"><i class="fa fa-close"></i></a>
+            </li>
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+        <div class="" role="tabpanel" data-example-id="togglable-tabs">
+            <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                <li role="presentation" class="active"><a role="tab" data-toggle="tab" aria-expanded="true">患者列表</a>
+                </li>
+                <li role="presentation" class=""><a role="tab" data-toggle="tab" aria-expanded="false">任务列表</a>
+                </li>
+                <li role="presentation" class=""><a role="tab" data-toggle="tab" aria-expanded="false">产品列表</a>
+                </li>
+                <li role="presentation" class=""><a role="tab" data-toggle="tab" aria-expanded="false">添加患者</a>
+                </li>
+            </ul>
+            <div id="myTabContent" class="tab-content">
+                <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
+                    <div class="table-responsive">
+                        <table st-table='patient_list' st-safe-src="items.patient_list" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                            <thead>
+                                <tr class="frist-head">
+                                    <th st-sort="name" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc" st-sort-default="reverse">患者名称</th>
+                                    <th st-sort="tumortype" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">癌种</th>
+                                    <th st-sort="gender" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">性别</th>
+                                </tr>
+                                <tr>
+                                    <th colspan="7">
+                                        <input st-search="" class="form-control" placeholder="查找 ..." type="text" />
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr st-select-row="item" st-select-mode="single" ng-repeat="item in patient_list">
+                                    <td>{{item.patientname}}</td>
+                                    <td>{{item.tumortype}}</td>
+                                    <td>{{item.gender}}</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="4" class="text-center">
+                                        <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="4"></div>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" aria-labelledby="profile-tab">
+                    <div class="table-responsive">
+                        <table st-table='task_list' st-safe-src="items.task_list" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                            <thead>
+                                <tr class="frist-head">
+                                    <th st-sort="number" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc" st-sort-default="reverse">任务编号</th>
+                                    <th st-sort="product" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">产品</th>
+                                    <th st-sort="patient" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">患者编号</th>
+                                    <th st-sort="tumortype" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">癌肿</th>
+                                    <th st-sort="anastatus" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">分析状态</th>
+                                    <th st-sort="expstatus" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">实验状态</th>
+                                    <th st-sort="jiedu_status" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">解读状态</th>
+                                    <th st-sort="reportstatus" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">报告状态</th>
+                                </tr>
+                                <tr>
+                                    <th colspan="8">
+                                        <input st-search="" class="form-control" placeholder="查找 ..." type="text" />
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr st-select-row="item" st-select-mode="single" ng-repeat="item in task_list">
+                                    <td>{{item.taskid}}</td>
+                                    <td>{{item.product}}</td>
+                                    <td>{{item.patient}}</td>
+                                    <td>{{item.tumortype}}</td>
+                                    <td>{{item.anastatus}}</td>
+                                    <td>{{item.expstatus}}</td>
+                                    <td>{{item.jiedu_status}}</td>
+                                    <td>{{item.reportstatus}}</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="8" class="text-center">
+                                        <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="4"></div>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" aria-labelledby="profile-tab">
+                    <div class="table-responsive">
+                        <table st-table='product_list' st-safe-src="items.product_list" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                            <thead>
+                                <tr class="frist-head">
+                                    <th st-sort="productname" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc" st-sort-default="reverse">产品名称</th>
+                                    <th st-sort="normaltype" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">样本类型(control)</th>
+                                    <th st-sort="normalsize" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">测序数据量(control)</th>
+                                    <th st-sort="tumortype" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">样本类型(case)</th>
+                                    <th st-sort="tumorsize" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">测序数据量(case)</th>
+                                    <th st-sort="platform" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">技术平台</th>
+                                    <th st-sort="strategy" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">测序策略</th>
+                                    <th st-sort="moletag" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">分子标签建库</th>
+                                </tr>
+                                <tr>
+                                    <th colspan="8">
+                                        <input st-search="" class="form-control" placeholder="查找 ..." type="text" />
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr st-select-row="item" st-select-mode="single" ng-repeat="item in product_list">
+                                    <td>{{item.productname}}</td>
+                                    <td>{{item.normaltype}}</td>
+                                    <td>{{item.normalsize}}</td>
+                                    <td>{{item.tumortype}}</td>
+                                    <td>{{item.tumorsize}}</td>
+                                    <td>{{item.platform}}</td>
+                                    <td>{{item.strategy}}</td>
+                                    <td>{{item.moletag}}</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="8" class="text-center">
+                                        <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="4"></div>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" aria-labelledby="profile-tab">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">患者id<span class="required">*</span>
+                                </label>
+                                <div class="col-md-8 col-sm-8 col-xs-12">
+                                    <input type="text" class="form-control" ng-model="patientId">
+                                </div>
+                                <button class="btn btn-primary" ng-disabled="!items||!patientId" ng-click="addPatientId(items)">提交</button>
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

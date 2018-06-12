@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+    <title></title>
+    <link rel="shortcut icon" href="favicon.png">
+    <!-- Bootstrap -->
+    <link href="../vendors/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="../build/css/custom.min.css" rel="stylesheet">
+    <style>
+      .frist-head .font{
+        position: relative;
+      }
+      .frist-head .font::after,
+      .frist-head .font::before{
+         font: normal normal normal 14px/1 FontAwesome;
+          font-size: inherit;
+          text-rendering: auto;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+          position: absolute;
+          right: 10px;
+      }
+     /* table{
+        table-layout:fixed;
+      }*/
+      tbody tr:hover{
+        background: #eee !important;
+      }
+      .controllBtn{
+        float: right;
+      }
+    /*  tr td{
+        overflow: hidden; 
+        white-space: nowrap; 
+        text-overflow: ellipsis;
+      }*/
+      .table thead tr th{
+        text-align: center;
+        vertical-align: middle;
+        min-width: 86px;
+      }
+     .table tbody tr td{
+        vertical-align: middle;
+        /*word-wrap:break-word;
+        word-break:break-all;*/
+      }
+      .st-selected{
+        background: #ffd4d4 !important;
+      }
+      #timeShow{
+        font-family: 'Share Tech Mono';
+      }
+    </style>
+  </head>
+
+  <body class="nav-md" ng-app="myApp">
+    <div class="container body">
+      <div class="main_container">
+        <div class="col-md-3 left_col">
+          <div class="left_col scroll-view">
+            <div class="navbar nav_title" style="border: 0;">
+              <a href="#index.html" class="site_title"><i class="fa fa-globe"></i> <span>YUCEONE</span></a>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <!-- menu profile quick info -->
+            <div class="profile clearfix">
+              <div class="profile_pic">
+                <img src="images/panghu.png" alt="..." class="img-circle profile_img">
+              </div>
+              <div class="profile_info">
+                <span>欢迎,</span>
+                <h2>胖虎</h2>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+            <!-- /menu profile quick info -->
+            <br/>
+            <!-- sidebar menu -->
+            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+              <div class="menu_section">
+                <h3>常规</h3>
+                <ul class="nav side-menu">
+                  <li><a><i class="fa fa-home"></i>总览<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="home.html">项目信息总览</a></li>
+                      <li><a href="#">当前需处理的任务</a></li>
+                    </ul>
+                  </li>
+                  <li><a><i class="fa fa-edit"></i>项目管理<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="contract.html">项目列表</a></li>
+                    </ul>
+                  </li>
+                  <li><a><i class="fa fa-desktop"></i>测序管理<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="sequence.html">待测序样品列表</a></li>
+                    </ul>
+                  </li>
+                  <li><a><i class="fa fa-table"></i>分析管理<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="project.html">分析管理列表</a></li>
+                    </ul>
+                  </li>
+                  <li><a><i class="fa fa-bar-chart-o"></i>解读管理<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="analysis.html">解读管理列表</a></li>
+                    </ul>
+                  </li>
+                  <li><a><i class="fa fa-clone"></i>报告管理<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="report.html">报告管理列表</a></li>
+                    </ul>
+                  </li>
+                   <li><a><i class="fa fa-database"></i>数据库管理<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="database#!/abbr">名词解释</a></li>
+                      <li><a href="database#!/refer">参考文献</a></li>
+                      <li><a href="database#!/dnaInfo">基因信息</a></li>
+                      <li><a href="database#!/bianyiInfo">变异信息</a></li>
+                      <li><a href="database#!/indications">适应症</a></li>
+                      <li><a href="database#!/immune">免疫</a></li>
+                      <li><a href="database#!/drugInfo">药物信息</a></li>
+                      <li><a href="database#!/yiganSite">易感位点</a></li>
+                      <li><a href="database#!/chemoSite">化疗位点</a></li>
+                      <li><a href="database#!/targetSite">靶向位点</a></li>
+                    </ul>
+                  </li>          
+                </ul>
+              </div>
+              <div class="menu_section">
+                <h3>其他</h3>
+                <ul class="nav side-menu">
+                  <li><a><i class="fa fa-windows"></i> 额外部分 <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="page_403.html">403 Error</a></li>
+                      <li><a href="page_404.html">404 Error</a></li>
+                      <li><a href="page_500.html">500 Error</a></li>
+                      <li><a href="plain_page.html">普通页面</a></li>
+                      <li><a href="login.html">登陆页面</a></li>
+                    </ul>
+                  </li>        
+                  <li><a href="javascript:void(0)"><i class="fa fa-laptop"></i>登陆页<span class="label label-success pull-right">即将到来</span></a></li>
+                </ul>
+              </div>
+
+            </div>
+            <!-- /sidebar menu -->
+
+            <!-- /menu footer buttons -->
+            <div class="sidebar-footer hidden-small">
+              <a data-toggle="tooltip" data-placement="top" title="设置">
+                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="全屏">
+                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="锁">
+                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="注销" href="login.html">
+                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+              </a>
+            </div>
+            <!-- /menu footer buttons -->
+          </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+          <div class="nav_menu">
+            <nav>
+              <div class="nav toggle">
+                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+              </div>
+
+              <ul class="nav navbar-nav navbar-right">
+                <li class="">
+                  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <img src="images/panghu.png" alt="">胖虎
+                    <span class=" fa fa-angle-down"></span>
+                  </a>
+                  <ul class="dropdown-menu dropdown-usermenu pull-right">
+                    <li>
+                      <a href="javascript:;">
+                        <span class="badge bg-red pull-right">90%</span>
+                        <span>设置</span>
+                      </a>
+                    </li>
+                    <li><a href="javascript:;">帮助</a></li>
+                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> 注销</a></li>
+                  </ul>
+                </li>
+
+                <li role="presentation" class="dropdown">
+                  <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                    <i class="fa fa-envelope-o"></i>
+                    <span class="badge bg-green">6</span>
+                  </a>
+                  <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                    <li>
+                      <a>
+                        <span class="image"><img src="images/panghu.png" alt="Profile Image" /></span>
+                        <span>
+                          <span>John Smith</span>
+                          <span class="time">3 分钟前</span>
+                        </span>
+                        <span class="message">
+                          Film festivals used to be do-or-die moments for movie makers. They were where...
+                        </span>
+                      </a>
+                    </li>
+                    <li>
+                      <a>
+                        <span class="image"><img src="images/panghu.png" alt="Profile Image" /></span>
+                        <span>
+                          <span>John Smith</span>
+                          <span class="time">3 分钟前</span>
+                        </span>
+                        <span class="message">
+                          Film festivals used to be do-or-die moments for movie makers. They were where...
+                        </span>
+                      </a>
+                    </li>
+                    <li>
+                      <a>
+                        <span class="image"><img src="images/panghu.png" alt="Profile Image" /></span>
+                        <span>
+                          <span>John Smith</span>
+                          <span class="time">3 分钟前</span>
+                        </span>
+                        <span class="message">
+                          Film festivals used to be do-or-die moments for movie makers. They were where...
+                        </span>
+                      </a>
+                    </li>
+                    <li>
+                      <a>
+                        <span class="image"><img src="images/panghu.png" alt="Profile Image" /></span>
+                        <span>
+                          <span>John Smith</span>
+                          <span class="time">3 分钟前</span>
+                        </span>
+                        <span class="message">
+                          Film festivals used to be do-or-die moments for movie makers. They were where...
+                        </span>
+                      </a>
+                    </li>
+                    <li>
+                      <div class="text-center">
+                        <a>
+                          <strong>查看消息</strong>
+                          <i class="fa fa-angle-right"></i>
+                        </a>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <!-- <div class="right_col" role="main" ng-controller="tableController"> -->
+        <div class="right_col" role="main">
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+                <h3>报告管理</h3>
+              </div>
+
+              <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                  <!-- <div class="input-group"> -->
+                   <!--  <input type="text" class="form-control" placeholder="Search for...">
+                    <span class="input-group-btn">
+                      <button class="btn btn-default" type="button">Go!</button>
+                    </span> -->
+                    <h4 id="timeShow" class="text-center text-primary"></h4>
+                  <!-- </div> -->
+                </div>
+              </div>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                  <div ng-view></div>
+                  <div class="x_panel">
+                  <div class="x_title">
+                    <h2>文件上传下载</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="#">Settings 1</a>
+                          </li>
+                          <li><a href="#">Settings 2</a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                      Add content to the page ...
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+          <div class="text-center">
+            2018&nbsp;<i class="fa fa-copyright"></i>&nbsp;YuceBio
+          </div>
+        </footer>
+        <!-- /footer content -->
+      </div>
+    </div>
+    <!-- jQuery -->
+    <script src="../vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="../vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="../vendors/nprogress/nprogress.js"></script>
+
+    <!-- iCheck -->
+    <!-- <script src="../vendors/iCheck/icheck.min.js"></script> -->
+    <!-- Datatables -->
+    
+    
+    <!-- Custom Theme Scripts -->
+    <script src="../build/js/custom.js"></script>
+    <script src="../vendors/angular/angular.min.js"></script>
+    <script src="../vendors/ui-bootstrap/js/ui-bootstrap-tpls-1.3.2.js"></script>
+    <script src="../vendors/ui-bootstrap/js/angular-locale_zh-cn.js"></script>
+    <script src="../vendors/Smart-Table-master/dist/smart-table.js"></script>
+    <script src="../vendors/node_modules/angular-route/angular-route.min.js"></script>
+    <script src="../vendors/node_modules/ng-file-upload/dist/ng-file-upload-shim.min.js"></script>
+    <script src="../vendors/node_modules/ng-file-upload/dist/ng-file-upload.min.js"></script>
+    <script src="js/report.js"></script>
+  </body>
+</html>
