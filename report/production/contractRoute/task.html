@@ -99,13 +99,21 @@
                         <td>{{item.jiedu_status}}</td>
                         <td>{{item.reportstatus}}</td>
                         <td>
-                            <button class="btnNone btn" ng-click="studyPause('',item)">实验暂停</button>
-                            <button class="btnNone btn" ng-click="reset('sm',item)">重置</button>
-                            <button class="btnNone btn" ng-click="stop('sm',item)">终止</button>
-                            <button class="btnNone btn" ng-click="anaPause('sm',item)">分析暂停</button>
-                            <button class="btnNone btn" ng-click="jieduPause('sm',item)">解读暂停</button>
-                            <button class="btnNone btn" ng-click="jieduCancel('sm',item)">取消解读</button>
-                            <button class="btnNone btn" ng-click="studyCancel('',item)">取消实验</button>
+
+                                <div class="btn-group" uib-dropdown>
+                                    <button id="single-button" type="button" class="btn btn-primary btn-xs" uib-dropdown-toggle >
+                                        请选择 <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" uib-dropdown-menu style="min-width:auto">
+                                        <li><button class="btn btn-default btn-xs" ng-click="studyPause('',item)">实验暂停</button></li>
+                                        <li><button class="btn btn-default btn-xs" ng-click="reset('sm',item)">任务重置</button></li>
+                                        <li><button class="btn btn-default btn-xs" ng-click="stop('sm',item)">任务终止</button></li>
+                                        <li><button class="btn btn-default btn-xs" ng-click="anaPause('sm',item)">分析暂停</button></li>
+                                        <li><button class="btn btn-default btn-xs" ng-click="jieduPause('sm',item)">解读暂停</button></li>
+                                        <li><button class="btn btn-default btn-xs" ng-click="jieduCancel('sm',item)">取消解读</button></li>
+                                        <li><button class="btn btn-default btn-xs" ng-click="studyCancel('',item)">取消实验</button></li>
+                                    </ul>
+                                </div>
                         </td>
                     </tr>
                 </tbody>

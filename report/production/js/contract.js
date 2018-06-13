@@ -13,7 +13,7 @@
 
 
             var href = $location.url();
-            var baseUrl = 'http://192.168.1.186:8000/';
+            var baseUrl = 'http://192.168.12.123:8000/';
             // var baseUrl = 'http://192.168.11.101:8000/';
             switch (href) {
                 case '/task':
@@ -498,8 +498,8 @@
 
             }
 
-                 
-                   
+
+
         }
     ]);
 
@@ -619,13 +619,13 @@
 
     });
 
-    //$uibModalInstance是模态窗口的实例  
+    //$uibModalInstance是模态窗口的实例
     app.controller('ModalInstanceCtrl', function($scope, $location, $uibModalInstance, infos1, btnname, datas, urls, $rootScope, $http, $timeout) {
         $scope.info = infos1;
         $scope.rowCollection = datas;
         $scope.newCollection = [];
 
-        var baseUrl = 'http://192.168.1.186:8000/';
+        var baseUrl = 'http://192.168.12.123:8000/';
         var href = $location.url();
         if (href == '/patient') {
             $http({
