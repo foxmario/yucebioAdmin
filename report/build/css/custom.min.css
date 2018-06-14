@@ -225,7 +225,7 @@ table.tile_info td p {
 }
 
 .nav-sm .container.body .right_col {
-    padding: 10px 15px;
+    padding: 10px 12px;
     margin-left: 70px;
     z-index: 2
 }
@@ -608,7 +608,7 @@ body {
     color: #333;
     background: #2A3F54;
     font-family: "Helvetica Neue", Roboto, Arial, "Droid Sans", sans-serif;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 400;
     line-height: 1.471
 }
@@ -645,7 +645,7 @@ body {
 }
 
 .page-title .title_right .pull-right {
-    margin: 10px 0
+    /*margin: 10px 0*/
 }
 
 .fixed_height_320 {
@@ -944,7 +944,7 @@ a:visited {
 }
 
 .nav>li>a {
-    padding: 13px 15px 12px
+    padding: 5px 15px 9px
 }
 
 .nav.side-menu>li.active,
@@ -976,7 +976,7 @@ a:visited {
 .navbar-brand,
 .navbar-nav>li>a {
     font-weight: 500;
-    line-height: 32px
+    line-height: 26px
 }
 
 .site_title {
@@ -1037,7 +1037,7 @@ a:visited {
 .toggle {
     float: left;
     margin: 0;
-    padding-top: 16px;
+    padding-top: 10px;
     width: 70px
 }
 

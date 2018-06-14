@@ -50,8 +50,6 @@
                             <p>分析状态</p>
                         </th>
                         <th>实验状态</th>
-                        <th>解读状态</th>
-                        <th>报告状态</th>
                     </tr>
                     <tr>
                         <th colspan="7">
@@ -69,18 +67,6 @@
                                 <option ng-repeat="item in displayedCollection | unique:'expstatus'" value="{{item.expstatus}}">{{item.expstatus}}</option>
                             </select>
                         </th>
-                        <th>
-                            <select st-search="jiedu_status">
-                                <option value="">所有</option>
-                                <option ng-repeat="item in displayedCollection | unique:'jiedu_status'" value="{{item.jiedu_status}}">{{item.jiedu_status}}</option>
-                            </select>
-                        </th>
-                        <th>
-                            <select st-search="reportstatus">
-                                <option value="">所有</option>
-                                <option ng-repeat="item in displayedCollection | unique:'reportstatus'" value="{{item.reportstatus}}">{{item.reportstatus}}</option>
-                            </select>
-                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -96,12 +82,10 @@
                         <td>{{item.patientname}}</td>
                         <td>{{item.anastatus}}</td>
                         <td>{{item.expstatus}}</td>
-                        <td>{{item.jiedu_status}}</td>
-                        <td>{{item.reportstatus}}</td>
                     </tr>
                 </tbody>
             </table>
-            <table st-table='displayedCollection' st-safe-src="shortData.data" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0">
+            <table st-table='displayedCollection' st-safe-src="showData" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0">
                 <tfoot>
                     <tr>
                         <td colspan="11" class="text-center">
