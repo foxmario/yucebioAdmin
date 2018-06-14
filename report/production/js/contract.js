@@ -1,5 +1,5 @@
 (function(angular) {
-    var app = angular.module('myApp', ['smart-table', 'ui.bootstrap', 'ngRoute', 'tool', 'ae-datetimepicker','ngFileUpload']);
+    var app = angular.module('myApp', ['smart-table', 'ui.bootstrap', 'ngRoute', 'tool', 'ae-datetimepicker','ngFileUpload','angularjs-dropdown-multiselect']);
     app.controller('safeCtrl', ['$scope', '$log', '$routeParams', '$rootScope', '$http', '$location', '$timeout', '$uibModal','Upload',
         function($scope, $log, $routeParams, $rootScope, $http, $location, $timeout, $uibModal,Upload) {
             $scope.items = null;
@@ -64,7 +64,8 @@
                         $scope.items[key] = value;
                     })
                 }
-                // $scope.items = item;
+                
+
                 if (!$scope.items.isSelected) {
                     $scope.items = null;
                 }
@@ -323,8 +324,8 @@
                 if ($scope.project) {
                     $scope.project.start_time = moment($scope.project.start_time).format("YYYY-MM-DD HH:mm:ss");
                     $scope.project.deadline = moment($scope.project.deadline).format("YYYY-MM-DD HH:mm:ss");
-                    $scope.project.products = $scope.result;
                     $scope.project.duty = $scope.project.duty;
+                    $scope.project.task_list = $scope.result;
                     console.log($scope.project)
                     $http({
                         method: 'post',
@@ -424,10 +425,23 @@
                     }
                 });
 
-
-
-
             }
+
+            //产品选择
+            $scope.stringSettings = { 
+                template: '{{option}}', 
+                smartButtonTextConverter(skip, option) { 
+                    console.log(skip)
+                    return option; 
+                }
+            };
+            
+
+
+
+
+
+
 
             //添加
             $scope.add = function(size) {
@@ -473,8 +487,17 @@
                 }
             }
             //批量勾选
-            // $scope.batchCheck = function(){
-            // }
+            $scope.batchCheck = function(item,event){
+                 var action = event.target;
+                if(action.checked){
+                     $scope.result.push(item);
+                     console.log($scope.result);
+                 } else {
+                        var idx = $scope.result.productid;
+                    $scope.result.splice(idx, 1);
+                      console.log($scope.result);
+                 }
+            }
               //文件上传
 
             $scope.uploadPic = function(file) {

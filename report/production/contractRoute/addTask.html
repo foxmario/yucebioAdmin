@@ -1,4 +1,3 @@
-
 <div class="x_panel">
     <div class="x_title">
         <h2>批量添加项目</h2>
@@ -33,17 +32,25 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr st-select-row="item" st-select-mode="single" ng-repeat="item in displayedCollection" ng-click="getDesc(item)">
-                        <td class="text-center"><input type="checkbox" ng-click="select(item,$event)"/></td>
+                    <tr ng-repeat="item in displayedCollection track by $index">
+                        <td class="text-center">
+                            <input type="checkbox" ng-click="batchCheck(item,$event)" />
+                        </td>
                         <td>{{item.patientid}}</td>
                         <td>{{item.patientname}}</td>
                         <td>{{item.tumortype}}</td>
                         <td>
-                            <select class="form-control" ng-model="item.product" ng-options="x for x in shortData.product_list">
-                                        </select>
+                            <div ng-dropdown-multiselect="" options="shortData.product_list" selected-model="item.product" extra-settings="stringSettings"></div>
                         </td>
                     </tr>
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="16" class="text-center">
+                            <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="7"></div>
+                        </td>
+                    </tr>
+                </tfoot>
             </table>
         </div>
     </div>
@@ -76,7 +83,7 @@
             </button>
             <strong>提示：</strong> {{error}}
         </div>
-        <div class="alert alert-success alert-dismissible fade in" role="alert" ng-if="warning">
+        <div class="alert alert-success alert-dismissible fade in" role="alert" ng-if="success">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
             </button>
             <strong>提示：</strong> {{success}}
@@ -107,26 +114,6 @@
                     </span>
                 </div>
             </div>
-     <!--        <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12">患者编号(用空格分隔)<span class="required">*</span>
-                </label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input type="text" class="form-control col-md-7 col-xs-12" ng-model="project.patients" name="patients" required>
-                    <span ng-show="addForm.patients.$dirty" style="color:red;">
-                            <span ng-show="addForm.patients.$error.required">患者编号不能为空</span>
-                    </span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12">癌种(用空格分隔)<span class="required">*</span>
-                </label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input type="text" class="form-control col-md-7 col-xs-12" ng-model="project.tumortype" name="tumortype" required>
-                    <span ng-show="addForm.tumortype.$dirty" style="color:red;">
-                            <span ng-show="addForm.tumortype.$error.required">癌种不能为空</span>
-                    </span>
-                </div>
-            </div> -->
             <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12">开始日期<span class="required">*</span>
                 </label>
@@ -168,43 +155,6 @@
                     </span>
                 </div>
             </div>
-            <!-- <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12">产品<span class="required">*</span>
-                </label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                    <div class="table-responsive">
-                        <table st-table='displayedCollection' st-safe-src="shortData.data[0].product_list" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0">
-                            <thead>
-                                <tr class="frist-head">
-                                    <th></th>
-                                    <th st-sort="taskNumber" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">产品编号</th>
-                                    <th st-sort="taskName" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">产品名称</th>
-                                    <th st-sort="technology" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">技术平台</th>
-                                    <th st-sort="chip" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">生产芯片</th>
-                                </tr>
-                                <tr>
-                                    <th colspan="6">
-                                        <input st-search="" class="form-control" placeholder="查找 ..." type="text" />
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr ng-repeat="item in displayedCollection">
-                                    <td cs-select="item" class="text-center">
-                                        <input type="checkbox" ng-checked="isChecked" ng-click="select(item,$event)">
-                                    </td>
-                                    <td class="text-center">
-                                        {{item.productid}}
-                                    </td>
-                                    <td>{{item.productname}}</td>
-                                    <td>{{item.platform}}</td>
-                                    <td>{{item.chip}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div> -->
         </form>
         <script type="text/ng-template" id="addModal.html">
             <div class="modal-header">
