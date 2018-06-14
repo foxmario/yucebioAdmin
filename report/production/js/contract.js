@@ -13,7 +13,7 @@
 
 
             var href = $location.url();
-            var baseUrl = 'http://192.168.12.123:8000/';
+            var baseUrl = 'http://192.168.1.186:8000/';
             // var baseUrl = 'http://192.168.11.101:8000/';
             switch (href) {
                 case '/task':
@@ -472,7 +472,9 @@
 
                 }
             }
-
+            //批量勾选
+            // $scope.batchCheck = function(){
+            // }
               //文件上传
 
             $scope.uploadPic = function(file) {
