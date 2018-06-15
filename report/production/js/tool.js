@@ -22,11 +22,12 @@
                  // window.location.href = 'login';
            }
         // 工具条
+        console.log($FOOTER.height());
         function init_sidebar() {
             // TODO: 这是一种简单的解决方法，也许我们可以改进这个
             var setContentHeight = function() {
                 // reset height
-                // $RIGHT_COL.css('min-height', $(window).height());
+                $RIGHT_COL.css('min-height', $(window).height());
 
                 var bodyHeight = $BODY.outerHeight(),
                     footerHeight = $BODY.hasClass('footer_fixed') ? -10 : $FOOTER.height(),
@@ -34,7 +35,7 @@
                     contentHeight = bodyHeight < leftColHeight ? leftColHeight : bodyHeight;
 
                 // normalize content
-                contentHeight -= $NAV_MENU.height() + footerHeight;
+                contentHeight -= $NAV_MENU.height() + footerHeight+34;
 
                 $RIGHT_COL.css('min-height', contentHeight);
             };

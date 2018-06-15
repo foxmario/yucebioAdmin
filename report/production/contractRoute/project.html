@@ -50,12 +50,12 @@
                         <th>操作</th>
                     </tr>
                     <tr>
-                         <th>
-                             <select st-search="status">
+                        <th>
+                            <select st-search="status">
                                 <option value="">所有</option>
                                 <option ng-repeat="item in displayedCollection | unique:'status'" value="{{item.status}}">{{item.status}}</option>
                             </select>
-                         </th>
+                        </th>
                         <th colspan="9">
                             <input st-search="" class="form-control" placeholder="查找 ..." type="text" />
                         </th>
@@ -129,7 +129,7 @@
             <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
                 <li role="presentation" class="active"><a role="tab" data-toggle="tab" aria-expanded="true">患者列表</a>
                 </li>
-                <li role="presentation" class=""><a role="tab" data-toggle="tab" aria-expanded="false">追加下单</a>
+                <li role="presentation" class="" ng-click="addOrders()"><a role="tab" data-toggle="tab" aria-expanded="false">追加下单</a>
                 </li>
                 <li role="presentation" class=""><a role="tab" data-toggle="tab" aria-expanded="false">产品列表</a>
                 </li>
@@ -137,6 +137,21 @@
                 </li>
             </ul>
             <div id="myTabContent" class="tab-content">
+                <div class="alert alert-danger alert-dismissible fade in" role="alert" ng-if="error">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                    </button>
+                    <strong>提示：</strong> {{error}}
+                </div>
+                <div class="alert alert-success alert-dismissible fade in" role="alert" ng-if="success">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                    </button>
+                    <strong>提示：</strong> {{success}}
+                </div>
+                <div class="alert alert-warning alert-dismissible fade in" role="alert" ng-if="warning">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                    </button>
+                    <strong>提示：</strong> {{warning}}
+                </div>
                 <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
                     <div class="table-responsive">
                         <table st-table='patient_list' st-safe-src="items.patient_list" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
@@ -170,16 +185,105 @@
                     </div>
                 </div>
                 <div role="tabpanel" class="tab-pane fade" aria-labelledby="profile-tab">
-                    <form class="form-horizontal">
+                    <div>
+                        <table st-table='displayedCollection' st-safe-src="ordersList.items" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" style="white-space: nowrap;">
+                            <thead>
+                                <tr>
+                                    <th>勾选</th>
+                                    <th>患者编号</th>
+                                    <th>姓名</th>
+                                    <th>癌种</th>
+                                    <th>产品</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in displayedCollection track by $index">
+                                    <td class="text-center">
+                                        <input type="checkbox" ng-click="batchCheck(item,$event)" />
+                                    </td>
+                                    <td>{{item.patientid}}</td>
+                                    <td>{{item.patientname}}</td>
+                                    <td>{{item.tumortype}}</td>
+                                    <td class="text-center">
+                                        <div ng-dropdown-multiselect="" options="shortData.product_list" selected-model="item.product" extra-settings="stringSettings"></div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="16" class="text-center">
+                                        <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="7"></div>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <form class="form-horizontal form-label-left" name="addForm">
                         <div class="form-group">
-                                <label class="control-label col-md-2 col-sm-2 col-xs-12">患者id<span class="required">*</span>
-                                </label>
-                                <div class="col-md-8 col-sm-8 col-xs-12">
-                                    <input type="text" class="form-control" ng-model="patientId">
-                                </div>
-                                <button class="btn btn-primary" ng-disabled="!items||!patientId" ng-click="addPatientId(items)">提交</button>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">项目编号<span class="required"></span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="text" class="form-control col-md-7 col-xs-12" ng-model="project.projectid">
                             </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">项目类别<span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <select class="form-control" ng-model="project.tag" name="tag" required>
+                                    <option>科研</option>
+                                    <option>检测</option>
+                                </select>
+                                <span ng-show="addForm.tag.$dirty">
+                        <span ng-show="addForm.tag.$error.required">项目编号不能为空</span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">开始日期<span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="input-group" datetimepicker ng-model="project.start_time" required name="start_time">
+                                    <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                    <input class="form-control" />
+                                </div>
+                                <span ng-show="addForm.start_time.$dirty" style="color:red;">
+                            <span ng-show="addForm.start_time.$error.required">开始日期不能为空</span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">截止日期<span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="input-group" datetimepicker ng-model="project.deadline" name="deadline" required>
+                                    <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                    <input class="form-control" />
+                                </div>
+                                <span ng-show="addForm.deadline.$dirty" style="color:red;">
+                            <span ng-show="addForm.deadline.$error.required">截止日期不能为空</span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">负责人<span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <select class="form-control" ng-model="project.duty" ng-options="x for x in shortData.user_list" required name="duty">
+                                </select>
+                                <span ng-show="addForm.duty.$dirty" style="color:red;">
+                        <span ng-show="addForm.duty.$error.required">负责人不能为空</span>
+                                </span>
+                            </div>
+                        </div>
                     </form>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" ng-disabled="!items||!patientId" ng-click="addPatientId(items)">提交</button>
+                    </div>
                 </div>
                 <div role="tabpanel" class="tab-pane fade" aria-labelledby="profile-tab">
                     <div class="table-responsive">

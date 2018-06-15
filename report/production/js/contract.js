@@ -387,7 +387,15 @@
                 }
 
             }
-
+            //追加下单
+            $scope.addOrders = function(){
+                $http({
+                    method:'post',
+                    url:baseUrl+''
+                }).then(function(response){
+                    console.log(response.data);
+                },function(){})
+            }
             //添加患者id
             $scope.addPatientId = function(items){
                   $scope.data = {}
@@ -395,7 +403,7 @@
                   $scope.data.patients = $scope.patientId;
                   $http({
                         method:'post',
-                        url:baseUrl+'ProjectHandle/addpatient/',
+                        url:baseUrl+'ProjectHandle/init/',
                         data:$scope.data
                   }).then(function(){},function(){})
             }
@@ -431,7 +439,6 @@
             $scope.stringSettings = { 
                 template: '{{option}}', 
                 smartButtonTextConverter(skip, option) { 
-                    console.log(skip)
                     return option; 
                 }
             };
@@ -497,6 +504,16 @@
                     $scope.result.splice(idx, 1);
                       console.log($scope.result);
                  }
+            }
+            //项目列表
+            $scope.addOrders = function(){
+                $http({
+                    method:'post',
+                    url:baseUrl+'ProjectHandle/completehelp/'
+                }).then(function(response){
+                    $scope.ordersList = response.data;
+                },function(){})
+            
             }
               //文件上传
 

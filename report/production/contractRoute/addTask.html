@@ -18,7 +18,6 @@
         </ul>
         <div class="clearfix"></div>
     </div>
-    <!--stSafeSrc属性控制表格START-->
     <div class="x_content">
         <div>
             <table st-table='displayedCollection' st-safe-src="shortData.items" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" style="white-space: nowrap;">
@@ -30,6 +29,12 @@
                         <th>癌种</th>
                         <th>产品</th>
                     </tr>
+                    <tr>
+                        <th></th>
+                        <th colspan="3">
+                            <input st-search="" class="form-control input-sm" placeholder="查找 ..." type="text" />
+                        </th>
+                    </tr>
                 </thead>
                 <tbody>
                     <tr ng-repeat="item in displayedCollection track by $index">
@@ -39,7 +44,7 @@
                         <td>{{item.patientid}}</td>
                         <td>{{item.patientname}}</td>
                         <td>{{item.tumortype}}</td>
-                        <td>
+                        <td class="text-center">
                             <div ng-dropdown-multiselect="" options="shortData.product_list" selected-model="item.product" extra-settings="stringSettings"></div>
                         </td>
                     </tr>
@@ -53,126 +58,102 @@
                 </tfoot>
             </table>
         </div>
-    </div>
-</div>
-<!--stSafeSrc属性控制表格END-->
-<div class="x_panel">
-    <div class="x_title">
-        <h2>添加项目</h2>
-        <ul class="nav navbar-right panel_toolbox">
-            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-            </li>
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">设置1</a>
-                    </li>
-                    <li><a href="#">设置2</a>
-                    </li>
-                </ul>
-            </li>
-            <li><a class="close-link"><i class="fa fa-close"></i></a>
-            </li>
-        </ul>
-        <div class="clearfix"></div>
-    </div>
-    <!--stSafeSrc属性控制表格START-->
-    <div class="x_content">
-        <div class="alert alert-danger alert-dismissible fade in" role="alert" ng-if="error">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
-            </button>
-            <strong>提示：</strong> {{error}}
-        </div>
-        <div class="alert alert-success alert-dismissible fade in" role="alert" ng-if="success">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
-            </button>
-            <strong>提示：</strong> {{success}}
-        </div>
-        <div class="alert alert-warning alert-dismissible fade in" role="alert" ng-if="warning">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
-            </button>
-            <strong>提示：</strong> {{warning}}
-        </div>
-        <form class="form-horizontal form-label-left" name="addForm">
-            <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12">项目编号<span class="required"></span>
-                </label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input type="text" class="form-control col-md-7 col-xs-12" ng-model="project.projectid">
-                </div>
+        <div>
+            <div class="alert alert-danger alert-dismissible fade in" role="alert" ng-if="error">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                </button>
+                <strong>提示：</strong> {{error}}
             </div>
-            <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12">项目类别<span class="required">*</span>
-                </label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                    <select class="form-control" ng-model="project.tag" name="tag" required>
-                        <option>科研</option>
-                        <option>检测</option>
-                    </select>
-                    <span ng-show="addForm.tag.$dirty">
+            <div class="alert alert-success alert-dismissible fade in" role="alert" ng-if="success">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                </button>
+                <strong>提示：</strong> {{success}}
+            </div>
+            <div class="alert alert-warning alert-dismissible fade in" role="alert" ng-if="warning">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                </button>
+                <strong>提示：</strong> {{warning}}
+            </div>
+            <form class="form-horizontal form-label-left" name="addForm">
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">项目编号<span class="required"></span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" class="form-control col-md-7 col-xs-12" ng-model="project.projectid">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">项目类别<span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <select class="form-control" ng-model="project.tag" name="tag" required>
+                            <option>科研</option>
+                            <option>检测</option>
+                        </select>
+                        <span ng-show="addForm.tag.$dirty">
                         <span ng-show="addForm.tag.$error.required">项目编号不能为空</span>
-                    </span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12">开始日期<span class="required">*</span>
-                </label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                    <div class="input-group" datetimepicker ng-model="project.start_time" required name="start_time">
-                        <span class="input-group-addon">
-                                <span class="glyphicon glyphicon-calendar"></span>
                         </span>
-                        <input class="form-control" />
                     </div>
-                    <span ng-show="addForm.start_time.$dirty" style="color:red;">
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">开始日期<span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="input-group" datetimepicker ng-model="project.start_time" required name="start_time">
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                            <input class="form-control" />
+                        </div>
+                        <span ng-show="addForm.start_time.$dirty" style="color:red;">
                             <span ng-show="addForm.start_time.$error.required">开始日期不能为空</span>
-                    </span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12">截止日期<span class="required">*</span>
-                </label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                    <div class="input-group" datetimepicker ng-model="project.deadline" name="deadline" required>
-                        <span class="input-group-addon">
-                                <span class="glyphicon glyphicon-calendar"></span>
                         </span>
-                        <input class="form-control" />
                     </div>
-                    <span ng-show="addForm.deadline.$dirty" style="color:red;">
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">截止日期<span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="input-group" datetimepicker ng-model="project.deadline" name="deadline" required>
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                            <input class="form-control" />
+                        </div>
+                        <span ng-show="addForm.deadline.$dirty" style="color:red;">
                             <span ng-show="addForm.deadline.$error.required">截止日期不能为空</span>
-                    </span>
+                        </span>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12">负责人<span class="required">*</span>
-                </label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                    <select class="form-control" ng-model="project.duty" ng-options="x for x in shortData.user_list" required name="duty">
-                    </select>
-                    <span ng-show="addForm.duty.$dirty" style="color:red;">
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">负责人<span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <select class="form-control" ng-model="project.duty" ng-options="x for x in shortData.user_list" required name="duty">
+                        </select>
+                        <span ng-show="addForm.duty.$dirty" style="color:red;">
                         <span ng-show="addForm.duty.$error.required">负责人不能为空</span>
-                    </span>
+                        </span>
+                    </div>
                 </div>
+            </form>
+            <script type="text/ng-template" id="addModal.html">
+                <div class="modal-header">
+                    <h3 class="modal-title">消息</h3>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <p>{{infos}}</p>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" type="button" ng-click="ok()">确定</button>
+                    <button class="btn btn-warning" type="button" ng-click="cancel()">取消</button>
+                </div>
+            </script>
+            <div class="controllBtn">
+                <button type="button" class="btn btn-default" ng-click="addTask('sm',project)" ng-disabled="addForm.$invalid||addForm.$pristine">添加</button>
             </div>
-        </form>
-        <script type="text/ng-template" id="addModal.html">
-            <div class="modal-header">
-                <h3 class="modal-title">消息</h3>
-            </div>
-            <div class="modal-body">
-                <form class="form-horizontal">
-                    <p>{{infos}}</p>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-primary" type="button" ng-click="ok()">确定</button>
-                <button class="btn btn-warning" type="button" ng-click="cancel()">取消</button>
-            </div>
-        </script>
-        <div class="controllBtn">
-            <button type="button" class="btn btn-default" ng-click="addTask('sm',project)" ng-disabled="addForm.$invalid||addForm.$pristine">添加</button>
         </div>
     </div>
 </div>
-<!--stSafeSrc属性控制表格END-->
