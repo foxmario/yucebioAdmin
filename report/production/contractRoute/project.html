@@ -20,59 +20,82 @@
     </div>
     <!--stSafeSrc属性控制表格START-->
     <div class="x_content">
-        <div class="alert alert-danger alert-dismissible fade in" role="alert" ng-if="error">
+        <div class="alert alert-danger alert-dismissible fade in" role="alert" ng-if="ordersInfo.error">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
             </button>
-            <strong>提示：</strong> {{error}}
+            <strong>提示：</strong> {{ordersInfo.error}}
         </div>
-        <div class="alert alert-success alert-dismissible fade in" role="alert" ng-if="success">
+        <div class="alert alert-success alert-dismissible fade in" role="alert" ng-if="ordersInfo.success">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
             </button>
-            <strong>提示：</strong> {{success}}
+            <strong>提示：</strong> {{ordersInfo.success}}
         </div>
-        <div class="alert alert-warning alert-dismissible fade in" role="alert" ng-if="warning">
+        <div class="alert alert-warning alert-dismissible fade in" role="alert" ng-if="ordersInfo.warning">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
             </button>
-            <strong>提示：</strong> {{warning}}
+            <strong>提示：</strong> {{ordersInfo.warning}}
         </div>
         <div class="table-responsive">
             <table st-table='displayedCollection' st-safe-src="shortData.data" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" style="white-space: nowrap;">
                 <thead>
                     <tr class="frist-head">
-                        <th>项目状态</th>
+                        <th>项目类型</th>
                         <th st-sort="itemNumber" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">项目编号</th>
                         <th st-sort="itemPerson" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">项目负责人</th>
-                        <th st-sort="startTime" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">开始日期</th>
-                        <th st-sort="surplusDay" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">剩余时间(天)</th>
+                        <th st-sort="startTime" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">起始日期</th>
                         <th st-sort="deadline" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">截止日期</th>
-                        <th st-sort="endTiem" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">完成时间</th>
-                        <th st-sort="completeTime" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">延迟状态</th>
-                        <th>操作</th>
+                        <th st-sort="endTiem" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">实际交付时间</th>
+                        <th st-sort="surplusDay" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">项目倒计时</th>
+                        <th>项目状态</th>
+                        <th st-sort="completeTime" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">项目延期状态</th>
+                        <th>项目订单操作</th>
                     </tr>
                     <tr>
                         <th>
+                            <select st-search="tag">
+                                <option value="">所有</option>
+                                <option ng-repeat="item in displayedCollection | unique:'tag'" value="{{item.tag}}">{{item.tag}}</option>
+                            </select>
+                        </th>
+                        <th colspan="6">
+                            <input st-search="" class="form-control" placeholder="查找 ..." type="text" />
+                        </th>
+                         <th>
                             <select st-search="status">
                                 <option value="">所有</option>
                                 <option ng-repeat="item in displayedCollection | unique:'status'" value="{{item.status}}">{{item.status}}</option>
                             </select>
                         </th>
-                        <th colspan="9">
-                            <input st-search="" class="form-control" placeholder="查找 ..." type="text" />
+                        <th>
+                             <select st-search="delay">
+                                <option value="">所有</option>
+                                <option ng-repeat="item in displayedCollection | unique:'delay'" value="{{item.delay}}">{{item.delay}}</option>
+                            </select>
                         </th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr st-select-row="item" st-select-mode="single" ng-repeat="item in displayedCollection" ng-click="getDesc(item)">
-                        <td>{{item.status}}</td>
+                        <td>{{item.tag}}</td>
                         <td>{{item.projectid}}</td>
                         <td>{{item.duty}}</td>
                         <td>{{item.start_time.$date|date:'yyyy-MM-dd HH:mm'}}</td>
-                        <td>{{item.duration}}</td>
                         <td>{{item.deadline.$date|date:'yyyy-MM-dd HH:mm'}}</td>
                         <td>{{item.starttime}}</td>
+                        <td>{{item.duration}}</td>
+                        <td>{{item.status}}</td>
                         <td>{{item.delay}}</td>
                         <td>
-                            <button class="btn btn-info btn-xs" ng-click="fee('sm',item)">缴费</button>
+                            <!-- <button class="btn btn-info btn-xs" ng-click="fee('sm',item)">缴费</button> -->
+                            <select ng-change="orderOperate('sm',value,item)" ng-model="value">
+                                <option value="审核">审核</option>
+                                <option value="暂停">暂停</option>
+                                <option value="重置">重置</option>
+                                <option value="终止">终止</option>
+                                <option value="取消实验">取消实验</option>
+                                <option value="取消解读">取消解读</option>
+                            </select>
                         </td>
                     </tr>
                 </tbody>
@@ -87,20 +110,18 @@
                 </tfoot>
             </table>
         </div>
-        <div ng-controller="ModalDemoCtrl">
-            <script type="text/ng-template" id="feeModal.html">
-                <div class="modal-header">
-                    <h3 class="modal-title">消息</h3>
-                </div>
-                <div class="modal-body">
-                    <p>是否缴费</p>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-primary" type="button" ng-click="ok()">确定</button>
-                    <button class="btn btn-warning" type="button" ng-click="cancel()">取消</button>
-                </div>
-            </script>
-        </div>
+            <script type="text/ng-template" id="orderOperateModal.html">
+                        <div class="modal-header">
+                            <h3 class="modal-title">消息</h3>
+                        </div>
+                        <div class="modal-body">
+                            <p>{{info}}</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary" type="button" ng-click="ok()">确定</button>
+                            <button class="btn btn-warning" type="button" ng-click="cancel()">取消</button>
+                        </div>
+                    </script>
     </div>
     <!--stSafeSrc属性控制表格END-->
 </div>
@@ -129,11 +150,11 @@
             <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
                 <li role="presentation" class="active"><a role="tab" data-toggle="tab" aria-expanded="true">患者列表</a>
                 </li>
-                <li role="presentation" class="" ng-click="addOrders()"><a role="tab" data-toggle="tab" aria-expanded="false">追加下单</a>
+                <li role="presentation" class=""><a role="tab" data-toggle="tab" aria-expanded="false">追加下单</a>
                 </li>
                 <li role="presentation" class=""><a role="tab" data-toggle="tab" aria-expanded="false">产品列表</a>
                 </li>
-                <li role="presentation" class=""><a role="tab" data-toggle="tab" aria-expanded="false">任务列表</a>
+                <li role="presentation" class=""><a role="tab" data-toggle="tab" aria-expanded="false">项目任务</a>
                 </li>
             </ul>
             <div id="myTabContent" class="tab-content">
@@ -157,26 +178,30 @@
                         <table st-table='patient_list' st-safe-src="items.patient_list" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                             <thead>
                                 <tr class="frist-head">
-                                    <th st-sort="name" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc" st-sort-default="reverse">患者名称</th>
-                                    <th st-sort="tumortype" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">癌种</th>
-                                    <th st-sort="gender" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">性别</th>
+                                    <th st-sort="patientid" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc" st-sort-default="reverse">患者ID</th>
+                                    <th st-sort="name" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">患者姓名</th>
+                                    <th st-sort="tumortype" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">肿瘤类型</th>
+                                    <th>患者年龄</th>
+                                    <th st-sort="gender" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">患者性别</th>
                                 </tr>
                                 <tr>
-                                    <th colspan="7">
+                                    <th colspan="6">
                                         <input st-search="" class="form-control" placeholder="查找 ..." type="text" />
                                     </th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr st-select-row="item" st-select-mode="single" ng-repeat="item in patient_list">
+                                    <td>{{item.patientid}}</td>
                                     <td>{{item.patientname}}</td>
                                     <td>{{item.tumortype}}</td>
+                                    <td>{{item.age}}</td>
                                     <td>{{item.gender}}</td>
                                 </tr>
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <td colspan="4" class="text-center">
+                                    <td colspan="6" class="text-center">
                                         <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="4"></div>
                                     </td>
                                 </tr>
@@ -186,7 +211,7 @@
                 </div>
                 <div role="tabpanel" class="tab-pane fade" aria-labelledby="profile-tab">
                     <div>
-                        <table st-table='displayedCollection' st-safe-src="ordersList.items" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" style="white-space: nowrap;">
+                        <table st-table='ordersListCollection' st-safe-src="ordersList.items" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" style="white-space: nowrap;">
                             <thead>
                                 <tr>
                                     <th>勾选</th>
@@ -197,7 +222,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="item in displayedCollection track by $index">
+                                <tr ng-repeat="item in ordersListCollection track by $index">
                                     <td class="text-center">
                                         <input type="checkbox" ng-click="batchCheck(item,$event)" />
                                     </td>
@@ -205,7 +230,7 @@
                                     <td>{{item.patientname}}</td>
                                     <td>{{item.tumortype}}</td>
                                     <td class="text-center">
-                                        <div ng-dropdown-multiselect="" options="shortData.product_list" selected-model="item.product" extra-settings="stringSettings"></div>
+                                        <div ng-dropdown-multiselect="" options="ordersList.product_list" selected-model="item.product" extra-settings="stringSettings"></div>
                                     </td>
                                 </tr>
                             </tbody>
@@ -218,71 +243,8 @@
                             </tfoot>
                         </table>
                     </div>
-                    <form class="form-horizontal form-label-left" name="addForm">
-                        <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12">项目编号<span class="required"></span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" class="form-control col-md-7 col-xs-12" ng-model="project.projectid">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12">项目类别<span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <select class="form-control" ng-model="project.tag" name="tag" required>
-                                    <option>科研</option>
-                                    <option>检测</option>
-                                </select>
-                                <span ng-show="addForm.tag.$dirty">
-                        <span ng-show="addForm.tag.$error.required">项目编号不能为空</span>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12">开始日期<span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="input-group" datetimepicker ng-model="project.start_time" required name="start_time">
-                                    <span class="input-group-addon">
-                                <span class="glyphicon glyphicon-calendar"></span>
-                                    </span>
-                                    <input class="form-control" />
-                                </div>
-                                <span ng-show="addForm.start_time.$dirty" style="color:red;">
-                            <span ng-show="addForm.start_time.$error.required">开始日期不能为空</span>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12">截止日期<span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="input-group" datetimepicker ng-model="project.deadline" name="deadline" required>
-                                    <span class="input-group-addon">
-                                <span class="glyphicon glyphicon-calendar"></span>
-                                    </span>
-                                    <input class="form-control" />
-                                </div>
-                                <span ng-show="addForm.deadline.$dirty" style="color:red;">
-                            <span ng-show="addForm.deadline.$error.required">截止日期不能为空</span>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12">负责人<span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <select class="form-control" ng-model="project.duty" ng-options="x for x in shortData.user_list" required name="duty">
-                                </select>
-                                <span ng-show="addForm.duty.$dirty" style="color:red;">
-                        <span ng-show="addForm.duty.$error.required">负责人不能为空</span>
-                                </span>
-                            </div>
-                        </div>
-                    </form>
                     <div class="modal-footer">
-                        <button class="btn btn-primary" ng-disabled="!items||!patientId" ng-click="addPatientId(items)">提交</button>
+                        <button class="btn btn-primary" ng-disabled="false" ng-click="addPatientId(item)">提交</button>
                     </div>
                 </div>
                 <div role="tabpanel" class="tab-pane fade" aria-labelledby="profile-tab">
@@ -332,36 +294,72 @@
                         <table st-table='task_list' st-safe-src="items.task_list" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                             <thead>
                                 <tr class="frist-head">
-                                    <th st-sort="number" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc" st-sort-default="reverse">任务编号</th>
-                                    <th st-sort="product" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">产品</th>
+                                    <th st-sort="taskid" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc" st-sort-default="reverse">项目编号</th>
+                                    <th st-sort="number" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">订单编号</th>
                                     <th st-sort="patient" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">患者编号</th>
-                                    <th st-sort="tumortype" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">癌肿</th>
-                                    <th st-sort="anastatus" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">分析状态</th>
+                                    <th>患者姓名</th>
+                                    <th st-sort="tumortype" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">肿瘤类型</th>
+                                    <th st-sort="product" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">产品编号</th>
+                                    <th>订单状态</th>
                                     <th st-sort="expstatus" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">实验状态</th>
+                                    <th st-sort="anastatus" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">分析状态</th>
                                     <th st-sort="jiedu_status" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">解读状态</th>
                                     <th st-sort="reportstatus" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">报告状态</th>
                                 </tr>
                                 <tr>
-                                    <th colspan="8">
+                                    <th colspan="6">
                                         <input st-search="" class="form-control" placeholder="查找 ..." type="text" />
+                                    </th>
+                                    <th>
+                                        <select st-search="status">
+                                            <option value="">所有</option>
+                                            <option ng-repeat="item in task_list | unique:'status'" value="{{item.status}}">{{item.status}}</option>
+                                        </select>
+                                    </th>
+                                    <th>
+                                        <select st-search="expstatus">
+                                            <option value="">所有</option>
+                                            <option ng-repeat="item in task_list | unique:'expstatus'" value="{{item.expstatus}}">{{item.expstatus}}</option>
+                                        </select>
+                                    </th>
+                                    <th>
+                                        <select st-search="anastatus">
+                                            <option value="">所有</option>
+                                            <option ng-repeat="item in task_list | unique:'anastatus'" value="{{item.anastatus}}">{{item.anastatus}}</option>
+                                        </select>
+                                    </th>
+                                    <th>
+                                        <select st-search="jiedu_status">
+                                            <option value="">所有</option>
+                                            <option ng-repeat="item in task_list | unique:'jiedu_status'" value="{{item.jiedu_status}}">{{item.jiedu_status}}</option>
+                                        </select>
+                                    </th>
+                                    <th>
+                                        <select st-search="reportstatus">
+                                            <option value="">所有</option>
+                                            <option ng-repeat="item in task_list | unique:'reportstatus'" value="{{item.reportstatus}}">{{item.reportstatus}}</option>
+                                        </select>
                                     </th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr st-select-row="item" st-select-mode="single" ng-repeat="item in task_list">
+                                    <td>{{item.projectid}}</td>
                                     <td>{{item.taskid}}</td>
-                                    <td>{{item.product}}</td>
                                     <td>{{item.patient}}</td>
+                                    <td>{{item.patientname}}</td>
                                     <td>{{item.tumortype}}</td>
-                                    <td>{{item.anastatus}}</td>
+                                    <td>{{item.product}}</td>
+                                    <td>{{item.status}}</td>
                                     <td>{{item.expstatus}}</td>
+                                    <td>{{item.anastatus}}</td>
                                     <td>{{item.jiedu_status}}</td>
                                     <td>{{item.reportstatus}}</td>
                                 </tr>
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <td colspan="8" class="text-center">
+                                    <td colspan="11" class="text-center">
                                         <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="4"></div>
                                     </td>
                                 </tr>

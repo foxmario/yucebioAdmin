@@ -36,11 +36,6 @@
             $rootScope.getData = function() {
                 $http({
                     method: 'get',
-                    // url:'http://192.168.1.185:8000/projectmanager/patient/index/'
-                    // url:'http://192.168.1.185:8000/projectmanager/product'
-                    // url:'http://192.168.1.185:8000/projectmanager/task/index/'
-                    // url:'http://192.168.1.185:8000/projectmanager/project/index/'
-                    // url:'http://192.168.1.185:8000/projectmanager/project/add/'
                     url: url
 
                 }).then(function(response) {
@@ -51,9 +46,6 @@
                 }, function() {})
             }
             $rootScope.getData();
-            //禁用编辑功能
-            $rootScope.isdisabled = true;
-            $rootScope.ismessage = false;
 
             //获取表格的值
             $rootScope.getDesc = function(item) {
@@ -64,7 +56,20 @@
                         $scope.items[key] = value;
                     })
                 }
-                
+                if(href=='/project'){
+                    $scope.data = {};
+                    $scope.data.projectid = item.projectid;
+                    $http({
+                        method:'post',
+                        url:baseUrl+'ProjectHandle/complementhelp/',
+                        data:$scope.data
+                    }).then(function(response){
+                        console.log(response.data)
+                        $scope.ordersList = response.data;
+                        $scope.ordersList.projectid = item.projectid;
+                    },function(){})
+
+                }
 
                 if (!$scope.items.isSelected) {
                     $scope.items = null;
@@ -80,7 +85,28 @@
                         $scope.allotList = response.data;
                   },function(){})
             }
-
+            $scope.ptModify = function(items){
+                delete items.samples;
+                delete items.infostatus;
+                delete items.isSelected;
+                console.log(items);
+                $http({
+                    method:'post',
+                    url:baseUrl + 'PatientHandle/modify/',
+                    data:items
+                }).then(function(response){
+                    $rootScope.getData();
+                         var data = response.data;
+                        $scope.error = data.error;
+                        $scope.success = data.success;
+                        $scope.warning = data.warning;
+                        $timeout(function() {
+                            $scope.error = null;
+                            $scope.success = null;
+                            $scope.warning = null;
+                        }, 10000)
+                },function(){})
+            }
 
             //任务分配
             $scope.allotSubmit = function(items){
@@ -388,27 +414,66 @@
 
             }
             //追加下单
-            $scope.addOrders = function(){
-                $http({
-                    method:'post',
-                    url:baseUrl+''
-                }).then(function(response){
-                    console.log(response.data);
-                },function(){})
-            }
+            // $scope.addOrders = function(){
+            //     $http({
+            //         method:'post',
+            //         url:baseUrl+''
+            //     }).then(function(response){
+            //         console.log(response.data);
+            //     },function(){})
+            // }
             //添加患者id
-            $scope.addPatientId = function(items){
+            $scope.addPatientId = function(){
                   $scope.data = {}
-                  $scope.data.projectid = items._id;
-                  $scope.data.patients = $scope.patientId;
+                  $scope.data.projectid = $scope.ordersList.projectid;
+                  $scope.data.task_list = $scope.result;
+
+                  console.log($scope.data);
                   $http({
                         method:'post',
-                        url:baseUrl+'ProjectHandle/init/',
+                        url:baseUrl+'ProjectHandle/complement/',
                         data:$scope.data
-                  }).then(function(){},function(){})
+                  }).then(function(response){
+                     $rootScope.getData();
+                        $scope.warning = response.data.warning;
+                        $scope.error = response.data.error;
+                        $scope.success = response.data.success;
+                        $timeout(function() {
+                            $scope.warning = null;
+                            $scope.error = null;
+                            $scope.success = null;
+                        }, 3000)
+                  },function(){})
             }
 
+            //项目订单操作
+            $scope.orderOperate = function(size,value,item){
+                $scope.info = '是否' + value;
+                var data = {};
+                data.projectid = item.projectid;
+                data.cmd = value;
+                 var modalInstance = $uibModal.open({
+                    templateUrl: 'orderOperateModal.html',
+                    controller: 'ModalInstanceCtrl',
+                    backdrop: "static",
+                    size: size,
+                    resolve: {
+                        infos1: function() {
+                            return $scope.info;
+                        },
+                        btnname: function() {
+                            return $scope.name = 'orderOperate';
+                        },
+                        urls: function() {
+                            return $scope.urls;
+                        },
+                        datas: function() {
+                            return data;
+                        }
 
+                    }
+                });
+            }
             //任务管理下单
             $scope.orders = function(size, item) {
                 var modalInstance = $uibModal.open({
@@ -436,13 +501,13 @@
             }
 
             //产品选择
-            $scope.stringSettings = { 
-                template: '{{option}}', 
-                smartButtonTextConverter(skip, option) { 
-                    return option; 
+            $scope.stringSettings = {
+                template: '{{option}}',
+                smartButtonTextConverter(skip, option) {
+                    return option;
                 }
             };
-            
+
 
 
 
@@ -505,16 +570,32 @@
                       console.log($scope.result);
                  }
             }
-            //项目列表
-            $scope.addOrders = function(){
-                $http({
-                    method:'post',
-                    url:baseUrl+'ProjectHandle/completehelp/'
-                }).then(function(response){
-                    $scope.ordersList = response.data;
-                },function(){})
-            
-            }
+                //订单管理修改
+                $scope.odModify =function(items){
+                    delete items.patient;
+                    delete items.patientname;
+                    delete items.patient;
+                    delete items.productname;
+                    delete items.product;
+                    delete items.age;
+                    delete items.gender;
+                    delete items.isSelected;
+                    $http({
+                        method:'post',
+                        url:baseUrl +'PMTaskHandle/modify/',
+                        data:items
+                    }).then(function(response){
+                        $rootScope.getData();
+                        $scope.warning = response.data.warning;
+                        $scope.error = response.data.error;
+                        $scope.success = response.data.success;
+                        $timeout(function() {
+                            $scope.warning = null;
+                            $scope.error = null;
+                            $scope.success = null;
+                        }, 6000)
+                    },function(){})
+                }
               //文件上传
 
             $scope.uploadPic = function(file) {
@@ -666,8 +747,7 @@
         $scope.info = infos1;
         $scope.rowCollection = datas;
         $scope.newCollection = [];
-
-        var baseUrl = 'http://192.168.12.123:8000/';
+        var baseUrl = 'http://192.168.1.186:8000/';
         var href = $location.url();
         if (href == '/patient') {
             $http({
@@ -941,15 +1021,35 @@
                         url: baseUrl + 'PatientHandle/addproject/',
                         data: $scope.patient
                     }).then(function(response) {
+
                         $rootScope.ordersInfo={};
                         $rootScope.ordersInfo.warning = response.data.warning;
                         $rootScope.ordersInfo.error = response.data.error;
                         $rootScope.ordersInfo.success = response.data.success;
                         $timeout(function() {
                             $rootScope.ordersInfo= null;
-                        }, 3000)
+                        }, 5000)
                     }, function() {})
                     break;
+                case 'orderOperate':
+
+                    $http({
+                        method:'post',
+                        url:baseUrl+'ProjectHandle/cmd/',
+                        data:$scope.rowCollection
+                    }).then(function(response){
+                        $rootScope.getData();
+                        $rootScope.ordersInfo={};
+                        $rootScope.ordersInfo.warning = response.data.warning;
+                        $rootScope.ordersInfo.error = response.data.error;
+                        $rootScope.ordersInfo.success = response.data.success;
+                        $timeout(function() {
+                            $rootScope.ordersInfo.warning = null;
+                            $rootScope.ordersInfo.error = null;
+                            $rootScope.ordersInfo.success = null;
+                        }, 3000)
+                    },function(){})
+                break;
                 default:
 
                     $http({
