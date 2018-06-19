@@ -58,16 +58,16 @@
                             </select>
                         </th>
                         <th colspan="6">
-                            <input st-search="" class="form-control" placeholder="查找 ..." type="text" />
+                            <input st-search="" class="form-control input-sm" placeholder="查找 ..." type="text" />
                         </th>
-                         <th>
+                        <th>
                             <select st-search="status">
                                 <option value="">所有</option>
                                 <option ng-repeat="item in displayedCollection | unique:'status'" value="{{item.status}}">{{item.status}}</option>
                             </select>
                         </th>
                         <th>
-                             <select st-search="delay">
+                            <select st-search="delay">
                                 <option value="">所有</option>
                                 <option ng-repeat="item in displayedCollection | unique:'delay'" value="{{item.delay}}">{{item.delay}}</option>
                             </select>
@@ -87,7 +87,6 @@
                         <td>{{item.status}}</td>
                         <td>{{item.delay}}</td>
                         <td>
-                            <!-- <button class="btn btn-info btn-xs" ng-click="fee('sm',item)">缴费</button> -->
                             <select ng-change="orderOperate('sm',value,item)" ng-model="value">
                                 <option value="审核">审核</option>
                                 <option value="暂停">暂停</option>
@@ -110,41 +109,22 @@
                 </tfoot>
             </table>
         </div>
-            <script type="text/ng-template" id="orderOperateModal.html">
-                        <div class="modal-header">
-                            <h3 class="modal-title">消息</h3>
-                        </div>
-                        <div class="modal-body">
-                            <p>{{info}}</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-primary" type="button" ng-click="ok()">确定</button>
-                            <button class="btn btn-warning" type="button" ng-click="cancel()">取消</button>
-                        </div>
-                    </script>
+        <script type="text/ng-template" id="orderOperateModal.html">
+            <div class="modal-header">
+                <h3 class="modal-title">消息</h3>
+            </div>
+            <div class="modal-body">
+                <p>{{info}}</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" type="button" ng-click="ok()">确定</button>
+                <button class="btn btn-warning" type="button" ng-click="cancel()">取消</button>
+            </div>
+        </script>
     </div>
     <!--stSafeSrc属性控制表格END-->
 </div>
 <div class="x_panel">
-    <div class="x_title">
-        <h2>详细信息</h2>
-        <ul class="nav navbar-right panel_toolbox">
-            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-            </li>
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">Settings 1</a>
-                    </li>
-                    <li><a href="#">Settings 2</a>
-                    </li>
-                </ul>
-            </li>
-            <li><a class="close-link"><i class="fa fa-close"></i></a>
-            </li>
-        </ul>
-        <div class="clearfix"></div>
-    </div>
     <div class="x_content">
         <div class="" role="tabpanel" data-example-id="togglable-tabs">
             <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
@@ -186,7 +166,7 @@
                                 </tr>
                                 <tr>
                                     <th colspan="6">
-                                        <input st-search="" class="form-control" placeholder="查找 ..." type="text" />
+                                        <input st-search="" class="form-control input-sm" placeholder="查找 ..." type="text" />
                                     </th>
                                 </tr>
                             </thead>
@@ -202,7 +182,7 @@
                             <tfoot>
                                 <tr>
                                     <td colspan="6" class="text-center">
-                                        <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="4"></div>
+                                        <div st-pagination="" st-items-by-page="5" st-displayed-pages="4"></div>
                                     </td>
                                 </tr>
                             </tfoot>
@@ -220,11 +200,18 @@
                                     <th>癌种</th>
                                     <th>产品</th>
                                 </tr>
+                                <tr>
+                                    <th></th>
+                                    <th colspan="3">
+                                        <input st-search="" class="form-control input-sm" placeholder="查找 ..." type="text" />
+                                    </th>
+                                    <th></th>
+                                </tr>
                             </thead>
                             <tbody>
                                 <tr ng-repeat="item in ordersListCollection track by $index">
                                     <td class="text-center">
-                                        <input type="checkbox" ng-click="batchCheck(item,$event)" />
+                                        <input type="checkbox" ng-click="batchCheck(item,$event)" ng-model="item.isChecked"/>
                                     </td>
                                     <td>{{item.patientid}}</td>
                                     <td>{{item.patientname}}</td>
@@ -236,15 +223,15 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <td colspan="16" class="text-center">
-                                        <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="7"></div>
+                                    <td colspan="5" class="text-center">
+                                        <div st-pagination="" st-items-by-page="5" st-displayed-pages="7"></div>
                                     </td>
                                 </tr>
                             </tfoot>
                         </table>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-primary" ng-disabled="false" ng-click="addPatientId(item)">提交</button>
+                        <button class="btn btn-primary" ng-disabled="!items||result.length<1" ng-click="addOrders(item)">提交</button>
                     </div>
                 </div>
                 <div role="tabpanel" class="tab-pane fade" aria-labelledby="profile-tab">
@@ -263,7 +250,7 @@
                                 </tr>
                                 <tr>
                                     <th colspan="8">
-                                        <input st-search="" class="form-control" placeholder="查找 ..." type="text" />
+                                        <input st-search="" class="form-control input-sm" placeholder="查找 ..." type="text" />
                                     </th>
                                 </tr>
                             </thead>
@@ -308,7 +295,7 @@
                                 </tr>
                                 <tr>
                                     <th colspan="6">
-                                        <input st-search="" class="form-control" placeholder="查找 ..." type="text" />
+                                        <input st-search="" class="form-control input-sm" placeholder="查找 ..." type="text" />
                                     </th>
                                     <th>
                                         <select st-search="status">

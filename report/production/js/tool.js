@@ -22,7 +22,6 @@
                  // window.location.href = 'login';
            }
         // 工具条
-        console.log($FOOTER.height());
         function init_sidebar() {
             // TODO: 这是一种简单的解决方法，也许我们可以改进这个
             var setContentHeight = function() {

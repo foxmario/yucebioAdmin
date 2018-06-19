@@ -55,7 +55,7 @@
                     </tr>
                     <tr>
                         <th colspan="7">
-                            <input st-search="" class="form-control" placeholder="查找 ..." type="text" />
+                            <input st-search="" class="form-control input-sm" placeholder="查找 ..." type="text" />
                         </th>
                         <th>
                             <select st-search="status">
@@ -107,58 +107,52 @@
                         <td>{{item.jiedu_status}}</td>
                         <td>{{item.reportstatus}}</td>
                         <td>
-
-                                <div class="btn-group" uib-dropdown>
-                                    <button id="single-button" type="button" class="btn btn-primary btn-xs" uib-dropdown-toggle >
-                                        请选择 <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu" uib-dropdown-menu style="min-width:auto">
-                                        <li><button class="btn btn-default btn-xs" ng-click="studyPause('',item)">实验暂停</button></li>
-                                        <li><button class="btn btn-default btn-xs" ng-click="reset('sm',item)">任务重置</button></li>
-                                        <li><button class="btn btn-default btn-xs" ng-click="stop('sm',item)">任务终止</button></li>
-                                        <li><button class="btn btn-default btn-xs" ng-click="anaPause('sm',item)">分析暂停</button></li>
-                                        <li><button class="btn btn-default btn-xs" ng-click="jieduPause('sm',item)">解读暂停</button></li>
-                                        <li><button class="btn btn-default btn-xs" ng-click="jieduCancel('sm',item)">取消解读</button></li>
-                                        <li><button class="btn btn-default btn-xs" ng-click="studyCancel('',item)">取消实验</button></li>
-                                    </ul>
-                                </div>
+                            <div class="btn-group" uib-dropdown>
+                                <button id="single-button" type="button" class="btn btn-primary btn-xs" uib-dropdown-toggle>
+                                    请选择 <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" uib-dropdown-menu style="min-width:auto">
+                                    <li>
+                                        <button class="btn btn-default btn-xs" ng-click="studyPause('',item,$event)">实验暂停</button>
+                                    </li>
+                                    <li>
+                                        <button class="btn btn-default btn-xs" ng-click="reset('sm',item,$event)">任务重置</button>
+                                    </li>
+                                    <li>
+                                        <button class="btn btn-default btn-xs" ng-click="stop('sm',item,$event)">任务终止</button>
+                                    </li>
+                                    <li>
+                                        <button class="btn btn-default btn-xs" ng-click="anaPause('sm',item,$event)">分析暂停</button>
+                                    </li>
+                                    <li>
+                                        <button class="btn btn-default btn-xs" ng-click="jieduPause('sm',item,$event)">解读暂停</button>
+                                    </li>
+                                    <li>
+                                        <button class="btn btn-default btn-xs" ng-click="jieduCancel('sm',item,$event)">取消解读</button>
+                                    </li>
+                                    <li>
+                                        <button class="btn btn-default btn-xs" ng-click="studyCancel('',item,$event)">取消实验</button>
+                                    </li>
+                                </ul>
+                            </div>
                         </td>
                     </tr>
                 </tbody>
             </table>
-            <table st-table='displayedCollection' st-safe-src="shortData.data" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0">
-                <tfoot>
-                    <tr>
-                        <td colspan="11" class="text-center">
-                            <div st-pagination="" st-items-by-page="5" st-displayed-pages="7"></div>
-                        </td>
-                    </tr>
-                </tfoot>
-            </table>
         </div>
+        <table st-table='displayedCollection' st-safe-src="shortData.data" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0">
+            <tfoot>
+                <tr>
+                    <td colspan="11" class="text-center">
+                        <div st-pagination="" st-items-by-page="5" st-displayed-pages="7"></div>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
     </div>
     <!--stSafeSrc属性控制表格END-->
 </div>
 <div class="x_panel">
-    <div class="x_title">
-        <h2>详细信息</h2>
-        <ul class="nav navbar-right panel_toolbox">
-            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-            </li>
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">Settings 1</a>
-                    </li>
-                    <li><a href="#">Settings 2</a>
-                    </li>
-                </ul>
-            </li>
-            <li><a class="close-link"><i class="fa fa-close"></i></a>
-            </li>
-        </ul>
-        <div class="clearfix"></div>
-    </div>
     <div class="x_content">
         <div class="" role="tabpanel" data-example-id="togglable-tabs">
             <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">

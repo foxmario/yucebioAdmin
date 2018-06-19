@@ -4763,26 +4763,26 @@ ul.verticle_bars li {
 }
 
 .alert-info {
-    color: #E9EDEF;
+    color: #fff;
     background-color: rgba(52, 152, 219, .88);
     border-color: rgba(52, 152, 219, .88)
 }
 
 .alert-warning {
-    color: #E9EDEF;
+    color: #fff;
     background-color: rgba(243, 156, 18, .88);
     border-color: rgba(243, 156, 18, .88)
 }
 
 .alert-danger,
 .alert-error {
-    color: #E9EDEF;
+    color: #fff;
     background-color: rgba(231, 76, 60, .88);
     border-color: rgba(231, 76, 60, .88)
 }
 
 .ui-pnotify.dark .ui-pnotify-container {
-    color: #E9EDEF;
+    color: #fff;
     background-color: rgba(52, 73, 94, .88);
     border-color: rgba(52, 73, 94, .88)
 }
@@ -4914,4 +4914,8 @@ ul.notifications {
 .btnNone.active.focus {
     outline: 5px auto -webkit-focus-ring-color;
     outline-offset: 0;
+}
+
+.pagination-sm {
+    margin: 10px 0;
 }

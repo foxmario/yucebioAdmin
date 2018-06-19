@@ -1,7 +1,7 @@
 (function(angular) {
-    var app = angular.module('myApp', ['smart-table', 'ui.bootstrap', 'ngRoute', 'tool', 'ae-datetimepicker','ngFileUpload','angularjs-dropdown-multiselect']);
-    app.controller('safeCtrl', ['$scope', '$log', '$routeParams', '$rootScope', '$http', '$location', '$timeout', '$uibModal','Upload',
-        function($scope, $log, $routeParams, $rootScope, $http, $location, $timeout, $uibModal,Upload) {
+    var app = angular.module('myApp', ['smart-table', 'ui.bootstrap', 'ngRoute', 'tool', 'ae-datetimepicker', 'ngFileUpload', 'angularjs-dropdown-multiselect']);
+    app.controller('safeCtrl', ['$scope', '$log', '$routeParams', '$rootScope', '$http', '$location', '$timeout', '$uibModal', 'Upload',
+        function($scope, $log, $routeParams, $rootScope, $http, $location, $timeout, $uibModal, Upload) {
             $scope.items = null;
 
             $scope.rowCollection = [];
@@ -56,18 +56,18 @@
                         $scope.items[key] = value;
                     })
                 }
-                if(href=='/project'){
+                if (href == '/project') {
                     $scope.data = {};
                     $scope.data.projectid = item.projectid;
                     $http({
-                        method:'post',
-                        url:baseUrl+'ProjectHandle/complementhelp/',
-                        data:$scope.data
-                    }).then(function(response){
+                        method: 'post',
+                        url: baseUrl + 'ProjectHandle/complementhelp/',
+                        data: $scope.data
+                    }).then(function(response) {
                         console.log(response.data)
                         $scope.ordersList = response.data;
                         $scope.ordersList.projectid = item.projectid;
-                    },function(){})
+                    }, function() {})
 
                 }
 
@@ -76,66 +76,67 @@
                 }
             }
 
-            if(href=='/task'){
+            if (href == '/task') {
 
-                  $http({
-                        method:'get',
-                        url:baseUrl+'PMTaskHandle/allocate/'
-                  }).then(function(response){
-                        $scope.allotList = response.data;
-                  },function(){})
+                $http({
+                    method: 'get',
+                    url: baseUrl + 'PMTaskHandle/allocate/'
+                }).then(function(response) {
+                    $scope.allotList = response.data;
+                }, function() {})
             }
-            $scope.ptModify = function(items){
+            $scope.ptModify = function(items) {
                 delete items.samples;
                 delete items.infostatus;
                 delete items.isSelected;
                 console.log(items);
                 $http({
-                    method:'post',
-                    url:baseUrl + 'PatientHandle/modify/',
-                    data:items
-                }).then(function(response){
+                    method: 'post',
+                    url: baseUrl + 'PatientHandle/modify/',
+                    data: items
+                }).then(function(response) {
                     $rootScope.getData();
-                         var data = response.data;
-                        $scope.error = data.error;
-                        $scope.success = data.success;
-                        $scope.warning = data.warning;
-                        $timeout(function() {
-                            $scope.error = null;
-                            $scope.success = null;
-                            $scope.warning = null;
-                        }, 10000)
-                },function(){})
+                    var data = response.data;
+                    $scope.error = data.error;
+                    $scope.success = data.success;
+                    $scope.warning = data.warning;
+                    $timeout(function() {
+                        $scope.error = null;
+                        $scope.success = null;
+                        $scope.warning = null;
+                    }, 10000)
+                }, function() {})
             }
 
             //任务分配
-            $scope.allotSubmit = function(items){
-                  $scope.allot.taskid = items.taskid;
-                  $http({
-                        method:'post',
-                        url:baseUrl+'PMTaskHandle/allocate/',
-                        data:$scope.allot
-                  }).then(function(response){
-                         var data = response.data;
-                        $scope.error = data.error;
-                        $scope.success = data.success;
-                        $scope.warning = data.warning;
-                        $timeout(function() {
-                            $scope.error = null;
-                            $scope.success = null;
-                            $scope.warning = null;
-                        }, 10000)
-                  },function(){
-                        console.log('请求失败')
-                  })
+            $scope.allotSubmit = function(items) {
+                $scope.allot.taskid = items.taskid;
+                $http({
+                    method: 'post',
+                    url: baseUrl + 'PMTaskHandle/allocate/',
+                    data: $scope.allot
+                }).then(function(response) {
+                    var data = response.data;
+                    $scope.error = data.error;
+                    $scope.success = data.success;
+                    $scope.warning = data.warning;
+                    $timeout(function() {
+                        $scope.error = null;
+                        $scope.success = null;
+                        $scope.warning = null;
+                    }, 10000)
+                }, function() {
+                    console.log('请求失败')
+                })
             }
 
 
 
 
             //实验暂停
-            $scope.studyPause = function(size, item) {
+            $scope.studyPause = function(size, item, $event) {
                 console.log('暂停')
+                $event.stopPropagation();
                 var modalInstance = $uibModal.open({
                     templateUrl: 'studyPauseModal.html',
                     controller: 'ModalInstanceCtrl',
@@ -160,8 +161,9 @@
             }
 
             //重置
-            $scope.reset = function(size, item) {
+            $scope.reset = function(size, item, $event) {
                 console.log('重置')
+                $event.stopPropagation();
                 $scope.info = '是否重置';
                 var modalInstance = $uibModal.open({
                     templateUrl: 'resetModal.html',
@@ -186,8 +188,9 @@
                 });
             }
             //终止
-            $scope.stop = function(size, item) {
+            $scope.stop = function(size, item, $event) {
                 console.log('终止')
+                $event.stopPropagation();
                 $scope.info = '是否终止'
                 var modalInstance = $uibModal.open({
                     templateUrl: 'resetModal.html',
@@ -212,8 +215,9 @@
                 });
             }
             //分析暂停
-            $scope.anaPause = function(size, item) {
+            $scope.anaPause = function(size, item, $event) {
                 console.log('分析暂停')
+                $event.stopPropagation();
                 $scope.info = '是否分析暂停'
                 var modalInstance = $uibModal.open({
                     templateUrl: 'resetModal.html',
@@ -238,8 +242,9 @@
                 });
             }
             //解读暂停
-            $scope.jieduPause = function(size, item) {
+            $scope.jieduPause = function(size, item, $event) {
                 console.log('解读暂停')
+                $event.stopPropagation();
                 $scope.info = '是否解读暂停'
                 var modalInstance = $uibModal.open({
                     templateUrl: 'resetModal.html',
@@ -264,8 +269,9 @@
                 });
             }
             //取消解读
-            $scope.jieduCancel = function(size, item) {
+            $scope.jieduCancel = function(size, item, $event) {
                 console.log('取消解读')
+                $event.stopPropagation();
                 $scope.info = '是否取消解读'
                 var modalInstance = $uibModal.open({
                     templateUrl: 'resetModal.html',
@@ -290,8 +296,9 @@
                 });
             }
             //取消实验
-            $scope.studyCancel = function(size, item) {
+            $scope.studyCancel = function(size, item, $event) {
                 console.log('取消实验')
+                $event.stopPropagation();
                 var modalInstance = $uibModal.open({
                     templateUrl: 'completeModal.html',
                     controller: 'ModalInstanceCtrl',
@@ -316,35 +323,6 @@
             }
 
 
-            //项目列表缴费
-            $scope.fee = function(size, item) {
-                console.log('缴费')
-                console.log(item);
-                var modalInstance = $uibModal.open({
-                    templateUrl: 'feeModal.html',
-                    controller: 'ModalInstanceCtrl',
-                    backdrop: "static",
-                    size: size,
-                    resolve: {
-                        infos1: function() {
-                            return $scope.info;
-                        },
-                        btnname: function() {
-                            return $scope.name = 'fee';
-                        },
-                        urls: function() {
-                            return $scope.urls;
-                        },
-                        datas: function() {
-                            return item;
-                        }
-
-                    }
-                });
-
-
-            }
-
             //添加项目
             $scope.addTask = function() {
                 if ($scope.project) {
@@ -359,6 +337,7 @@
                         data: $scope.project
                     }).then(function(response) {
                         var data = response.data;
+                        $rootScope.getData();
                         $scope.error = data.error;
                         $scope.success = data.success;
                         $scope.warning = data.warning;
@@ -372,8 +351,8 @@
             }
 
             //产品管理新增
-            $scope.newCreat = function(){
-                  $scope.items = null;
+            $scope.newCreat = function() {
+                $scope.items = null;
             }
             //添加患者
             $scope.addPatient = function() {
@@ -388,7 +367,7 @@
                 if ($scope.patient) {
                     $http({
                         method: 'post',
-                        url: baseUrl+'PatientHandle/init/',
+                        url: baseUrl + 'PatientHandle/init/',
                         // url: 'http://192.168.1.185:8000/projectmanager/product/add',
                         data: $scope.patient
                     }).then(function(response) {
@@ -414,45 +393,36 @@
 
             }
             //追加下单
-            // $scope.addOrders = function(){
-            //     $http({
-            //         method:'post',
-            //         url:baseUrl+''
-            //     }).then(function(response){
-            //         console.log(response.data);
-            //     },function(){})
-            // }
-            //添加患者id
-            $scope.addPatientId = function(){
-                  $scope.data = {}
-                  $scope.data.projectid = $scope.ordersList.projectid;
-                  $scope.data.task_list = $scope.result;
+            $scope.addOrders = function() {
+                $scope.data = {}
+                $scope.data.projectid = $scope.ordersList.projectid;
+                $scope.data.task_list = $scope.result;
 
-                  console.log($scope.data);
-                  $http({
-                        method:'post',
-                        url:baseUrl+'ProjectHandle/complement/',
-                        data:$scope.data
-                  }).then(function(response){
-                     $rootScope.getData();
-                        $scope.warning = response.data.warning;
-                        $scope.error = response.data.error;
-                        $scope.success = response.data.success;
-                        $timeout(function() {
-                            $scope.warning = null;
-                            $scope.error = null;
-                            $scope.success = null;
-                        }, 3000)
-                  },function(){})
+                console.log($scope.data);
+                $http({
+                    method: 'post',
+                    url: baseUrl + 'ProjectHandle/complement/',
+                    data: $scope.data
+                }).then(function(response) {
+                    $rootScope.getData();
+                    $scope.warning = response.data.warning;
+                    $scope.error = response.data.error;
+                    $scope.success = response.data.success;
+                    $timeout(function() {
+                        $scope.warning = null;
+                        $scope.error = null;
+                        $scope.success = null;
+                    }, 3000)
+                }, function() {})
             }
 
             //项目订单操作
-            $scope.orderOperate = function(size,value,item){
+            $scope.orderOperate = function(size, value, item) {
                 $scope.info = '是否' + value;
                 var data = {};
                 data.projectid = item.projectid;
                 data.cmd = value;
-                 var modalInstance = $uibModal.open({
+                var modalInstance = $uibModal.open({
                     templateUrl: 'orderOperateModal.html',
                     controller: 'ModalInstanceCtrl',
                     backdrop: "static",
@@ -559,44 +529,52 @@
                 }
             }
             //批量勾选
-            $scope.batchCheck = function(item,event){
-                 var action = event.target;
-                if(action.checked){
-                     $scope.result.push(item);
-                     console.log($scope.result);
-                 } else {
-                        var idx = $scope.result.productid;
+            $scope.batchCheck = function(item, event) {
+                var action = event.target;
+                var newItem = {};
+                if (action.checked) {
+                    angular.forEach(item,function(value,key){
+                        if(key!='isChecked'){
+                            newItem[key] = item[key];
+                        }
+                    })
+                    $scope.result.push(newItem);
+                    console.log($scope.result);
+                } else {
+                    var idx = $scope.result.productid;
                     $scope.result.splice(idx, 1);
-                      console.log($scope.result);
-                 }
-            }
-                //订单管理修改
-                $scope.odModify =function(items){
-                    delete items.patient;
-                    delete items.patientname;
-                    delete items.patient;
-                    delete items.productname;
-                    delete items.product;
-                    delete items.age;
-                    delete items.gender;
-                    delete items.isSelected;
-                    $http({
-                        method:'post',
-                        url:baseUrl +'PMTaskHandle/modify/',
-                        data:items
-                    }).then(function(response){
-                        $rootScope.getData();
-                        $scope.warning = response.data.warning;
-                        $scope.error = response.data.error;
-                        $scope.success = response.data.success;
-                        $timeout(function() {
-                            $scope.warning = null;
-                            $scope.error = null;
-                            $scope.success = null;
-                        }, 6000)
-                    },function(){})
+                    console.log($scope.result);
                 }
-              //文件上传
+            }
+            
+
+            //订单管理修改
+            $scope.odModify = function(items) {
+                delete items.patient;
+                delete items.patientname;
+                delete items.patient;
+                delete items.productname;
+                delete items.product;
+                delete items.age;
+                delete items.gender;
+                delete items.isSelected;
+                $http({
+                    method: 'post',
+                    url: baseUrl + 'PMTaskHandle/modify/',
+                    data: items
+                }).then(function(response) {
+                    $rootScope.getData();
+                    $scope.warning = response.data.warning;
+                    $scope.error = response.data.error;
+                    $scope.success = response.data.success;
+                    $timeout(function() {
+                        $scope.warning = null;
+                        $scope.error = null;
+                        $scope.success = null;
+                    }, 6000)
+                }, function() {})
+            }
+            //文件上传
 
             $scope.uploadPic = function(file) {
                 $scope.file = file;
@@ -606,14 +584,24 @@
                     console.log(newValue);
                 })
                 file.upload = Upload.upload({
-                    url: baseUrl+'PatientHandle/batchadd/',
-                    data: { username: $scope.username, file: file },
+                    url: baseUrl + 'PatientHandle/batchadd/',
+                    data: { username: $scope.username, file: file }
                 });
 
                 file.upload.then(function(response) {
                     file.result = response.data;
+                    $rootScope.getData();
+                    $scope.warning = response.data.warning;
+                    $scope.error = response.data.error;
+                    $scope.success = response.data.success;
+                    $timeout(function() {
+                        $scope.warning = null;
+                        $scope.error = null;
+                        $scope.success = null;
+                    }, 6000)
+
                 }, function(response) {
-                        $scope.errorMsg = response.status + ': ' + response.data;
+                    $scope.errorMsg = response.status + ': ' + response.data;
                 }, function(evt) {
                     // Math.min is to fix IE which reports 200% sometimes
                     file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
@@ -757,20 +745,20 @@
                 $scope.patientList = response.data;
                 $scope.result = [];
                 console.log(response.data);
-            //添加项目是否选中
-            $scope.select = function(item, event) {
-                var action = event.target;
-                if (action.checked && !$scope.result.productid) {
-                    console.log(item);
-                    $scope.result.push(item.productid);
-                    console.log($scope.result);
-                } else {
-                    var idx = $scope.result.productid;
-                    $scope.result.splice(idx, 1);
-                    console.log($scope.result);
+                //添加项目是否选中
+                $scope.select = function(item, event) {
+                    var action = event.target;
+                    if (action.checked && !$scope.result.productid) {
+                        console.log(item);
+                        $scope.result.push(item.productid);
+                        console.log($scope.result);
+                    } else {
+                        var idx = $scope.result.productid;
+                        $scope.result.splice(idx, 1);
+                        console.log($scope.result);
 
+                    }
                 }
-            }
             }, function() {})
         }
 
@@ -987,28 +975,6 @@
                     }, function() {})
 
                     break;
-                case 'fee':
-                    console.log($scope.rowCollection.projectid);
-                    $scope.data = {};
-                    $scope.data.projectid = $scope.rowCollection.projectid;
-                    console.log($scope.data);
-                    $http({
-                        method: 'post',
-                        url: baseUrl + 'ProjectHandle/pay/' ,
-                        data: $scope.data
-                    }).then(function(response) {
-                        $rootScope.getData();
-                        console.log(response.data);
-                        $rootScope.warning = response.data.warning;
-                        $rootScope.error = response.data.error;
-                        $rootScope.success = response.data.success;
-                        $timeout(function() {
-                            $rootScope.warning = null;
-                            $rootScope.error = null;
-                            $rootScope.success = null;
-                        }, 3000)
-                    }, function() {})
-                    break;
                 case 'orders':
                     console.log('下单')
 
@@ -1022,24 +988,24 @@
                         data: $scope.patient
                     }).then(function(response) {
 
-                        $rootScope.ordersInfo={};
+                        $rootScope.ordersInfo = {};
                         $rootScope.ordersInfo.warning = response.data.warning;
                         $rootScope.ordersInfo.error = response.data.error;
                         $rootScope.ordersInfo.success = response.data.success;
                         $timeout(function() {
-                            $rootScope.ordersInfo= null;
+                            $rootScope.ordersInfo = null;
                         }, 5000)
                     }, function() {})
                     break;
                 case 'orderOperate':
 
                     $http({
-                        method:'post',
-                        url:baseUrl+'ProjectHandle/cmd/',
-                        data:$scope.rowCollection
-                    }).then(function(response){
+                        method: 'post',
+                        url: baseUrl + 'ProjectHandle/cmd/',
+                        data: $scope.rowCollection
+                    }).then(function(response) {
                         $rootScope.getData();
-                        $rootScope.ordersInfo={};
+                        $rootScope.ordersInfo = {};
                         $rootScope.ordersInfo.warning = response.data.warning;
                         $rootScope.ordersInfo.error = response.data.error;
                         $rootScope.ordersInfo.success = response.data.success;
@@ -1048,8 +1014,8 @@
                             $rootScope.ordersInfo.error = null;
                             $rootScope.ordersInfo.success = null;
                         }, 3000)
-                    },function(){})
-                break;
+                    }, function() {})
+                    break;
                 default:
 
                     $http({
@@ -1098,11 +1064,6 @@
             return r;
         };
     })
-
-
-
-
-
 
 
 

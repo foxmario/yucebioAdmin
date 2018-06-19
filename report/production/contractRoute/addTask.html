@@ -50,7 +50,7 @@
                         <select class="form-control" ng-model="project.tag" name="tag" required>
                             <option>科研</option>
                             <option>检测</option>
-                            <option>天体计划</option>
+                            <option>天梯计划</option>
                         </select>
                         <span ng-show="addForm.tag.$dirty">
                         <span ng-show="addForm.tag.$error.required">项目编号不能为空</span>
@@ -106,49 +106,49 @@
                     </div>
                 </div>
                 <div class="form-group">
-                <label class="control-label col-md-1 col-sm-1 col-xs-12"><span class="required"></span>
-                </label>
-                <div class="col-md-10 col-sm-10 col-xs-12">
-                    <table st-table='displayedCollection' st-safe-src="shortData.items" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" style="white-space: nowrap;">
-                    <thead>
-                        <tr>
-                            <th>勾选</th>
-                            <th>患者编号</th>
-                            <th>患者姓名</th>
-                            <th>肿瘤类型</th>
-                            <th>产品编号(勾选/手动)</th>
-                        </tr>
-                        <tr>
-                            <th></th>
-                            <th colspan="3">
-                                <input st-search="" class="form-control input-sm" placeholder="查找 ..." type="text" />
-                            </th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="item in displayedCollection track by $index">
-                            <td class="text-center">
-                                <input type="checkbox" ng-click="batchCheck(item,$event)" />
-                            </td>
-                            <td>{{item.patientid}}</td>
-                            <td>{{item.patientname}}</td>
-                            <td>{{item.tumortype}}</td>
-                            <td class="text-center">
-                                <div ng-dropdown-multiselect="" options="shortData.product_list" selected-model="item.product" extra-settings="stringSettings"></div>
-                            </td>
-                        </tr>
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td colspan="16" class="text-center">
-                                <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="7"></div>
-                            </td>
-                        </tr>
-                    </tfoot>
-                </table>
+                    <label class="control-label col-md-1 col-sm-1 col-xs-12"><span class="required"></span>
+                    </label>
+                    <div class="col-md-10 col-sm-10 col-xs-12">
+                        <table st-table='displayedCollection' st-safe-src="shortData.items" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" style="white-space: nowrap;">
+                            <thead>
+                                <tr>
+                                    <th>勾选</th>
+                                    <th>患者编号</th>
+                                    <th>患者姓名</th>
+                                    <th>肿瘤类型</th>
+                                    <th>产品编号(勾选/手动)</th>
+                                </tr>
+                                <tr>
+                                    <th></th>
+                                    <th colspan="3">
+                                        <input st-search="" class="form-control input-sm" placeholder="查找 ..." type="text" />
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in displayedCollection track by $index">
+                                    <td class="text-center">
+                                        <input type="checkbox" ng-click="batchCheck(item,$event)" ng-model="item.isChecked"/>
+                                    </td>
+                                    <td>{{item.patientid}}</td>
+                                    <td>{{item.patientname}}</td>
+                                    <td>{{item.tumortype}}</td>
+                                    <td class="text-center">
+                                        <div ng-dropdown-multiselect="" options="shortData.product_list" selected-model="item.product" extra-settings="stringSettings"></div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="16" class="text-center">
+                                        <div st-pagination="" st-items-by-page="5" st-displayed-pages="7"></div>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
                 </div>
-            </div>
             </form>
             <script type="text/ng-template" id="addModal.html">
                 <div class="modal-header">
@@ -167,6 +167,6 @@
         </div>
     </div>
     <div class="controllBtn">
-                <button type="button" class="btn btn-default" ng-click="addTask('sm',project)" ng-disabled="addForm.$invalid||addForm.$pristine">添加</button>
-            </div>
+        <button type="button" class="btn btn-default" ng-click="addTask('sm',project)" ng-disabled="addForm.$invalid||addForm.$pristine||result>0">添加</button>
+    </div>
 </div>
