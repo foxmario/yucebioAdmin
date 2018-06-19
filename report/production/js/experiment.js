@@ -2,9 +2,6 @@
     var app = angular.module('myApp', ['smart-table', 'ui.bootstrap', 'ngRoute', 'tool', 'ae-datetimepicker', 'ngFileUpload', 'angularjs-dropdown-multiselect']);
     app.controller('safeCtrl', ['$scope', '$log', '$routeParams', '$rootScope', '$http', '$location', '$timeout', '$uibModal', 'Upload',
         function($scope, $log, $routeParams, $rootScope, $http, $location, $timeout, $uibModal, Upload) {
-            $scope.items = null;
-
-            $scope.rowCollection = [];
 
             //名词解释详情头部切换
             $('#myTab li').on('click', function() {
@@ -16,20 +13,27 @@
             var baseUrl = 'http://192.168.1.186:8000/';
             // var baseUrl = 'http://192.168.11.101:8000/';
             switch (href) {
-                case '/task':
-                    var url = baseUrl + 'PMTaskHandle/view/'
+                case '/expOrder':
+                    var url = baseUrl + 'LabTaskHandle/order/';
                     break;
-                case '/project':
-                    var url = baseUrl + 'ProjectHandle/view/'
+                case '/expSample':
+                    var url = baseUrl + 'SampleHandle/view/';
                     break;
-                case '/product':
-                    var url = baseUrl + 'ProductHandle/view/'
+                case '/expExtraction':
+                    var url = baseUrl + 'ExtractHandle/view/';
+                    var upUrl = baseUrl + 'ExtractHandle/upload/';
                     break;
-                case '/patient':
-                    var url = baseUrl + 'PatientHandle/view/'
+                case '/expLibrary':
+                    var url = baseUrl + 'LibraryHandle/view/';
+                    var upUrl = baseUrl + 'LibraryHandle/upload/';
                     break;
-                case '/addTask':
-                    var url = baseUrl + 'ProjectHandle/init/';
+                case '/expHybrid':
+                    var url = baseUrl + 'HybridHandle/view/';
+                    var upUrl = baseUrl + 'HybridHandle/upload/';
+                    break;
+                case '/expQuality':
+                    var url = baseUrl + 'LabQCHandle/view/';
+                    var upUrl = baseUrl + 'LabQCHandle/upload/';
                     break;
             }
 
@@ -37,12 +41,8 @@
                 $http({
                     method: 'get',
                     url: url
-
                 }).then(function(response) {
-                    $timeout(function() {
                         $rootScope.shortData = response.data;
-                    }, 100);
-
                 }, function() {})
             }
             $rootScope.getData();
@@ -350,26 +350,15 @@
                 }
             }
 
-            //产品管理新增
-            $scope.newCreat = function() {
-                $scope.items = null;
-            }
-            //添加患者
-            $scope.addPatient = function() {
-                if (!$scope.patient) {
-                    $scope.isdisabled = false;
-                    $scope.message = '不能为空'
-                    $timeout(function() {
-                        $scope.isdisabled = true;
-                    }, 3000)
-                }
-                console.log($scope.patient);
-                if ($scope.patient) {
+            //添加样本
+            $scope.addSample = function(sample) {
+                if (sample) {
+                    sample.recievetime = moment(sample.recievetime).format("YYYY-MM-DD HH:mm:ss");
                     $http({
                         method: 'post',
-                        url: baseUrl + 'PatientHandle/init/',
+                        url: baseUrl + 'SampleHandle/init/',
                         // url: 'http://192.168.1.185:8000/projectmanager/product/add',
-                        data: $scope.patient
+                        data: sample
                     }).then(function(response) {
                         console.log(response.data);
                         $rootScope.getData();
@@ -584,7 +573,7 @@
                     console.log(newValue);
                 })
                 file.upload = Upload.upload({
-                    url: baseUrl + 'PatientHandle/batchadd/',
+                    url: baseUrl + upUrl,
                     data: { username: $scope.username, file: file }
                 });
 
@@ -623,10 +612,10 @@
         $routeProvider
             .when('/:name', {
                 templateUrl: function($routeParams) {
-                    return 'contractRoute/' + $routeParams.name;
+                    return 'experimentRoute/' + $routeParams.name;
                 },
                 controller: 'safeCtrl'
-            }).otherwise({ redirectTo: '/task' });
+            }).otherwise({ redirectTo: '/expSample' });
         // });
 
     }]);
