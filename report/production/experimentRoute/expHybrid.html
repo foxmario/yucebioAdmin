@@ -106,8 +106,8 @@
             <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
                 <li role="presentation" class="active"><a id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">批量上传</a>
                 </li>
-                <li role="presentation" class=""><a role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">详细信息(修改)</a>
-                </li>
+                <!-- <li role="presentation" class=""><a role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">详细信息(修改)</a>
+                </li> -->
             </ul>
             <div id="myTabContent" class="tab-content">
                     <div class="alert alert-danger alert-dismissible fade in" role="alert" ng-if="error">
@@ -129,7 +129,7 @@
                     <div class="login_wrapper">
                         <form name="myForm">
                             <fieldset>
-                                <legend>文件上传 <a ng-json-export-excel data="scvList" report-fields="{id: 'ID', name: '名字', age: '年龄',  'live.name': '运动名称'}" style="float:right;cursor: pointer;" filename="'杂交管理'">模版下载</a></legend>
+                                <legend>文件上传 <a ng-json-export-excel url="'http://192.168.1.186:8000/HybridHandle/download/'" style="float:right;cursor: pointer;" filename="'杂交管理'">模版下载</a></legend>
                                 <div class="">
                                     <input type="file" ngf-select ng-model="picFile" name="filename" accept=".xlsx" required ngf-model-invalid="errorFile">
                                     </br>
@@ -154,7 +154,7 @@
                         </form>
                     </div>
                 </div>
-                <div role="tabpanel" class="tab-pane fade" aria-labelledby="profile-tab">
+                <!-- <div role="tabpanel" class="tab-pane fade" aria-labelledby="profile-tab">
                     <div class="col-xs-12 col-sm-6">
                         <form class="form-horizontal form-label-left">
                             <div class="form-group">
@@ -313,7 +313,7 @@
                     <div class="controllBtn">
                         <button class="btn btn-default" ng-click="ptModify(items)" ng-disabled="!items.isSelected">修改</button>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

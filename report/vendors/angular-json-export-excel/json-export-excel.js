@@ -6,91 +6,94 @@
             return {
                 restrict: 'AE',
                 scope: {
-                    data : '=',
+                    url:'=',
                     filename: '=?',
-                    reportFields: '=',
                     separator: '@'
                 },
                 link: function (scope, element) {
-                    scope.filename = !!scope.filename ? scope.filename : 'export-excel';
+                    $.ajax({
+                        method:'post',
+                        url:scope.url,
+                        async:true,
+                        success:function(response){
+                            scope.filename = !!scope.filename ? scope.filename : 'export-excel';
+                            var fields = [];
+                            var header = [];
+                            var separator = scope.separator || ',';
+                            var arr = JSON.parse(response);
+                            angular.forEach(arr[0], function(value, key) {
+                                fields.push(key);
+                                header.push(key);
+                            });
+                            element.bind('click', function() {
+                                    var bodyData = _bodyData();
+                                    var strData = _convertToExcel(bodyData);
 
-                    var fields = [];
-                    var header = [];
-                    var separator = scope.separator || ',';
+                                    var blob = new Blob([strData], {type: "text/plain;charset=utf-8"});
 
-                    angular.forEach(scope.reportFields, function(field, key) {
-                        if(!field || !key) {
-                            throw new Error('error json report fields');
-                        }
+                                    return saveAs(blob, [scope.filename + '.csv']);
+                                });
 
-                        fields.push(key);
-                        header.push(field);
-                    });
+                                function _bodyData() {
+                                    var data = arr;
+                                    var body = "";
+                                    angular.forEach(data, function(dataItem) {
+                                        var rowItems = [];
 
-                    element.bind('click', function() {
-                        var bodyData = _bodyData();
-                        var strData = _convertToExcel(bodyData);
+                                        angular.forEach(fields, function(field) {
+                                            if(field.indexOf('.')) {
+                                                field = field.split(".");
+                                                var curItem = dataItem;
 
-                        var blob = new Blob([strData], {type: "text/plain;charset=utf-8"});
+                                                // deep access to obect property
+                                                angular.forEach(field, function(prop){
+                                                    if (curItem !== null && curItem !== undefined) {
+                                                        curItem = curItem[prop];
+                                                    }
+                                                });
 
-                        return saveAs(blob, [scope.filename + '.csv']);
-                    });
+                                                data = curItem;
+                                            }
+                                            else {
+                                                data = dataItem[field];
+                                            }
 
-                    function _bodyData() {
-                        var data = scope.data;
-                        var body = "";
-                        angular.forEach(data, function(dataItem) {
-                            var rowItems = [];
+                                            var fieldValue = data !== null ? data : ' ';
 
-                            angular.forEach(fields, function(field) {
-                                if(field.indexOf('.')) {
-                                    field = field.split(".");
-                                    var curItem = dataItem;
+                                            if (fieldValue !== undefined && angular.isObject(fieldValue)) {
+                                                fieldValue = _objectToString(fieldValue);
+                                            }
 
-                                    // deep access to obect property
-                                    angular.forEach(field, function(prop){
-                                        if (curItem !== null && curItem !== undefined) {
-                                            curItem = curItem[prop];
-                                        }
+                                            if(typeof fieldValue == 'string') {
+                                                rowItems.push('"' + fieldValue.replace(/"/g, '""') + '"');
+                                            } else {
+                                                rowItems.push(fieldValue);
+                                            }
+                                        });
+
+                                        body += rowItems.join(separator) + '\n';
                                     });
 
-                                    data = curItem;
-                                }
-                                else {
-                                    data = dataItem[field];
+                                    return body;
                                 }
 
-                                var fieldValue = data !== null ? data : ' ';
-
-                                if (fieldValue !== undefined && angular.isObject(fieldValue)) {
-                                    fieldValue = _objectToString(fieldValue);
+                                function _convertToExcel(body) {
+                                    return header.join(separator) + '\n' + body;
                                 }
 
-                                if(typeof fieldValue == 'string') {
-                                    rowItems.push('"' + fieldValue.replace(/"/g, '""') + '"');
-                                } else {
-                                    rowItems.push(fieldValue);
+                                function _objectToString(object) {
+                                    var output = '';
+                                    angular.forEach(object, function(value, key) {
+                                        output += key + ':' + value + ' ';
+                                    });
+
+                                    return '"' + output + '"';
                                 }
-                            });
+                        },
+                        error:function(){}
+                    })
 
-                            body += rowItems.join(separator) + '\n';
-                        });
 
-                        return body;
-                    }
-
-                    function _convertToExcel(body) {
-                        return header.join(separator) + '\n' + body;
-                    }
-
-                    function _objectToString(object) {
-                        var output = '';
-                        angular.forEach(object, function(value, key) {
-                            output += key + ':' + value + ' ';
-                        });
-
-                        return '"' + output + '"';
-                    }
                 }
             };
         });

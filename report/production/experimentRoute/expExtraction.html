@@ -39,6 +39,10 @@
             <table st-table='displayedCollection' st-safe-src="shortData" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" style="white-space: nowrap;">
                 <thead>
                     <tr class="frist-head">
+                        <th st-sort="sampleid" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">实验编号</th>
+                        <th st-sort="sampleid" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">订单编号</th>
+                        <th st-sort="sampleid" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">生产节点</th>
+                        <th st-sort="sampleid" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">实验状态</th>
                         <th st-sort="sampleid" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">样本编号</th>
                         <th st-sort="type" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">提取后类型</th>
                         <th st-sort="extraction_volume" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">样本体积(ul)</th>
@@ -62,25 +66,27 @@
                         <th st-sort="recievetime" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">状态</th>
                     </tr>
                     <tr>
-                        <th colspan="21">
+                        <th colspan="25">
                             <input st-search="" class="form-control input-sm" placeholder="查找 ..." type="text" />
                         </th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr st-select-row="item" st-select-mode="single" ng-repeat="item in displayedCollection track by $index" ng-click="getDesc(item)">
+                        <td>{{item.expid}}</td>
+                        <td>{{item.task}}</td>
+                        <td>{{item.point}}</td>
+                        <td>{{item.expstatus}}</td>
                         <td>{{item.sampleid}}</td>
-                        <td>{{item.type}</td>
-                        <td>{{item.tumortype}}</td>
+                        <td>{{item.type}}</td>
                         <td>{{item.extraction_volume}}</td>
-                        <td>{{item.recievetime}}</td>
                         <td>{{item.s260280}}</td>
                         <td>{{item.s260230}}</td>
                         <td>{{item.take3}}</td>
                         <td>{{item.QB}}</td>
                         <td>{{item.mass}}</td>
                         <td>{{item.RQN}}</td>
-                        <td>{{item.DV200}</td>
+                        <td>{{item.DV200}}</td>
                         <td>{{item.s2818}}</td>
                         <td>{{item.qualify}}</td>
                         <td>{{item.operator1}}</td>
@@ -91,7 +97,7 @@
                         <td>{{item.location}}</td>
                         <td>{{item.time}}</td>
                         <td>{{item.remarks}}</td>
-                        <td>{{status}}</td>
+                        <td>{{item.status}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -114,8 +120,8 @@
             <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
                 <li role="presentation" class="active"><a id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">批量上传</a>
                 </li>
-                <li role="presentation" class=""><a role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">详细信息(修改)</a>
-                </li>
+                <!-- <li role="presentation" class=""><a role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">详细信息(修改)</a>
+                </li> -->
             </ul>
             <div id="myTabContent" class="tab-content">
                     <div class="alert alert-danger alert-dismissible fade in" role="alert" ng-if="error">
@@ -137,7 +143,7 @@
                     <div class="login_wrapper">
                         <form name="myForm">
                             <fieldset>
-                                <legend>文件上传 <a ng-json-export-excel data="scvList" report-fields="{id: 'ID', name: '名字', age: '年龄',  'live.name': '运动名称'}" style="float:right;cursor: pointer;" filename="'提取管理'">模版下载</a></legend>
+                                <legend>文件上传 <a ng-json-export-excel style="float:right;cursor: pointer;" filename="'提取管理'" url="'http://192.168.1.186:8000/ExtractHandle/download/'">模版下载</a></legend>
                                 <div class="">
                                     <input type="file" ngf-select ng-model="picFile" name="filename" accept=".xlsx" required ngf-model-invalid="errorFile">
                                     </br>
@@ -162,7 +168,7 @@
                         </form>
                     </div>
                 </div>
-                <div role="tabpanel" class="tab-pane fade" aria-labelledby="profile-tab">
+                <!-- <div role="tabpanel" class="tab-pane fade" aria-labelledby="profile-tab">
                     <div class="col-xs-12 col-sm-6">
                         <form class="form-horizontal form-label-left">
                             <div class="form-group">
@@ -321,7 +327,7 @@
                     <div class="controllBtn">
                         <button class="btn btn-default" ng-click="ptModify(items)" ng-disabled="!items.isSelected">修改</button>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

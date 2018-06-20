@@ -22,22 +22,18 @@
                 case '/expExtraction':
                     var url = baseUrl + 'ExtractHandle/view/';
                     var upUrl = baseUrl + 'ExtractHandle/upload/';
-                    var downUrl = baseUrl + 'ExtractHandle/download/';
                     break;
                 case '/expLibrary':
                     var url = baseUrl + 'LibraryHandle/view/';
                     var upUrl = baseUrl + 'LibraryHandle/upload/';
-                    var downUrl = baseUrl + 'LibraryHandle/download/';
                     break;
                 case '/expHybrid':
                     var url = baseUrl + 'HybridHandle/view/';
                     var upUrl = baseUrl + 'HybridHandle/upload/';
-                    var downUrl = baseUrl + 'HybridHandle/download/';
                     break;
                 case '/expQuality':
                     var url = baseUrl + 'LabQCHandle/view/';
                     var upUrl = baseUrl + 'LabQCHandle/upload/';
-                    var downUrl = baseUrl + 'LabQCHandle/download/';
                     break;
             }
 
@@ -328,17 +324,12 @@
 
 
             //添加项目
-            $scope.addTask = function() {
-                if ($scope.project) {
-                    $scope.project.start_time = moment($scope.project.start_time).format("YYYY-MM-DD HH:mm:ss");
-                    $scope.project.deadline = moment($scope.project.deadline).format("YYYY-MM-DD HH:mm:ss");
-                    $scope.project.duty = $scope.project.duty;
-                    $scope.project.task_list = $scope.result;
-                    console.log($scope.project)
+            $scope.expOrder = function() {
+                if ($scope.result) {
                     $http({
                         method: 'post',
                         url: url,
-                        data: $scope.project
+                        data: $scope.result
                     }).then(function(response) {
                         var data = response.data;
                         $rootScope.getData();
@@ -567,19 +558,6 @@
                     }, 6000)
                 }, function() {})
             }
-
-
-            //文件下载
-            if(downUrl){
-                $http({
-                    method:'post',
-                    url:downUrl
-                }).then(function(response){
-                    console.log(response.data);
-                    $scope.scvList = response.data;
-                },function(){})
-            }
-
 
             //文件上传
 
