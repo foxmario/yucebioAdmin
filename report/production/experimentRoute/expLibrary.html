@@ -143,7 +143,7 @@
                     <div class="login_wrapper">
                         <form name="myForm">
                             <fieldset>
-                                <legend>文件上传 <a href="templateExcel/批量上传患者信息20180509.xlsx" style="float:right;">模版下载</a></legend>
+                                <legend>文件上传 <a ng-json-export-excel data="scvList" report-fields="{id: 'ID', name: '名字', age: '年龄',  'live.name': '运动名称'}" style="float:right;cursor: pointer;" filename="'建库管理'">模版下载</a></legend>
                                 <div class="">
                                     <input type="file" ngf-select ng-model="picFile" name="filename" accept=".xlsx" required ngf-model-invalid="errorFile">
                                     </br>

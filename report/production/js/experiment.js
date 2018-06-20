@@ -1,5 +1,5 @@
 (function(angular) {
-    var app = angular.module('myApp', ['smart-table', 'ui.bootstrap', 'ngRoute', 'tool', 'ae-datetimepicker', 'ngFileUpload', 'angularjs-dropdown-multiselect']);
+    var app = angular.module('myApp', ['smart-table', 'ui.bootstrap', 'ngRoute', 'tool', 'ae-datetimepicker', 'ngFileUpload', 'angularjs-dropdown-multiselect','ngJsonExportExcel']);
     app.controller('safeCtrl', ['$scope', '$log', '$routeParams', '$rootScope', '$http', '$location', '$timeout', '$uibModal', 'Upload',
         function($scope, $log, $routeParams, $rootScope, $http, $location, $timeout, $uibModal, Upload) {
 
@@ -22,18 +22,22 @@
                 case '/expExtraction':
                     var url = baseUrl + 'ExtractHandle/view/';
                     var upUrl = baseUrl + 'ExtractHandle/upload/';
+                    var downUrl = baseUrl + 'ExtractHandle/download/';
                     break;
                 case '/expLibrary':
                     var url = baseUrl + 'LibraryHandle/view/';
                     var upUrl = baseUrl + 'LibraryHandle/upload/';
+                    var downUrl = baseUrl + 'LibraryHandle/download/';
                     break;
                 case '/expHybrid':
                     var url = baseUrl + 'HybridHandle/view/';
                     var upUrl = baseUrl + 'HybridHandle/upload/';
+                    var downUrl = baseUrl + 'HybridHandle/download/';
                     break;
                 case '/expQuality':
                     var url = baseUrl + 'LabQCHandle/view/';
                     var upUrl = baseUrl + 'LabQCHandle/upload/';
+                    var downUrl = baseUrl + 'LabQCHandle/download/';
                     break;
             }
 
@@ -523,7 +527,7 @@
                 var newItem = {};
                 if (action.checked) {
                     angular.forEach(item,function(value,key){
-                        if(key!='isChecked'){
+                        if(key!='isChecked'&&key!='samples'){
                             newItem[key] = item[key];
                         }
                     })
@@ -563,6 +567,20 @@
                     }, 6000)
                 }, function() {})
             }
+
+
+            //文件下载
+            if(downUrl){
+                $http({
+                    method:'post',
+                    url:downUrl
+                }).then(function(response){
+                    console.log(response.data);
+                    $scope.scvList = response.data;
+                },function(){})
+            }
+
+
             //文件上传
 
             $scope.uploadPic = function(file) {
