@@ -50,7 +50,6 @@
 
             //获取表格的值
             $rootScope.getDesc = function(item) {
-                console.log(item)
                 $scope.items = {};
                 if (item) {
                     angular.forEach(item, function(value, key) {
@@ -65,7 +64,6 @@
                         url: baseUrl + 'ProjectHandle/complementhelp/',
                         data: $scope.data
                     }).then(function(response) {
-                        console.log(response.data)
                         $scope.ordersList = response.data;
                         $scope.ordersList.projectid = item.projectid;
                     }, function() {})
@@ -90,7 +88,6 @@
                 delete items.samples;
                 delete items.infostatus;
                 delete items.isSelected;
-                console.log(items);
                 $http({
                     method: 'post',
                     url: baseUrl + 'PatientHandle/modify/',
@@ -356,7 +353,6 @@
                         // url: 'http://192.168.1.185:8000/projectmanager/product/add',
                         data: sample
                     }).then(function(response) {
-                        console.log(response.data);
                         $rootScope.getData();
                         $scope.warning = response.data.warning;
                         $scope.error = response.data.error;
@@ -373,7 +369,6 @@
                             $scope.isdisabled = true;
                         }, 3000)
                     })
-                    // console.log($scope.patient)
                 }
 
             }
@@ -382,8 +377,6 @@
                 $scope.data = {}
                 $scope.data.projectid = $scope.ordersList.projectid;
                 $scope.data.task_list = $scope.result;
-
-                console.log($scope.data);
                 $http({
                     method: 'post',
                     url: baseUrl + 'ProjectHandle/complement/',
@@ -503,7 +496,6 @@
             $scope.select = function(item, event) {
                 var action = event.target;
                 if (action.checked && !$scope.result.productid) {
-                    console.log(item);
                     $scope.result.push(item.productid);
                     console.log($scope.result);
                 } else {
@@ -564,11 +556,6 @@
 
             $scope.uploadPic = function(file) {
                 $scope.file = file;
-                console.log($scope.file);
-                $scope.$watch('file', function(newValue, oldValue) {
-                    // console.log(oldValue);
-                    console.log(newValue);
-                })
                 file.upload = Upload.upload({
                     url: upUrl,
                     data: { username: $scope.username, file: file }
@@ -730,12 +717,10 @@
             }).then(function(response) {
                 $scope.patientList = response.data;
                 $scope.result = [];
-                console.log(response.data);
                 //添加项目是否选中
                 $scope.select = function(item, event) {
                     var action = event.target;
                     if (action.checked && !$scope.result.productid) {
-                        console.log(item);
                         $scope.result.push(item.productid);
                         console.log($scope.result);
                     } else {
@@ -766,7 +751,6 @@
                         url: baseUrl + 'ProductHandle/add/',
                         data: $scope.rowCollection
                     }).then(function successCallback(response) {
-                        console.log(response.data)
                         $rootScope.getData();
                         $rootScope.warning = response.data.warning;
                         $rootScope.error = response.data.error;
@@ -787,13 +771,11 @@
                     $scope.data.taskid = $scope.rowCollection.taskid;
                     $scope.data.info = $('#text').val();
                     $scope.data.cmd = "实验暂停";
-                    console.log($scope.data);
                     $http({
                         method: 'post',
                         url: baseUrl + 'PMTaskHandle/pause/',
                         data: $scope.data
                     }).then(function(response) {
-                        console.log(response.data);
                         $rootScope.getData();
                         $rootScope.warning = response.data.warning;
                         $rootScope.error = response.data.error;
@@ -813,13 +795,11 @@
                     $scope.task = {};
                     $scope.data.taskid = $scope.rowCollection.taskid;
                     $scope.data.info = '';
-                    console.log($scope.data);
                     $http({
                         method: 'post',
                         url: baseUrl + 'PMTaskHandle/reset/',
                         data: $scope.data
                     }).then(function(response) {
-                        console.log(response.data);
                         $rootScope.getData();
                         $rootScope.warning = response.data.warning;
                         $rootScope.error = response.data.error;
@@ -842,7 +822,6 @@
                         url: baseUrl + 'PMTaskHandle/stop/',
                         data: $scope.data
                     }).then(function(response) {
-                        console.log(response.data);
                         $rootScope.getData();
                         $rootScope.warning = response.data.warning;
                         $rootScope.error = response.data.error;
@@ -869,7 +848,6 @@
                         data: $scope.data
 
                     }).then(function(response) {
-                        console.log(response.data);
                         $rootScope.getData();
                         $rootScope.warning = response.data.warning;
                         $rootScope.error = response.data.error;
@@ -895,7 +873,6 @@
                         url: baseUrl + 'PMTaskHandle/pause/',
                         data: $scope.data
                     }).then(function(response) {
-                        console.log(response.data);
                         $rootScope.getData();
                         $rootScope.warning = response.data.warning;
                         $rootScope.error = response.data.error;
@@ -921,7 +898,6 @@
                         url: baseUrl + 'PMTaskHandle/cancel/',
                         data: $scope.data
                     }).then(function(response) {
-                        console.log(response.data);
                         $rootScope.getData();
                         $rootScope.warning = response.data.warning;
                         $rootScope.error = response.data.error;
@@ -942,13 +918,11 @@
                     $scope.data.taskid = $scope.rowCollection.taskid;
                     $scope.data.info = $('#text').val();
                     $scope.data.cmd = "取消实验";
-                    console.log($scope.data);
                     $http({
                         method: 'post',
                         url: baseUrl + 'PMTaskHandle/cancel/',
                         data: $scope.data
                     }).then(function(response) {
-                        console.log(response.data);
                         $rootScope.getData();
                         $rootScope.warning = response.data.warning;
                         $rootScope.error = response.data.error;
@@ -967,7 +941,6 @@
                     $scope.patient.patientid = $scope.rowCollection.patientid;
                     $scope.patient.account = $scope.patient.account;
                     $scope.patient.products = $scope.result;
-                    console.log($scope.patient);
                     $http({
                         method: 'post',
                         url: baseUrl + 'PatientHandle/addproject/',
@@ -1026,7 +999,6 @@
                         }
                     }
                     console.log('审核');
-                    // console.log($scope.shortData.data);
             }
         };
 

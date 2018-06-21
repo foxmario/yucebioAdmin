@@ -310,7 +310,7 @@
 
             }
 
-            // $rootScope.getData();
+            $rootScope.getData();
 
             //获取表格的值
             $rootScope.getDesc = function(item) {

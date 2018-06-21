@@ -75,7 +75,7 @@
                 </thead>
                 <tbody>
                     <tr st-select-row="item" st-select-mode="single" ng-repeat="item in displayedCollection" ng-click="getDesc(item)">
-                        <td>{{item.gennanme}}</td>
+                        <td>{{item.genname}}</td>
                         <td>{{item.rsnumber}}</td>
                         <td>{{item.gentype}}</td>
                         <td>{{item.tcname}}</td>
@@ -121,7 +121,7 @@
                                 <label class="control-label col-md-2 col-sm-2 col-xs-12">基因名称<span class="required">*</span>
                                 </label>
                                 <div class="col-md-10 col-sm-10 col-xs-12">
-                                    <input type="text" class="form-control" ng-model="items.update.gennanme" ng-readonly="true">
+                                    <input type="text" class="form-control" ng-model="items.update.genname" ng-readonly="true">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -273,7 +273,7 @@
                                 <label class="control-label col-md-2 col-sm-2 col-xs-12">基因名称<span class="required">*</span>
                                 </label>
                                 <div class="col-md-10 col-sm-10 col-xs-12">
-                                    <input type="text" class="form-control" ng-model="items.gennanme">
+                                    <input type="text" class="form-control" ng-model="items.genname">
                                 </div>
                             </div>
                             <div class="form-group">
