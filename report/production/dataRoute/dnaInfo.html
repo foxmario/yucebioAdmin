@@ -55,7 +55,7 @@
                             {{item.genid}}
                         </td>
                         <td>{{item.genname}}</td>
-                        <td><span ng-show="isGendetail">{{item.gendetail}}</span></td>
+                        <td title="{{item.gendetail}}"><span ng-show="isGendetail">{{item.gendetail}}</span></td>
                         <td>{{item.gendisease}}</td>
                         <td>{{item.date}}</td>
                         <td>
@@ -76,25 +76,6 @@
     <!--stSafeSrc属性控制表格END-->
 </div>
 <div class="x_panel">
-    <div class="x_title">
-        <h2>详细信息</h2>
-        <ul class="nav navbar-right panel_toolbox">
-            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-            </li>
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">Settings 1</a>
-                    </li>
-                    <li><a href="#">Settings 2</a>
-                    </li>
-                </ul>
-            </li>
-            <li><a class="close-link"><i class="fa fa-close"></i></a>
-            </li>
-        </ul>
-        <div class="clearfix"></div>
-    </div>
     <div class="x_content">
         <div class="" role="tabpanel" data-example-id="togglable-tabs">
             <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
@@ -126,21 +107,21 @@
                                 <label class="control-label col-md-2 col-sm-2 col-xs-12">基因描述<span class="required">*</span>
                                 </label>
                                 <div class="col-md-10 col-sm-10 col-xs-12">
-                                    <textarea class="form-control" rows="3" ng-model="items.update.gendetail" ng-readonly="isdisabled"></textarea>
+                                    <textarea class="form-control" rows="3" ng-model="items.update.gendetail" ng-readonly="true"></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-2 col-sm-2 col-xs-12">相关信号通路<span class="required">*</span>
                                 </label>
                                 <div class="col-md-10 col-sm-10 col-xs-12">
-                                    <textarea class="form-control" rows="3" ng-model="items.update.gendisease" ng-readonly="isdisabled"></textarea>
+                                    <textarea class="form-control" rows="3" ng-model="items.update.gendisease" ng-readonly="true"></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-2 col-sm-2 col-xs-12">信息来源<span class="required">*</span>
                                 </label>
                                 <div class="col-md-10 col-sm-10 col-xs-12">
-                                    <textarea class="form-control" rows="3" ng-model="items.update.infosource" ng-readonly="isdisabled"></textarea>
+                                    <textarea class="form-control" rows="3" ng-model="items.update.infosource" ng-readonly="true"></textarea>
                                 </div>
                             </div>
                         </form>
@@ -198,6 +179,21 @@
                                 <button class="btn btn-warning" type="button" ng-click="cancel()">取消</button>
                             </div>
                         </script>
+                        <script type="text/ng-template" id="rejectCheckModal.html">
+                            <div class="modal-header">
+                                <h3 class="modal-title">消息</h3>
+                            </div>
+                            <div class="modal-body">
+                                <p>{{infos.name}}</p>
+                                <form class="form-horizontal">
+                                    <textarea class="form-control" rows="3" ng-model="remarks"></textarea>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" type="button" ng-click="ok()">确定</button>
+                                <button class="btn btn-warning" type="button" ng-click="cancel()">取消</button>
+                            </div>
+                        </script>
                         <div class="controllBtn">
                             <button type="button" class="btn btn-success btn-sm" ng-click="rejectCheck('lg')" ng-disabled="items.update==null||isUser" ng-if="control.state_reject>0">审核驳回</button>
                             <button type="button" class="btn btn-success btn-sm" ng-click="check('sm')" ng-disabled="items.update==null" ng-if="control.state>0">审核</button>
@@ -248,7 +244,7 @@
                     </tr>
                     <tr>
                         <th colspan="4">
-                            <input st-search="" class="form-control" placeholder="查找 ..." type="text" />
+                            <input st-search="" class="form-control input-sm" placeholder="查找 ..." type="text" />
                         </th>
                     </tr>
                 </thead>

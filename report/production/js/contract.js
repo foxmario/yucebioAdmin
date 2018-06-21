@@ -17,16 +17,18 @@
             // var baseUrl = 'http://192.168.11.101:8000/';
             switch (href) {
                 case '/task':
-                    var url = baseUrl + 'PMTaskHandle/view/'
+                    var url = baseUrl + 'PMTaskHandle/view/';
                     break;
                 case '/project':
-                    var url = baseUrl + 'ProjectHandle/view/'
+                    var url = baseUrl + 'ProjectHandle/view/';
                     break;
                 case '/product':
-                    var url = baseUrl + 'ProductHandle/view/'
+                    var url = baseUrl + 'ProductHandle/view/';
+                    var upUrl = baseUrl + 'ProductHandle/batchadd/';
                     break;
                 case '/patient':
-                    var url = baseUrl + 'PatientHandle/view/'
+                    var url = baseUrl + 'PatientHandle/view/';
+                    var upUrl = baseUrl + 'PatientHandle/batchadd/';
                     break;
                 case '/addTask':
                     var url = baseUrl + 'ProjectHandle/init/';
@@ -584,7 +586,7 @@
                     console.log(newValue);
                 })
                 file.upload = Upload.upload({
-                    url: baseUrl + 'PatientHandle/batchadd/',
+                    url: upUrl,
                     data: { username: $scope.username, file: file }
                 });
 
@@ -601,7 +603,7 @@
                     }, 6000)
 
                 }, function(response) {
-                    $scope.errorMsg = response.status + ': ' + response.data;
+                    $scope.errorMsg = response.status;
                 }, function(evt) {
                     // Math.min is to fix IE which reports 200% sometimes
                     file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));

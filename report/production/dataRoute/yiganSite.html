@@ -63,7 +63,7 @@
                         <td>{{item.rsnumber}}</td>
                         <td>{{item.gentype}}</td>
                         <td>{{item.drugclinic}}</td>
-                        <td><span ng-show="isDisease">{{item.disease}}</span></td>
+                        <td title="{{item.disease}}"><span ng-show="isDisease">{{item.disease}}</span></td>
                         <td>{{item.note}}</td>
                         <td>{{item.date}}</td>
                         <td><span class="badge bg-red" ng-if="item.update !=null">{{item.state}}</span></td>
@@ -72,7 +72,7 @@
                 <tfoot>
                     <tr>
                         <td colspan="12" class="text-center">
-                            <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="7"></div>
+                            <div st-pagination="" st-items-by-page="5" st-displayed-pages="7"></div>
                         </td>
                     </tr>
                 </tfoot>
@@ -82,25 +82,6 @@
     <!--stSafeSrc属性控制表格END-->
 </div>
 <div class="x_panel">
-    <div class="x_title">
-        <h2>详细信息</h2>
-        <ul class="nav navbar-right panel_toolbox">
-            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-            </li>
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">Settings 1</a>
-                    </li>
-                    <li><a href="#">Settings 2</a>
-                    </li>
-                </ul>
-            </li>
-            <li><a class="close-link"><i class="fa fa-close"></i></a>
-            </li>
-        </ul>
-        <div class="clearfix"></div>
-    </div>
     <div class="x_content">
         <div class="" role="tabpanel" data-example-id="togglable-tabs">
             <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
@@ -358,6 +339,21 @@
                                 <button class="btn btn-warning" type="button" ng-click="cancel()">取消</button>
                             </div>
                         </script>
+                        <script type="text/ng-template" id="rejectCheckModal.html">
+                            <div class="modal-header">
+                                <h3 class="modal-title">消息</h3>
+                            </div>
+                            <div class="modal-body">
+                                <p>{{infos.name}}</p>
+                                <form class="form-horizontal">
+                                    <textarea class="form-control" rows="3" ng-model="remarks"></textarea>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" type="button" ng-click="ok()">确定</button>
+                                <button class="btn btn-warning" type="button" ng-click="cancel()">取消</button>
+                            </div>
+                        </script>
                         <div class="controllBtn">
                             <button type="button" class="btn btn-success btn-sm" ng-click="rejectCheck('lg')" ng-disabled="items.update==null||isUser" ng-if="control.state_reject>0">审核驳回</button>
                             <button type="button" class="btn btn-success btn-sm" ng-click="check('sm')" ng-disabled="items.update==null||isUser" ng-if="control.state>0">审核</button>
@@ -408,7 +404,7 @@
                     </tr>
                     <tr>
                         <th colspan="4">
-                            <input st-search="" class="form-control" placeholder="查找 ..." type="text" />
+                            <input st-search="" class="form-control input-sm" placeholder="查找 ..." type="text" />
                         </th>
                     </tr>
                 </thead>

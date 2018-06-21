@@ -54,7 +54,7 @@
                         <td>{{item.short}}</td>
                         <td>{{item.cname}}</td>
                         <td>{{item.ename}}</td>
-                        <td><span ng-show="isDefinitions">{{item.definitions}}</span></td>
+                        <td title="{{item.definitions}}"><span ng-show="isDefinitions">{{item.definitions}}</span></td>
                         <td>{{item.date}}</td>
                         <td>
                             <span class="badge bg-red">{{item.state}}</span>
@@ -74,25 +74,6 @@
     <!--stSafeSrc属性控制表格END-->
 </div>
 <div class="x_panel">
-    <div class="x_title">
-        <h2>详细信息</h2>
-        <ul class="nav navbar-right panel_toolbox">
-            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-            </li>
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">Settings 1</a>
-                    </li>
-                    <li><a href="#">Settings 2</a>
-                    </li>
-                </ul>
-            </li>
-            <li><a class="close-link"><i class="fa fa-close"></i></a>
-            </li>
-        </ul>
-        <div class="clearfix"></div>
-    </div>
     <div class="x_content">
         <div class="" role="tabpanel" data-example-id="togglable-tabs">
             <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
@@ -261,7 +242,7 @@
                     </tr>
                     <tr>
                         <th colspan="4">
-                            <input st-search="" class="form-control" placeholder="查找 ..." type="text" />
+                            <input st-search="" class="form-control input-sm" placeholder="查找 ..." type="text" />
                         </th>
                     </tr>
                 </thead>

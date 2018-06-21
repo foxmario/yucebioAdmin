@@ -66,37 +66,37 @@
                 </thead>
                 <tbody>
                     <tr st-select-row="item" st-select-mode="single" ng-repeat="item in displayedCollection track by $index" ng-click="getDesc(item)">
-                       <td>{{item.expid}}</td>
-                       <td>{{item.experiment_panel}}</td>
-                       <td>{{item.sequencing_data}}</td>
-                       <td>{{item.lot}}</td>
-                       <td>{{item.input_volume}}</td>
-                       <td>{{item.input_mass}}</td>
-                       <td>{{item.postPCR_cycle}}</td>
-                       <td>{{item.postPCR_QB}}</td>
-                       <td>{{item.postPCR_volume}}</td>
-                       <td>{{item.amplify_ratio}}</td>
-                       <td>{{item.qualify}}</td>
-                       <td>{{item.operator1}}</td>
-                       <td>{{item.operator2}}</td>
-                       <td>{{item.location}}</td>
-                       <td>{{item.time1}}</td>
-                       <td>{{item.time2}}</td>
-                       <td>{{item.remarks}}</td>
-                       <td>{{item.status}}</td>
+                        <td>{{item.expid}}</td>
+                        <td>{{item.experiment_panel}}</td>
+                        <td>{{item.sequencing_data}}</td>
+                        <td>{{item.lot}}</td>
+                        <td>{{item.input_volume}}</td>
+                        <td>{{item.input_mass}}</td>
+                        <td>{{item.postPCR_cycle}}</td>
+                        <td>{{item.postPCR_QB}}</td>
+                        <td>{{item.postPCR_volume}}</td>
+                        <td>{{item.amplify_ratio}}</td>
+                        <td>{{item.qualify}}</td>
+                        <td>{{item.operator1}}</td>
+                        <td>{{item.operator2}}</td>
+                        <td>{{item.location}}</td>
+                        <td>{{item.time1}}</td>
+                        <td>{{item.time2}}</td>
+                        <td>{{item.remarks}}</td>
+                        <td>{{item.status}}</td>
                     </tr>
                 </tbody>
             </table>
-            <table st-table='displayedCollection' st-safe-src="shortData.data" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0">
-                <tfoot>
-                    <tr>
-                        <td colspan="10" class="text-center">
-                            <div st-pagination="" st-items-by-page="5" st-displayed-pages="7"></div>
-                        </td>
-                    </tr>
-                </tfoot>
-            </table>
         </div>
+        <table st-table='displayedCollection' st-safe-src="shortData.data" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0">
+            <tfoot>
+                <tr>
+                    <td colspan="10" class="text-center">
+                        <div st-pagination="" st-items-by-page="5" st-displayed-pages="7"></div>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
     </div>
     <!--stSafeSrc属性控制表格END-->
 </div>
@@ -110,28 +110,28 @@
                 </li> -->
             </ul>
             <div id="myTabContent" class="tab-content">
-                    <div class="alert alert-danger alert-dismissible fade in" role="alert" ng-if="error">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
-                        </button>
-                        <strong>提示：</strong> {{error}}
-                    </div>
-                    <div class="alert alert-success alert-dismissible fade in" role="alert" ng-if="success">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
-                        </button>
-                        <strong>提示：</strong> {{success}}
-                    </div>
-                    <div class="alert alert-warning alert-dismissible fade in" role="alert" ng-if="warning">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
-                        </button>
-                        <strong>提示：</strong> {{warning}}
-                    </div>
+                <div class="alert alert-danger alert-dismissible fade in" role="alert" ng-if="error">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                    </button>
+                    <strong>提示：</strong> {{error}}
+                </div>
+                <div class="alert alert-success alert-dismissible fade in" role="alert" ng-if="success">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                    </button>
+                    <strong>提示：</strong> {{success}}
+                </div>
+                <div class="alert alert-warning alert-dismissible fade in" role="alert" ng-if="warning">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                    </button>
+                    <strong>提示：</strong> {{warning}}
+                </div>
                 <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
                     <div class="login_wrapper">
                         <form name="myForm">
                             <fieldset>
                                 <legend>文件上传 <a ng-json-export-excel url="'http://192.168.1.186:8000/HybridHandle/download/'" style="float:right;cursor: pointer;" filename="'杂交管理'">模版下载</a></legend>
                                 <div class="">
-                                    <input type="file" ngf-select ng-model="picFile" name="filename" accept=".xlsx" required ngf-model-invalid="errorFile">
+                                    <input type="file" ngf-select ng-model="picFile" name="filename" accept=".csv" required ngf-model-invalid="errorFile">
                                     </br>
                                     <i ng-show="myForm.file.$error.required">*请选择文件</i>
                                     <br>

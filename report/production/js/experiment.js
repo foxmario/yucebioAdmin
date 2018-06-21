@@ -18,6 +18,7 @@
                     break;
                 case '/expSample':
                     var url = baseUrl + 'SampleHandle/view/';
+                    var upUrl = baseUrl + 'SampleHandle/upload/';
                     break;
                 case '/expExtraction':
                     var url = baseUrl + 'ExtractHandle/view/';
@@ -569,7 +570,7 @@
                     console.log(newValue);
                 })
                 file.upload = Upload.upload({
-                    url: baseUrl + upUrl,
+                    url: upUrl,
                     data: { username: $scope.username, file: file }
                 });
 
@@ -586,7 +587,7 @@
                     }, 6000)
 
                 }, function(response) {
-                    $scope.errorMsg = response.status + ': ' + response.data;
+                    $scope.errorMsg = response.status;
                 }, function(evt) {
                     // Math.min is to fix IE which reports 200% sometimes
                     file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));

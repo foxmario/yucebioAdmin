@@ -30,19 +30,19 @@
                         <th st-sort="cancerType" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">产品配置</th>
                         <th st-sort="personNumber" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">产品周期</th>
                         <th st-sort="personName" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">样本类型(control)</th>
-                        <th st-sort="personName" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">测序数据量(control)</th>
-                        <th st-sort="personName" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">样本类型(case)</th>
-                        <th st-sort="personName" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">测序数据量(case)</th>
-                        <th st-sort="personName" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">技术平台</th>
-                        <th st-sort="personName" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">最优上机周期</th>
-                        <th st-sort="personName" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">最晚上机周期</th>
-                        <th st-sort="personName" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">生产芯片</th>
-                        <th st-sort="personName" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">测序策略</th>
-                        <th st-sort="personName" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">分子标签建库</th>
+                        <th st-sort="normalsize" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">测序数据量(control)</th>
+                        <th st-sort="tumortype" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">样本类型(case)</th>
+                        <th st-sort="tumorsize" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">测序数据量(case)</th>
+                        <th st-sort="platform" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">技术平台</th>
+                        <th st-sort="bestuptime" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">最优上机时间</th>
+                        <th st-sort="worstuptime" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">最坏上机时间</th>
+                        <th st-sort="chip" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">生产芯片</th>
+                        <th st-sort="strategy" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">测序策略</th>
+                        <th st-sort="moletag" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">分子标签建库</th>
                     </tr>
                     <tr>
                         <th colspan="16">
-                            <input st-search="" class="form-control" placeholder="查找 ..." type="text" />
+                            <input st-search="" class="form-control input-sm" placeholder="查找 ..." type="text" />
                         </th>
                     </tr>
                 </thead>
@@ -82,179 +82,199 @@
     <!--stSafeSrc属性控制表格END-->
 </div>
 <div class="x_panel">
-    <div class="x_title">
-        <h2>详细信息</h2>
-        <ul class="nav navbar-right panel_toolbox">
-            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-            </li>
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">Settings 1</a>
-                    </li>
-                    <li><a href="#">Settings 2</a>
-                    </li>
-                </ul>
-            </li>
-            <li><a class="close-link"><i class="fa fa-close"></i></a>
-            </li>
-        </ul>
-        <div class="clearfix"></div>
-    </div>
     <div class="x_content">
-        <div class="alert alert-danger alert-dismissible fade in" role="alert" ng-if="error">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
-            </button>
-            <strong>提示：</strong> {{error}}
-        </div>
-        <div class="alert alert-success alert-dismissible fade in" role="alert" ng-if="success">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
-            </button>
-            <strong>提示：</strong> {{success}}
-        </div>
-        <div class="alert alert-warning alert-dismissible fade in" role="alert" ng-if="warning">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
-            </button>
-            <strong>提示：</strong> {{warning}}
-        </div>
-        <div class="col-md-6 col-xs-12">
-            <form class="form-horizontal form-label-left">
-                <div class="form-group">
-                    <label class="control-label col-md-2 col-sm-2 col-xs-12">产品编号<span class="required">*</span>
-                    </label>
-                    <div class="col-md-10 col-sm-10 col-xs-12">
-                        <input type="text" class="form-control input-sm" ng-model="items.productid ">
+        <div class="" role="tabpanel" data-example-id="togglable-tabs">
+            <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                <li role="presentation" class="active"><a id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">详情</a>
+                </li>
+                <li role="presentation" class=""><a role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">批量上传</a>
+                </li>
+            </ul>
+            <div id="myTabContent" class="tab-content">
+                <div class="alert alert-danger alert-dismissible fade in" role="alert" ng-if="error">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                    </button>
+                    <strong>提示：</strong> {{error}}
+                </div>
+                <div class="alert alert-success alert-dismissible fade in" role="alert" ng-if="success">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                    </button>
+                    <strong>提示：</strong> {{success}}
+                </div>
+                <div class="alert alert-warning alert-dismissible fade in" role="alert" ng-if="warning">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                    </button>
+                    <strong>提示：</strong> {{warning}}
+                </div>
+                <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
+                    <div class="col-md-6 col-xs-12">
+                        <form class="form-horizontal form-label-left">
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">产品编号<span class="required">*</span>
+                                </label>
+                                <div class="col-md-10 col-sm-10 col-xs-12">
+                                    <input type="text" class="form-control input-sm" ng-model="items.productid ">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">产品名称<span class="required">*</span>
+                                </label>
+                                <div class="col-md-10 col-sm-10 col-xs-12">
+                                    <input type="text" class="form-control input-sm" ng-model="items.productname">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">产品手册<span class="required">*</span>
+                                </label>
+                                <div class="col-md-10 col-sm-10 col-xs-12">
+                                    <input type="text" class="form-control input-sm" ng-model="items.book">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">配置文件<span class="required">*</span>
+                                </label>
+                                <div class="col-md-10 col-sm-10 col-xs-12">
+                                    <input type="text" class="form-control input-sm" ng-model="items.config">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">产品周期<span class="required">*</span>
+                                </label>
+                                <div class="col-md-10 col-sm-10 col-xs-12">
+                                    <input type="number" class="form-control input-sm" ng-model="items.period">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">样本类型(control)<span class="required">*</span>
+                                </label>
+                                <div class="col-md-10 col-sm-10 col-xs-12">
+                                    <input type="text" class="form-control input-sm" ng-model="items.normaltype">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">测序数据量(control)<span class="required">*</span>
+                                </label>
+                                <div class="col-md-10 col-sm-10 col-xs-12">
+                                    <input type="text" class="form-control input-sm" ng-model="items.normalsize">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">产线<span class="required">*</span>
+                                </label>
+                                <div class="col-md-10 col-sm-10 col-xs-12">
+                                    <input type="text" class="form-control input-sm" ng-model="items.lane">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-6 col-xs-12">
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">样本类型(case)<span class="required">*</span>
+                                </label>
+                                <div class="col-md-10 col-sm-10 col-xs-12">
+                                    <input type="text" class="form-control input-sm" ng-model="items.tumortype">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">测序数据量(case)<span class="required">*</span>
+                                </label>
+                                <div class="col-md-10 col-sm-10 col-xs-12">
+                                    <input type="text" class="form-control input-sm" ng-model="items.tumorsize">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">技术平台<span class="required">*</span>
+                                </label>
+                                <div class="col-md-10 col-sm-10 col-xs-12">
+                                    <input type="text" class="form-control input-sm" ng-model="items.platform">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">最优上机时间<span class="required">*</span>
+                                </label>
+                                <div class="col-md-10 col-sm-10 col-xs-12">
+                                    <input type="number" class="form-control input-sm" ng-model="items.bestuptime">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">最坏上机时间<span class="required">*</span>
+                                </label>
+                                <div class="col-md-10 col-sm-10 col-xs-12">
+                                    <input type="number" class="form-control input-sm" ng-model="items.worstuptime">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">生产芯片<span class="required">*</span>
+                                </label>
+                                <div class="col-md-10 col-sm-10 col-xs-12">
+                                    <input type="text" class="form-control input-sm" ng-model="items.chip">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">测序策略<span class="required">*</span>
+                                </label>
+                                <div class="col-md-10 col-sm-10 col-xs-12">
+                                    <input type="text" class="form-control input-sm" ng-model="items.strategy">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">分子标签建库<span class="required">*</span>
+                                </label>
+                                <div class="col-md-10 col-sm-10 col-xs-12">
+                                    <input type="text" class="form-control input-sm" ng-model="items.moletag">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <script type="text/ng-template" id="addModal.html">
+                        <div class="modal-header">
+                            <h3 class="modal-title">消息</h3>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form-horizontal">
+                                <p>{{info}}</p>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary" type="button" ng-click="ok()">确定</button>
+                            <button class="btn btn-warning" type="button" ng-click="cancel()">取消</button>
+                        </div>
+                    </script>
+                    <div class="controllBtn">
+                        <button type="button" class="btn btn-warning btn-sm" ng-click="newCreat('sm',items)">新建</button>
+                        <button type="button" class="btn btn-default btn-sm" ng-click="add('sm',items)" ng-disabled="items&&items.isSelected">提交</button>
+                        <button type="button" class="btn btn-default btn-sm" ng-click="add('sm',items)" ng-disabled="!items||!items.isSelected">修改</button>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label class="control-label col-md-2 col-sm-2 col-xs-12">产品名称<span class="required">*</span>
-                    </label>
-                    <div class="col-md-10 col-sm-10 col-xs-12">
-                        <input type="text" class="form-control input-sm" ng-model="items.productname">
+                <div role="tabpanel" class="tab-pane fade" aria-labelledby="profile-tab">
+                    <div class="login_wrapper">
+                        <form name="myForm">
+                            <fieldset>
+                                <legend>文件上传</legend>
+                                <div class="form-group">
+                                    <input type="file" ngf-select ng-model="picFile" name="filename" accept=".xlsx" required ngf-model-invalid="errorFile">
+                                    <i ng-show="myForm.file.$error.required">*请选择文件</i>
+                                </div>
+                                <div class="form-group">
+                                    <button ng-click="picFile = null" ng-show="picFile" class="btn btn-danger btn-sm">移除</button>
+                                    <button ng-disabled="!myForm.$valid" ng-click="uploadPic(picFile)" class="btn btn-primary btn-sm">上传</button>
+                                </div>
+                                <div class="form-group">
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:{{picFile.progress}}%" ng-bind="picFile.progress + '%'">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
+                                </div>
+                            </fieldset>
+                            <br>
+                        </form>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label class="control-label col-md-2 col-sm-2 col-xs-12">产品手册<span class="required">*</span>
-                    </label>
-                    <div class="col-md-10 col-sm-10 col-xs-12">
-                        <input type="text" class="form-control input-sm" ng-model="items.book">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label col-md-2 col-sm-2 col-xs-12">配置文件<span class="required">*</span>
-                    </label>
-                    <div class="col-md-10 col-sm-10 col-xs-12">
-                        <input type="text" class="form-control input-sm" ng-model="items.config">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label col-md-2 col-sm-2 col-xs-12">产品周期<span class="required">*</span>
-                    </label>
-                    <div class="col-md-10 col-sm-10 col-xs-12">
-                        <input type="number" class="form-control input-sm" ng-model="items.period">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label col-md-2 col-sm-2 col-xs-12">样本类型(control)<span class="required">*</span>
-                    </label>
-                    <div class="col-md-10 col-sm-10 col-xs-12">
-                        <input type="text" class="form-control input-sm" ng-model="items.normaltype">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label col-md-2 col-sm-2 col-xs-12">测序数据量(control)<span class="required">*</span>
-                    </label>
-                    <div class="col-md-10 col-sm-10 col-xs-12">
-                        <input type="text" class="form-control input-sm" ng-model="items.normalsize">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label col-md-2 col-sm-2 col-xs-12">产线<span class="required">*</span>
-                    </label>
-                    <div class="col-md-10 col-sm-10 col-xs-12">
-                        <input type="text" class="form-control input-sm" ng-model="items.lane">
-                    </div>
-                </div>
-            </form>
-        </div>
-        <div class="col-md-6 col-xs-12">
-            <form class="form-horizontal">
-                <div class="form-group">
-                    <label class="control-label col-md-2 col-sm-2 col-xs-12">样本类型(case)<span class="required">*</span>
-                    </label>
-                    <div class="col-md-10 col-sm-10 col-xs-12">
-                        <input type="text" class="form-control input-sm" ng-model="items.tumortype">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label col-md-2 col-sm-2 col-xs-12">测序数据量(case)<span class="required">*</span>
-                    </label>
-                    <div class="col-md-10 col-sm-10 col-xs-12">
-                        <input type="text" class="form-control input-sm" ng-model="items.tumorsize">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label col-md-2 col-sm-2 col-xs-12">技术平台<span class="required">*</span>
-                    </label>
-                    <div class="col-md-10 col-sm-10 col-xs-12">
-                        <input type="text" class="form-control input-sm" ng-model="items.platform">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label col-md-2 col-sm-2 col-xs-12">最优上机周期(天)<span class="required">*</span>
-                    </label>
-                    <div class="col-md-10 col-sm-10 col-xs-12">
-                        <input type="number" class="form-control input-sm" ng-model="items.bestuptime">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label col-md-2 col-sm-2 col-xs-12">最坏下机周期(天)<span class="required">*</span>
-                    </label>
-                    <div class="col-md-10 col-sm-10 col-xs-12">
-                        <input type="number" class="form-control input-sm" ng-model="items.worstuptime">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label col-md-2 col-sm-2 col-xs-12">生产芯片<span class="required">*</span>
-                    </label>
-                    <div class="col-md-10 col-sm-10 col-xs-12">
-                        <input type="text" class="form-control input-sm" ng-model="items.chip">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label col-md-2 col-sm-2 col-xs-12">测序策略<span class="required">*</span>
-                    </label>
-                    <div class="col-md-10 col-sm-10 col-xs-12">
-                        <input type="text" class="form-control input-sm" ng-model="items.strategy">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label col-md-2 col-sm-2 col-xs-12">分子标签建库<span class="required">*</span>
-                    </label>
-                    <div class="col-md-10 col-sm-10 col-xs-12">
-                        <input type="text" class="form-control input-sm" ng-model="items.moletag">
-                    </div>
-                </div>
-            </form>
-        </div>
-        <script type="text/ng-template" id="addModal.html">
-            <div class="modal-header">
-                <h3 class="modal-title">消息</h3>
             </div>
-            <div class="modal-body">
-                <form class="form-horizontal">
-                    <p>{{info}}</p>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-primary" type="button" ng-click="ok()">确定</button>
-                <button class="btn btn-warning" type="button" ng-click="cancel()">取消</button>
-            </div>
-        </script>
-        <div class="controllBtn">
-            <button type="button" class="btn btn-warning btn-sm" ng-click="newCreat('sm',items)">新建</button>
-            <button type="button" class="btn btn-default btn-sm" ng-click="add('sm',items)" ng-disabled="items&&items.isSelected">提交</button>
-            <button type="button" class="btn btn-default btn-sm" ng-click="add('sm',items)" ng-disabled="!items||!items.isSelected">修改</button>
         </div>
     </div>
 </div>
