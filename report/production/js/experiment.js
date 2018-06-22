@@ -10,7 +10,7 @@
 
 
             var href = $location.url();
-            var baseUrl = 'http://192.168.1.186:8000/';
+            var baseUrl = 'http://192.168.1.211:8000/';
             // var baseUrl = 'http://192.168.11.101:8000/';
             switch (href) {
                 case '/expPatient':
@@ -434,7 +434,7 @@
         $scope.info = infos1;
         $scope.rowCollection = datas;
         $scope.newCollection = [];
-        var baseUrl = 'http://192.168.1.186:8000/';
+        var baseUrl = 'http://192.168.1.211:8000/';
         var href = $location.url();
         if (href == '/patient') {
             $http({

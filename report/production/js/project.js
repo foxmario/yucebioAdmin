@@ -17,7 +17,7 @@
 
             //获取url
             var href = $location.url();
-            var baseUrl = 'http://192.168.1.186:8000/';
+            var baseUrl = 'http://192.168.1.211:8000/';
             // var url, sUrl, delUrl, checkUrl, upUrl;
             // switch (href) {
             //     case '/abbr':
@@ -248,7 +248,7 @@
         $scope.infos = infos1;
         $scope.rowCollection = datas;
         $scope.newCollection = [];
-        var baseUrl = 'http://192.168.1.186:8000/';
+        var baseUrl = 'http://192.168.1.211:8000/';
         $scope.ok = function() {
             $uibModalInstance.close();
             switch (btnname) {
