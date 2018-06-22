@@ -560,6 +560,10 @@
                 delete items.age;
                 delete items.gender;
                 delete items.isSelected;
+                items.starttime = moment(items.starttime).format("YYYY-MM-DD HH:mm:ss");
+                items.bestuptime = moment(items.bestuptime).format("YYYY-MM-DD HH:mm:ss");
+                items.worstuptime = moment(items.worstuptime).format("YYYY-MM-DD HH:mm:ss");
+                items.deadline = moment(items.deadline).format("YYYY-MM-DD HH:mm:ss");
                 $http({
                     method: 'post',
                     url: baseUrl + 'PMTaskHandle/modify/',

@@ -1,4 +1,4 @@
-<div class="x_panel">
+﻿<div class="x_panel">
     <div class="x_title">
         <div class="alert alert-danger alert-dismissible fade in" role="alert" ng-if="ordersInfo.error">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
@@ -15,7 +15,7 @@
             </button>
             <strong>提示：</strong> {{ordersInfo.warning}}
         </div>
-        <h2>样本管理</h2>
+        <h2>测序管理</h2>
         <ul class="nav navbar-right panel_toolbox">
             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
             </li>
@@ -39,25 +39,23 @@
             <table st-table='displayedCollection' st-safe-src="shortData" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" style="white-space: nowrap;">
                 <thead>
                     <tr class="frist-head">
-                        <th st-sort="sampleid" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">样本编号</th>
-                        <th st-sort="taskNumber" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">患者编号</th>
-                        <th st-sort="tumortype" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">肿瘤类型</th>
-                        <th st-sort="type" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">样本类型</th>
-                        <th st-sort="recievetime" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">收样时间</th>
+                        <th st-sort="expid" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">实验编号</th>
+                        <th st-sort="dilutionRatio" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">稀释倍数</th>
+                        <th st-sort="postdilutionConcentration" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">稀释后浓度nM</th>
+                        <th st-sort="status" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">状态</th>
                     </tr>
                     <tr>
-                        <th colspan="5">
+                        <th colspan="20">
                             <input st-search="" class="form-control input-sm" placeholder="查找 ..." type="text" />
                         </th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr st-select-mode="single" ng-repeat="item in displayedCollection track by $index" >
-                        <td>{{item.sampleid}}</td>
-                        <td>{{item.patient}}</td>
-                        <td>{{item.tumortype}}</td>
-                        <td>{{item.type}}</td>
-                        <td>{{item.recievetime | date:'yyyy-MM-dd HH:mm:ss '}}</td>
+                    <tr st-select-row="item" st-select-mode="single" ng-repeat="item in displayedCollection track by $index" ng-click="getDesc(item)">
+                        <td>{{item.expid}}</td>
+                        <td>{{item.dilutionRatio}}</td>
+                        <td>{{item.postdilutionConcentration}}</td>
+                        <td>{{item.status}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -78,9 +76,7 @@
     <div class="x_content">
         <div class="" role="tabpanel" data-example-id="togglable-tabs">
             <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-                <li role="presentation" class="active"><a id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">单个添加</a>
-                </li>
-                <li role="presentation" class=""><a role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">批量上传</a>
+                <li role="presentation" class="active"><a id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">批量上传</a>
                 </li>
                 <!-- <li role="presentation" class=""><a role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">详细信息(修改)</a>
                 </li> -->
@@ -102,75 +98,12 @@
                     <strong>提示：</strong> {{warning}}
                 </div>
                 <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
-                    <div class="col-xs-12">
-                        <form class="form-horizontal form-label-left" name="patientForm">
-                            <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">样本编号<span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" class="form-control col-md-7 col-xs-12" ng-model="sample.sampleid" required name="sampleid">
-                                    <span ng-show="patientForm.sampleid.$dirty" style="color:red;">
-                                        <span ng-show="patientForm.sampleid.$error.required">样本编号不能为空</span>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">患者编号<span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" class="form-control col-md-7 col-xs-12" ng-model="sample.patient">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">肿瘤类型<span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" class="form-control col-md-7 col-xs-12" ng-model="sample.tumortype">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">样本类型<span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" class="form-control col-md-7 col-xs-12" ng-model="sample.type">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">收样时间<span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <div class="input-group" datetimepicker ng-model="sample.recievetime">
-                                        <span class="input-group-addon">
-                                            <span class="glyphicon glyphicon-calendar"></span>
-                                        </span>
-                                        <input class="form-control" />
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <script type="text/ng-template" id="ordersModal.html">
-                        <div class="modal-header">
-                            <h3 class="modal-title">消息</h3>
-                        </div>
-                        <div class="modal-body">
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-primary" type="button" ng-click="ok()">确定</button>
-                            <button class="btn btn-warning" type="button" ng-click="cancel()">取消</button>
-                        </div>
-                    </script>
-                    <div class="controllBtn">
-                        <button type="button" class="btn btn-default" ng-click="addSample(sample)" ng-disabled="patientForm.$invalid||patientForm.$pristine">添加</button>
-                    </div>
-                </div>
-                <div role="tabpanel" class="tab-pane fade" aria-labelledby="profile-tab">
                     <div class="login_wrapper">
                         <form name="myForm">
                             <fieldset>
-                                <legend>文件上传 <a href="templateExcel/样本收样上传表.xlsx" style="float:right;">模版下载</a></legend>
+                                <legend>文件上传 <a ng-json-export-excel url="'http://192.168.1.186:8000/SeqHandle/download/'" style="float:right;cursor: pointer;" filename="'测序管理'">模版下载</a></legend>
                                 <div class="">
-                                    <input type="file" ngf-select ng-model="picFile" name="filename" accept=".xlsx" required ngf-model-invalid="errorFile">
+                                    <input type="file" ngf-select ng-model="picFile" name="filename" accept=".csv" required ngf-model-invalid="errorFile">
                                     </br>
                                     <i ng-show="myForm.file.$error.required">*请选择文件</i>
                                     <br>
@@ -197,73 +130,73 @@
                     <div class="col-xs-12 col-sm-6">
                         <form class="form-horizontal form-label-left">
                             <div class="form-group">
-                                <label class="control-label col-md-2 col-sm-2 col-xs-12">患者编号<span class="required">*</span>
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">样本编号<span class="required">*</span>
                                 </label>
                                 <div class="col-md-10 col-sm-10 col-xs-12">
-                                    <input type="text" class="form-control" ng-model="items.patientid" ng-readonly="true">
+                                    <input type="text" class="form-control" ng-model="items.sampleid" ng-readonly="true">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-2 col-sm-2 col-xs-12">患者姓名<span class="required">*</span>
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">提取后类型<span class="required">*</span>
                                 </label>
                                 <div class="col-md-10 col-sm-10 col-xs-12">
-                                    <input type="text" class="form-control" ng-model="items.patientname" ng-readonly="true">
+                                    <input type="text" class="form-control" ng-model="items.type" ng-readonly="true">
                                 </div>
                             </div>
                              <div class="form-group">
-                                <label class="control-label col-md-2 col-sm-2 col-xs-12">肿瘤类型<span class="required">*</span>
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">样本体积(ul)<span class="required">*</span>
                                 </label>
                                 <div class="col-md-10 col-sm-10 col-xs-12">
-                                    <input type="text" class="form-control" ng-model="items.tumortype">
+                                    <input type="text" class="form-control" ng-model="items.extraction_volume">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-2 col-sm-2 col-xs-12">患者性别<span class="required">*</span>
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">260/280<span class="required">*</span>
                                 </label>
                                 <div class="col-md-10 col-sm-10 col-xs-12">
-                                    <input type="text" class="form-control" ng-model="items.gender" ng-readonly="true">
+                                    <input type="text" class="form-control" ng-model="items.s260280" ng-readonly="true">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-2 col-sm-2 col-xs-12">患者年龄<span class="required">*</span>
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">260/230<span class="required">*</span>
                                 </label>
                                 <div class="col-md-10 col-sm-10 col-xs-12">
-                                    <input type="text" class="form-control" ng-model="items.age" ng-readonly="true">
+                                    <input type="text" class="form-control" ng-model="items.s260230" ng-readonly="true">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-2 col-sm-2 col-xs-12">肿瘤分级<span class="required">*</span>
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">提取浓度take3(ng/ul)<span class="required">*</span>
                                 </label>
                                 <div class="col-md-10 col-sm-10 col-xs-12">
-                                    <input type="text" class="form-control" ng-model="items.level">
+                                    <input type="text" class="form-control" ng-model="items.take3">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-2 col-sm-2 col-xs-12">送检单位<span class="required">*</span>
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">提取浓度QB(ng/ul)<span class="required">*</span>
                                 </label>
                                 <div class="col-md-10 col-sm-10 col-xs-12">
-                                    <input type="text" class="form-control" ng-model="items.hospital">
+                                    <input type="text" class="form-control" ng-model="items.QB">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-2 col-sm-2 col-xs-12">家族遗传史<span class="required">*</span>
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">样品质量(ng)<span class="required">*</span>
                                 </label>
                                 <div class="col-md-10 col-sm-10 col-xs-12">
-                                    <input type="text" class="form-control" ng-model="items.relative">
+                                    <input type="text" class="form-control" ng-model="items.mass">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-2 col-sm-2 col-xs-12">吸烟史<span class="required">*</span>
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">RQN<span class="required">*</span>
                                 </label>
                                 <div class="col-md-10 col-sm-10 col-xs-12">
-                                    <input type="text" class="form-control" ng-model="items.smoker">
+                                    <input type="text" class="form-control" ng-model="items.RQN">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-2 col-sm-2 col-xs-12">个人病史<span class="required">*</span>
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">DV200<span class="required">*</span>
                                 </label>
                                 <div class="col-md-10 col-sm-10 col-xs-12">
-                                    <input type="text" class="form-control" ng-model="items.mhistory">
+                                    <input type="text" class="form-control" ng-model="items.DV200">
                                 </div>
                             </div>
                         </form>
@@ -271,66 +204,80 @@
                     <div class="col-xs-12 col-sm-6">
                         <form class="form-horizontal form-label-left">
                         <div class="form-group">
-                                <label class="control-label col-md-2 col-sm-2 col-xs-12">PDL1治疗<span class="required">*</span>
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">28S_18S<span class="required">*</span>
                                 </label>
                                 <div class="col-md-10 col-sm-10 col-xs-12">
-                                    <input type="text" class="form-control" ng-model="items.PDL1">
+                                    <input type="text" class="form-control" ng-model="items.s2818">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-2 col-sm-2 col-xs-12">MSI/MMR<span class="required">*</span>
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">是否合格<span class="required">*</span>
                                 </label>
                                 <div class="col-md-10 col-sm-10 col-xs-12">
-                                    <input type="text" class="form-control" ng-model="items.MSIMMR">
+                                    <input type="text" class="form-control" ng-model="items.qualify">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-2 col-sm-2 col-xs-12">手术史<span class="required">*</span>
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">提取操作人<span class="required">*</span>
                                 </label>
                                 <div class="col-md-10 col-sm-10 col-xs-12">
-                                    <input type="text" class="form-control" ng-model="items.sugery">
+                                    <input type="text" class="form-control" ng-model="items.operator1">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-2 col-sm-2 col-xs-12">化疗史<span class="required">*</span>
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">提取操作人<span class="required">*</span>
                                 </label>
                                 <div class="col-md-10 col-sm-10 col-xs-12">
-                                    <input type="text" class="form-control" ng-model="items.chemshistory">
+                                    <input type="text" class="form-control" ng-model="items.operator2">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-2 col-sm-2 col-xs-12">靶向治疗史<span class="required">*</span>
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">提取剩余量(ng)<span class="required">*</span>
                                 </label>
                                 <div class="col-md-10 col-sm-10 col-xs-12">
-                                    <input type="text" class="form-control" ng-model="items.targethistory">
+                                    <input type="text" class="form-control" ng-model="items.remaining_mass">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-2 col-sm-2 col-xs-12">免疫治疗史<span class="required">*</span>
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">提取试剂<span class="required">*</span>
                                 </label>
                                 <div class="col-md-10 col-sm-10 col-xs-12">
-                                    <input type="text" class="form-control" ng-model="items.immuhistory">
+                                    <input type="text" class="form-control" ng-model="items.reagent">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-2 col-sm-2 col-xs-12">器官移植史<span class="required">*</span>
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">批次Lot<span class="required">*</span>
                                 </label>
                                 <div class="col-md-10 col-sm-10 col-xs-12">
-                                    <input type="text" class="form-control" ng-model="items.explant">
+                                    <input type="text" class="form-control" ng-model="items.lot">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-2 col-sm-2 col-xs-12">过往基因检测结果<span class="required">*</span>
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">提取产物储存位置<span class="required">*</span>
                                 </label>
                                 <div class="col-md-10 col-sm-10 col-xs-12">
-                                    <input type="text" class="form-control" ng-model="items.genetest">
+                                    <input type="text" class="form-control" ng-model="items.location">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-2 col-sm-2 col-xs-12">经办人（销售）<span class="required">*</span>
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">提取日期<span class="required">*</span>
                                 </label>
                                 <div class="col-md-10 col-sm-10 col-xs-12">
-                                    <input type="text" class="form-control" ng-model="items.sales">
+                                    <input type="text" class="form-control" ng-model="items.time">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">备注<span class="required">*</span>
+                                </label>
+                                <div class="col-md-10 col-sm-10 col-xs-12">
+                                    <input type="text" class="form-control" ng-model="items.remarks">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">状态<span class="required">*</span>
+                                </label>
+                                <div class="col-md-10 col-sm-10 col-xs-12">
+                                    <input type="text" class="form-control" ng-model="items.status">
                                 </div>
                             </div>
                         </form>

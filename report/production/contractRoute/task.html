@@ -167,21 +167,36 @@
                                 <label class="control-label col-md-2 col-sm-2 col-xs-12">订单开始日期<span class="required">*</span>
                                 </label>
                                 <div class="col-md-10 col-sm-10 col-xs-12">
-                                    <input type="text" class="form-control" ng-model="items.starttime">
+                                    <div class="input-group" datetimepicker ng-model="items.starttime">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                        <input class="form-control" />
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-2 col-sm-2 col-xs-12">最优上机日期<span class="required">*</span>
                                 </label>
                                 <div class="col-md-10 col-sm-10 col-xs-12">
-                                    <input type="text" class="form-control" ng-model="items.bestuptime">
+                                    <div class="input-group" datetimepicker ng-model="items.bestuptime">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                        <input class="form-control" />
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-2 col-sm-2 col-xs-12">最差下机日期<span class="required">*</span>
                                 </label>
                                 <div class="col-md-10 col-sm-10 col-xs-12">
-                                    <input type="text" class="form-control" ng-model="items.worstuptime">
+                                    <div class="input-group" datetimepicker ng-model="items.worstuptime">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                        <input class="form-control" />
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group">

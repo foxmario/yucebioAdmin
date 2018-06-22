@@ -198,96 +198,97 @@
             // var baseUrl = 'http://192.168.1.139:8000/';
             var baseUrl = 'http://192.168.1.139:8000/';
             var url, sUrl, delUrl, checkUrl, upUrl;
-            switch (href) {
+               switch (href) {
                 case '/abbr':
-                    url = baseUrl + 'siglashow/';
-                    sUrl = baseUrl + 'siglasubmit/';
-                    delUrl = baseUrl + 'sigladel/';
-                    checkUrl = baseUrl + 'siglastate/';
-                    upUrl = baseUrl + 'siglaup/';
-                    // downUrl = baseUrl + 'sigladown/';
+                    url = baseUrl + 'sigla_show/';
+                    sUrl = baseUrl + 'sigla_submit/';
+                    delUrl = baseUrl + 'sigla_delete/';
+                    checkUrl = baseUrl + 'sigla_state/';
+                    // upUrl = baseUrl + 'sigla_up/';
+                    upUrl = baseUrl + 'analysis/';
+                    // downUrl = baseUrl + 'sigla_down/';
                     reUrl = baseUrl + 'state_reject/';
                     break;
                 case '/refer':
-                    url = baseUrl + 'refdocumentshow/';
-                    sUrl = baseUrl + 'refdocumentsubmit/';
-                    delUrl = baseUrl + 'refdocumentdel/';
-                    checkUrl = baseUrl + 'refdocumentstate/';
-                    upUrl = baseUrl + 'refdocumentup/';
-                    // downUrl = baseUrl + 'refdocumentdown/';
+                    url = baseUrl + 'refdocument_show/';
+                    sUrl = baseUrl + 'refdocument_submit/';
+                    delUrl = baseUrl + 'refdocument_delete/';
+                    checkUrl = baseUrl + 'refdocument_state/';
+                    upUrl = baseUrl + 'refdocument_up/';
+                    // downUrl = baseUrl + 'refdocument_down/';
                     reUrl = baseUrl + 'refdocument_reject/';
 
                     break;
                 case '/dnaInfo':
-                    url = baseUrl + 'gennewsshow/';
-                    sUrl = baseUrl + 'gennewssubmit/';
-                    delUrl = baseUrl + 'gennewsdel/';
-                    checkUrl = baseUrl + 'gennewsstate/';
-                    upUrl = baseUrl + 'gennewsup/';
-                    // downUrl = baseUrl + 'gennewsdown/';
+                    url = baseUrl + 'gennews_show/';
+                    sUrl = baseUrl + 'gennews_submit/';
+                    delUrl = baseUrl + 'gennews_delete/';
+                    checkUrl = baseUrl + 'gennews_state/';
+                    upUrl = baseUrl + 'gennews_up/';
+                    // downUrl = baseUrl + 'gennews_down/';
                     reUrl = baseUrl + 'gennews_reject/';
                     break;
                 case '/bianyiInfo':
-                    url = baseUrl + 'variationewsshow/';
-                    sUrl = baseUrl + 'variationewssubmit/';
-                    delUrl = baseUrl + 'variationewsdel/';
-                    checkUrl = baseUrl + 'variationewsstate/';
-                    upUrl = baseUrl + 'variationewsup/';
-                    // downUrl = baseUrl + 'variationewsdown/';
+                    url = baseUrl + 'variationews_show/';
+                    sUrl = baseUrl + 'variationews_submit/';
+                    delUrl = baseUrl + 'variationews_delete/';
+                    checkUrl = baseUrl + 'variationews_state/';
+                    upUrl = baseUrl + 'variationews_up/';
+                    // downUrl = baseUrl + 'variationews_down/';
                     reUrl = baseUrl + 'variationews_reject/';
                     break;
                 case '/indications':
-                    url = baseUrl + 'diseasenewsshow/';
-                    sUrl = baseUrl + 'diseasenewssubmit/';
-                    delUrl = baseUrl + 'diseasenewsdel/';
-                    checkUrl = baseUrl + 'diseasenewsstate/';
-                    upUrl = baseUrl + 'diseasenewsup/';
-                    // downUrl = baseUrl + 'diseasenewsdown/';
+                    url = baseUrl + 'diseasenews_show/';
+                    sUrl = baseUrl + 'diseasenews_submit/';
+                    delUrl = baseUrl + 'diseasenews_delete/';
+                    checkUrl = baseUrl + 'diseasenews_state/';
+                    upUrl = baseUrl + 'diseasenews_up/';
+                    // downUrl = baseUrl + 'diseasenews_down/';
                     reUrl = baseUrl + 'diseasenews_reject/';
                     break;
                 case '/immune':
-                    url = baseUrl + 'immuneshow/';
-                    sUrl = baseUrl + 'immunesubmit/';
-                    delUrl = baseUrl + 'immunedel/';
-                    checkUrl = baseUrl + 'immunestate/';
-                    upUrl = baseUrl + 'immuneup/';
-                    // downUrl = baseUrl + 'immunedown/';
+                    url = baseUrl + 'immune_show/';
+                    sUrl = baseUrl + 'immune_submit/';
+                    delUrl = baseUrl + 'immune_delete/';
+                    checkUrl = baseUrl + 'immune_state/';
+                    upUrl = baseUrl + 'immune_up/';
+                    // downUrl = baseUrl + 'immune_down/';
                     reUrl = baseUrl + 'immune_reject/';
                     break;
                 case '/drugInfo':
-                    url = baseUrl + 'drugnewsshow/';
-                    sUrl = baseUrl + 'drugnewssubmit/';
-                    delUrl = baseUrl + 'drugnewsdel/';
-                    checkUrl = baseUrl + 'drugnewsstate/';
-                    upUrl = baseUrl + 'drugnewsup/';
-                    // downUrl = baseUrl + 'drugnewsdown/';
+                    url = baseUrl + 'drugnews_show/';
+                    sUrl = baseUrl + 'drugnews_submit/';
+                    delUrl = baseUrl + 'drugnews_delete/';
+                    checkUrl = baseUrl + 'drugnews_state/';
+                    upUrl = baseUrl + 'drugnews_up/';
+                    // downUrl = baseUrl + 'drugnews_down/';
                     reUrl = baseUrl + 'drugnews_reject/';
                     break;
                 case '/yiganSite':
-                    url = baseUrl + 'siteshow/';
-                    sUrl = baseUrl + 'sitesubmit/';
-                    delUrl = baseUrl + 'sitedel/';
-                    checkUrl = baseUrl + 'sitestate/';
-                    upUrl = baseUrl + 'siteup/';
-                    // downUrl = baseUrl + 'sitedown/';
+                    url = baseUrl + 'site_show/';
+                    sUrl = baseUrl + 'site_submit/';
+                    delUrl = baseUrl + 'site_delete/';
+                    checkUrl = baseUrl + 'site_state/';
+                    upUrl = baseUrl + 'site_up/';
+                    // downUrl = baseUrl + 'site_down/';
                     reUrl = baseUrl + 'site_reject/';
                     break;
                 case '/chemoSite':
-                    url = baseUrl + 'chemotherapyshow/';
-                    sUrl = baseUrl + 'chemotherapysubmit/';
-                    delUrl = baseUrl + 'chemotherapydel/';
-                    checkUrl = baseUrl + 'chemotherapystate/';
-                    upUrl = baseUrl + 'chemotherapyup/';
-                    // downUrl = baseUrl + 'chemotherapydown/';
+                    url = baseUrl + 'chemotherapy_show/';
+                    sUrl = baseUrl + 'chemotherapy_submit/';
+                    delUrl = baseUrl + 'chemotherapy_delete/';
+                    checkUrl = baseUrl + 'chemotherapy_state/';
+                    upUrl = baseUrl + 'chemotherapy_up/';
+                    // downUrl = baseUrl + 'chemotherapy_down/';
                     reUrl = baseUrl + 'chemotherapy_reject/';
                     break;
                 case '/targetSite':
-                    url = baseUrl + 'targetshow/';
-                    sUrl = baseUrl + 'targetsubmit/';
-                    delUrl = baseUrl + 'targetdel/';
-                    checkUrl = baseUrl + 'targetstate/';
-                    upUrl = baseUrl + 'targetup/';
-                    // downUrl = baseUrl + 'targetdown/';
+                    url = baseUrl + 'target_show/';
+                    sUrl = baseUrl + 'target_submit/';
+                    delUrl = baseUrl + 'target_delete/';
+                    checkUrl = baseUrl + 'target_state/';
+                    upUrl = baseUrl + 'target_up/';
+                    // downUrl = baseUrl + 'target_down/';
                     reUrl = baseUrl + 'target_reject/';
                     break;
             }

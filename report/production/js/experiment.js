@@ -13,12 +13,25 @@
             var baseUrl = 'http://192.168.1.186:8000/';
             // var baseUrl = 'http://192.168.11.101:8000/';
             switch (href) {
-                case '/expOrder':
-                    var url = baseUrl + 'LabTaskHandle/order/';
+                case '/expPatient':
+                    var url = baseUrl +'PatientHandle/view/';
                     break;
                 case '/expSample':
                     var url = baseUrl + 'SampleHandle/view/';
                     var upUrl = baseUrl + 'SampleHandle/upload/';
+                    break;
+                case '/expOrder':
+                    var url = baseUrl + 'LabTaskHandle/order/';
+                    var viewUrl = baseUrl +'LabTaskHandle/view/';
+                    $http({
+                        method:'get',
+                        url:viewUrl
+                    }).then(function(response){
+                        $scope.viewData = response.data;
+                    },function(){})
+                    break;
+                case '/expManage':
+                    var url = baseUrl + 'ExperimentHandle/view/';
                     break;
                 case '/expExtraction':
                     var url = baseUrl + 'ExtractHandle/view/';
@@ -36,6 +49,9 @@
                     var url = baseUrl + 'LabQCHandle/view/';
                     var upUrl = baseUrl + 'LabQCHandle/upload/';
                     break;
+                case '/expSeq':
+                    var url = baseUrl + 'SeqHandle/view/';
+                    var upUrl = baseUrl + 'SeqHandle/upload/';
             }
 
             $rootScope.getData = function() {
@@ -131,194 +147,7 @@
 
 
 
-            //实验暂停
-            $scope.studyPause = function(size, item, $event) {
-                console.log('暂停')
-                $event.stopPropagation();
-                var modalInstance = $uibModal.open({
-                    templateUrl: 'studyPauseModal.html',
-                    controller: 'ModalInstanceCtrl',
-                    backdrop: "static",
-                    size: size,
-                    resolve: {
-                        infos1: function() {
-                            return $scope.info;
-                        },
-                        btnname: function() {
-                            return $scope.name = 'studyPause';
-                        },
-                        urls: function() {
-                            return $scope.urls;
-                        },
-                        datas: function() {
-                            return item;
-                        }
 
-                    }
-                });
-            }
-
-            //重置
-            $scope.reset = function(size, item, $event) {
-                console.log('重置')
-                $event.stopPropagation();
-                $scope.info = '是否重置';
-                var modalInstance = $uibModal.open({
-                    templateUrl: 'resetModal.html',
-                    controller: 'ModalInstanceCtrl',
-                    backdrop: "static",
-                    size: size,
-                    resolve: {
-                        infos1: function() {
-                            return $scope.info;
-                        },
-                        btnname: function() {
-                            return $scope.name = 'reset';
-                        },
-                        urls: function() {
-                            return $scope.urls;
-                        },
-                        datas: function() {
-                            return item;
-                        }
-
-                    }
-                });
-            }
-            //终止
-            $scope.stop = function(size, item, $event) {
-                console.log('终止')
-                $event.stopPropagation();
-                $scope.info = '是否终止'
-                var modalInstance = $uibModal.open({
-                    templateUrl: 'resetModal.html',
-                    controller: 'ModalInstanceCtrl',
-                    backdrop: "static",
-                    size: size,
-                    resolve: {
-                        infos1: function() {
-                            return $scope.info;
-                        },
-                        btnname: function() {
-                            return $scope.name = 'stop';
-                        },
-                        urls: function() {
-                            return $scope.urls;
-                        },
-                        datas: function() {
-                            return item;
-                        }
-
-                    }
-                });
-            }
-            //分析暂停
-            $scope.anaPause = function(size, item, $event) {
-                console.log('分析暂停')
-                $event.stopPropagation();
-                $scope.info = '是否分析暂停'
-                var modalInstance = $uibModal.open({
-                    templateUrl: 'resetModal.html',
-                    controller: 'ModalInstanceCtrl',
-                    backdrop: "static",
-                    size: size,
-                    resolve: {
-                        infos1: function() {
-                            return $scope.info;
-                        },
-                        btnname: function() {
-                            return $scope.name = 'anaPause';
-                        },
-                        urls: function() {
-                            return $scope.urls;
-                        },
-                        datas: function() {
-                            return item;
-                        }
-
-                    }
-                });
-            }
-            //解读暂停
-            $scope.jieduPause = function(size, item, $event) {
-                console.log('解读暂停')
-                $event.stopPropagation();
-                $scope.info = '是否解读暂停'
-                var modalInstance = $uibModal.open({
-                    templateUrl: 'resetModal.html',
-                    controller: 'ModalInstanceCtrl',
-                    backdrop: "static",
-                    size: size,
-                    resolve: {
-                        infos1: function() {
-                            return $scope.info;
-                        },
-                        btnname: function() {
-                            return $scope.name = 'jieduPause';
-                        },
-                        urls: function() {
-                            return $scope.urls;
-                        },
-                        datas: function() {
-                            return item;
-                        }
-
-                    }
-                });
-            }
-            //取消解读
-            $scope.jieduCancel = function(size, item, $event) {
-                console.log('取消解读')
-                $event.stopPropagation();
-                $scope.info = '是否取消解读'
-                var modalInstance = $uibModal.open({
-                    templateUrl: 'resetModal.html',
-                    controller: 'ModalInstanceCtrl',
-                    backdrop: "static",
-                    size: size,
-                    resolve: {
-                        infos1: function() {
-                            return $scope.info;
-                        },
-                        btnname: function() {
-                            return $scope.name = 'jieduCancel';
-                        },
-                        urls: function() {
-                            return $scope.urls;
-                        },
-                        datas: function() {
-                            return item;
-                        }
-
-                    }
-                });
-            }
-            //取消实验
-            $scope.studyCancel = function(size, item, $event) {
-                console.log('取消实验')
-                $event.stopPropagation();
-                var modalInstance = $uibModal.open({
-                    templateUrl: 'completeModal.html',
-                    controller: 'ModalInstanceCtrl',
-                    backdrop: "static",
-                    size: size,
-                    resolve: {
-                        infos1: function() {
-                            return $scope.info;
-                        },
-                        btnname: function() {
-                            return $scope.name = 'studyCancel';
-                        },
-                        urls: function() {
-                            return $scope.urls;
-                        },
-                        datas: function() {
-                            return item;
-                        }
-
-                    }
-                });
-            }
 
 
             //添加项目
@@ -394,59 +223,6 @@
                 }, function() {})
             }
 
-            //项目订单操作
-            $scope.orderOperate = function(size, value, item) {
-                $scope.info = '是否' + value;
-                var data = {};
-                data.projectid = item.projectid;
-                data.cmd = value;
-                var modalInstance = $uibModal.open({
-                    templateUrl: 'orderOperateModal.html',
-                    controller: 'ModalInstanceCtrl',
-                    backdrop: "static",
-                    size: size,
-                    resolve: {
-                        infos1: function() {
-                            return $scope.info;
-                        },
-                        btnname: function() {
-                            return $scope.name = 'orderOperate';
-                        },
-                        urls: function() {
-                            return $scope.urls;
-                        },
-                        datas: function() {
-                            return data;
-                        }
-
-                    }
-                });
-            }
-            //任务管理下单
-            $scope.orders = function(size, item) {
-                var modalInstance = $uibModal.open({
-                    templateUrl: 'ordersModal.html',
-                    controller: 'ModalInstanceCtrl',
-                    backdrop: "static",
-                    size: size,
-                    resolve: {
-                        infos1: function() {
-                            return $scope.info;
-                        },
-                        btnname: function() {
-                            return $scope.name = 'orders';
-                        },
-                        urls: function() {
-                            return $scope.urls;
-                        },
-                        datas: function() {
-                            return item;
-                        }
-
-                    }
-                });
-
-            }
 
             //产品选择
             $scope.stringSettings = {
@@ -511,7 +287,7 @@
                 var newItem = {};
                 if (action.checked) {
                     angular.forEach(item,function(value,key){
-                        if(key!='isChecked'&&key!='samples'){
+                        if(key!='isChecked'&&key!='samples'&&key!='patientname'){
                             newItem[key] = item[key];
                         }
                     })
@@ -609,56 +385,6 @@
     app.controller('ModalDemoCtrl', function($scope, $uibModal, $log) {
         $scope.infos = {};
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        $scope.delete = function(size, items) {
-            $scope.infos.name = '是否删除该信息，删除该信息需要通过审核';
-            var modalInstance = $uibModal.open({
-                templateUrl: 'myModalContent.html',
-                controller: 'ModalInstanceCtrl',
-                backdrop: "static",
-                size: size,
-                resolve: {
-                    infos1: function() {
-                        return $scope.info;
-                    },
-                    btnname: function() {
-                        return $scope.name = 'delete';
-                    },
-                    datas: function() {
-                        return items;
-                    },
-                    urls: function() {
-                        return $scope.urls;
-                    },
-                    disable: function() {
-                        return;
-                    }
-                }
-            });
-
-
-
-
-
-        }
 
 
 
