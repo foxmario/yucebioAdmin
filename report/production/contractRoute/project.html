@@ -87,7 +87,7 @@
                         <td>{{item.status}}</td>
                         <td>{{item.delay}}</td>
                         <td>
-                            <select ng-change="orderOperate('sm',value,item)" ng-model="value">
+                            <select ng-change="orderOperate('sm',value,item,$event)" ng-model="value">
                                 <option value="审核">审核</option>
                                 <option value="暂停">暂停</option>
                                 <option value="重置">重置</option>

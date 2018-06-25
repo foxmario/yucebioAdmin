@@ -18,6 +18,12 @@
             switch (href) {
                 case '/task':
                     var url = baseUrl + 'PMTaskHandle/view/';
+                    $http({
+                        method: 'get',
+                        url: baseUrl + 'PMTaskHandle/allocate/'
+                    }).then(function(response) {
+                        $scope.allotList = response.data;
+                    }, function() {});
                     break;
                 case '/project':
                     var url = baseUrl + 'ProjectHandle/view/';
@@ -49,6 +55,8 @@
             }
             $rootScope.getData();
 
+
+
             //获取表格的值
             $rootScope.getDesc = function(item) {
                 console.log(item)
@@ -78,15 +86,7 @@
                 }
             }
 
-            if (href == '/task') {
 
-                $http({
-                    method: 'get',
-                    url: baseUrl + 'PMTaskHandle/allocate/'
-                }).then(function(response) {
-                    $scope.allotList = response.data;
-                }, function() {})
-            }
             $scope.ptModify = function(items) {
                 delete items.samples;
                 delete items.infostatus;
@@ -419,8 +419,9 @@
             }
 
             //项目订单操作
-            $scope.orderOperate = function(size, value, item) {
+            $scope.orderOperate = function(size, value, item, $event) {
                 $scope.info = '是否' + value;
+                console.log($event);
                 var data = {};
                 data.projectid = item.projectid;
                 data.cmd = value;
@@ -535,8 +536,8 @@
                 var action = event.target;
                 var newItem = {};
                 if (action.checked) {
-                    angular.forEach(item,function(value,key){
-                        if(key!='isChecked'){
+                    angular.forEach(item, function(value, key) {
+                        if (key != 'isChecked') {
                             newItem[key] = item[key];
                         }
                     })
@@ -584,11 +585,6 @@
 
             $scope.uploadPic = function(file) {
                 $scope.file = file;
-                console.log($scope.file);
-                $scope.$watch('file', function(newValue, oldValue) {
-                    // console.log(oldValue);
-                    console.log(newValue);
-                })
                 file.upload = Upload.upload({
                     url: upUrl,
                     data: { username: $scope.username, file: file }

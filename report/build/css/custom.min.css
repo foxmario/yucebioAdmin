@@ -4919,3 +4919,8 @@ ul.notifications {
 .pagination-sm {
     margin: 10px 0;
 }
+
+textarea {
+    overflow-x: hidden;
+    resize: none;
+}

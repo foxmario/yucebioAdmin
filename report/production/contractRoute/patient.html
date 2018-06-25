@@ -252,7 +252,7 @@
                                                 <tbody>
                                                     <tr ng-repeat="item in displayedCollection track by $index">
                                                         <td cs-select="item" class="text-center">
-                                                            <input type="checkbox" ng-checked="isChecked" ng-click="select(item,$event)" ng-model="item.isChecked">
+                                                            <input type="checkbox" ng-click="select(item,$event)" ng-model="item.isChecked">
                                                         </td>
                                                         <td class="text-center">
                                                             {{item.productid}}
