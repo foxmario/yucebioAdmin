@@ -290,6 +290,7 @@
                                     <th st-sort="anastatus" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">分析状态</th>
                                     <th st-sort="jiedu_status" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">解读状态</th>
                                     <th st-sort="reportstatus" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">报告状态</th>
+                                    <th>操作</th>
                                 </tr>
                                 <tr>
                                     <th colspan="6">
@@ -325,6 +326,7 @@
                                             <option ng-repeat="item in task_list | unique:'reportstatus'" value="{{item.reportstatus}}">{{item.reportstatus}}</option>
                                         </select>
                                     </th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -340,16 +342,96 @@
                                     <td>{{item.anastatus}}</td>
                                     <td>{{item.jiedu_status}}</td>
                                     <td>{{item.reportstatus}}</td>
+                                    <td>
+                                        <div class="btn-group" uib-dropdown>
+                                <button id="single-button" type="button" class="btn btn-primary btn-xs" uib-dropdown-toggle>
+                                    请选择 <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" uib-dropdown-menu style="min-width:auto">
+                                    <li>
+                                        <button class="btn btn-default btn-xs" ng-click="studyPause('',item,$event)">实验暂停</button>
+                                    </li>
+                                    <li>
+                                        <button class="btn btn-default btn-xs" ng-click="reset('sm',item,$event)">任务重置</button>
+                                    </li>
+                                    <li>
+                                        <button class="btn btn-default btn-xs" ng-click="stop('sm',item,$event)">任务终止</button>
+                                    </li>
+                                    <li>
+                                        <button class="btn btn-default btn-xs" ng-click="anaPause('sm',item,$event)">分析暂停</button>
+                                    </li>
+                                    <li>
+                                        <button class="btn btn-default btn-xs" ng-click="jieduPause('sm',item,$event)">解读暂停</button>
+                                    </li>
+                                    <li>
+                                        <button class="btn btn-default btn-xs" ng-click="jieduCancel('sm',item,$event)">取消解读</button>
+                                    </li>
+                                    <li>
+                                        <button class="btn btn-default btn-xs" ng-click="studyCancel('',item,$event)">取消实验</button>
+                                    </li>
+                                </ul>
+                            </div>
+                                    </td>
                                 </tr>
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <td colspan="11" class="text-center">
+                                    <td colspan="12" class="text-center">
                                         <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="4"></div>
                                     </td>
                                 </tr>
                             </tfoot>
                         </table>
+                        <div ng-controller="ModalDemoCtrl">
+                        <script type="text/ng-template" id="studyPauseModal.html">
+                            <div class="modal-header">
+                                <h3 class="modal-title">消息</h3>
+                            </div>
+                            <div class="modal-body">
+                                <form class="form-horizontal">
+                                    <div class="form-group">
+                                        <label class="control-label">原因<span class="required">*</span>
+                                        </label>
+                                        <textarea class="form-control" id="text"></textarea>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" type="button" ng-click="ok()">确定</button>
+                                <button class="btn btn-warning" type="button" ng-click="cancel()">取消</button>
+                            </div>
+                        </script>
+                        <script type="text/ng-template" id="resetModal.html">
+                            <div class="modal-header">
+                                <h3 class="modal-title">消息</h3>
+                            </div>
+                            <div class="modal-body">
+                                <p>{{info}}</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" type="button" ng-click="ok()">确定</button>
+                                <button class="btn btn-warning" type="button" ng-click="cancel()">取消</button>
+                            </div>
+                        </script>
+                        <script type="text/ng-template" id="completeModal.html">
+                            <div class="modal-header">
+                                <h3 class="modal-title">消息</h3>
+                            </div>
+                            <div class="modal-body">
+                                <form class="form-horizontal">
+                                    <div class="form-group">
+                                        <label class="control-label">输入文件路径<span class="required">*</span>
+                                        </label>
+                                        <textarea class="form-control" id="text"></textarea>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" type="button" ng-click="ok()">确定</button>
+                                <button class="btn btn-warning" type="button" ng-click="cancel()">取消</button>
+                            </div>
+                        </script>
+                    </div>
                     </div>
                 </div>
             </div>

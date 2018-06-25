@@ -77,7 +77,7 @@
                             console.log(response.data)
                             $scope.ordersList = response.data;
                             $scope.ordersList.projectid = item.projectid;
-                        }, function() {})
+                        }, function() {});
                     }else{
                         $scope.ordersList =null;
                     }
@@ -365,7 +365,7 @@
                     $scope.message = '不能为空'
                     $timeout(function() {
                         $scope.isdisabled = true;
-                    }, 3000)
+                    }, 5000)
                 }
                 console.log($scope.patient);
                 if ($scope.patient) {
@@ -383,13 +383,13 @@
                             $scope.warning = null;
                             $scope.error = null;
                             $scope.success = null;
-                        }, 3000)
+                        }, 5000)
                     }, function() {
                         $scope.message = '请求失败'
                         $scope.isdisabled = false;
                         $timeout(function() {
                             $scope.isdisabled = true;
-                        }, 3000)
+                        }, 5000)
                     })
                     // console.log($scope.patient)
                 }
@@ -415,7 +415,7 @@
                         $scope.warning = null;
                         $scope.error = null;
                         $scope.success = null;
-                    }, 3000)
+                    }, 5000)
                 }, function() {})
             }
 
@@ -726,9 +726,6 @@
 
 
 
-        // $scope.toggleAnimation = function() {
-        //     $scope.animationsEnabled = !$scope.animationsEnabled;
-        // };
 
     });
 
@@ -762,6 +759,8 @@
                     }
                 }
             }, function() {})
+            $scope.patient = {};
+            $scope.patient.tumortype = $scope.rowCollection.tumortype;
         }
 
 
@@ -791,7 +790,7 @@
                             $rootScope.warning = null;
                             $rootScope.error = null;
                             $rootScope.success = null;
-                        }, 3000)
+                        }, 5000)
                     }, function errorCallback() {
                         console.log('请求失败');
                     })
@@ -818,7 +817,7 @@
                             $rootScope.warning = null;
                             $rootScope.error = null;
                             $rootScope.success = null;
-                        }, 3000)
+                        }, 5000)
                     }, function() {
 
                     })
@@ -844,7 +843,7 @@
                             $rootScope.warning = null;
                             $rootScope.error = null;
                             $rootScope.success = null;
-                        }, 3000)
+                        }, 5000)
                     }, function() {})
                     break;
                 case 'stop':
@@ -867,7 +866,7 @@
                             $rootScope.warning = null;
                             $rootScope.error = null;
                             $rootScope.success = null;
-                        }, 3000)
+                        }, 5000)
                     }, function() {
                         console.log('请求失败');
                     })
@@ -894,7 +893,7 @@
                             $rootScope.warning = null;
                             $rootScope.error = null;
                             $rootScope.success = null;
-                        }, 3000)
+                        }, 5000)
                     }, function() {
                         console.log('请求失败');
                     })
@@ -920,7 +919,7 @@
                             $rootScope.warning = null;
                             $rootScope.error = null;
                             $rootScope.success = null;
-                        }, 3000)
+                        }, 5000)
                     }, function() {
                         console.log('请求失败');
                     })
@@ -946,7 +945,7 @@
                             $rootScope.warning = null;
                             $rootScope.error = null;
                             $rootScope.success = null;
-                        }, 3000)
+                        }, 5000)
                     }, function() {
                         console.log('请求失败');
                     })
@@ -973,7 +972,7 @@
                             $rootScope.warning = null;
                             $rootScope.error = null;
                             $rootScope.success = null;
-                        }, 3000)
+                        }, 5000)
                     }, function() {})
 
                     break;
@@ -981,6 +980,7 @@
                     console.log('下单')
 
                     $scope.patient.patientid = $scope.rowCollection.patientid;
+                    $scope.patient.tumortype = $scope.patient.tumortype.split(',');
                     $scope.patient.account = $scope.patient.account;
                     $scope.patient.products = $scope.result;
                     console.log($scope.patient);
@@ -1015,7 +1015,7 @@
                             $rootScope.ordersInfo.warning = null;
                             $rootScope.ordersInfo.error = null;
                             $rootScope.ordersInfo.success = null;
-                        }, 3000)
+                        }, 5000)
                     }, function() {})
                     break;
                 default:

@@ -34,7 +34,6 @@
                     contentHeight = bodyHeight < leftColHeight ? leftColHeight : bodyHeight;
                 // normalize content
                 contentHeight -= $NAV_MENU.height() + footerHeight+34;
-                    console.log(contentHeight);
 
                 $RIGHT_COL.css('min-height', contentHeight);
             };
