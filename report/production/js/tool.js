@@ -13,8 +13,8 @@
             $NAV_MENU = $('.nav_menu'),
             $FOOTER = $('footer');
 
-        //设置用户名 
-        var USER =  sessionStorage.getItem('user');  
+        //设置用户名
+        var USER =  sessionStorage.getItem('user');
            if(USER){
              var $UNAME = JSON.parse(USER).user;
                 $('.name').html($UNAME);
@@ -32,9 +32,9 @@
                     footerHeight = $BODY.hasClass('footer_fixed') ? -10 : $FOOTER.height(),
                     leftColHeight = $LEFT_COL.eq(1).height() + $SIDEBAR_FOOTER.height(),
                     contentHeight = bodyHeight < leftColHeight ? leftColHeight : bodyHeight;
-
                 // normalize content
                 contentHeight -= $NAV_MENU.height() + footerHeight+34;
+                    console.log(contentHeight);
 
                 $RIGHT_COL.css('min-height', contentHeight);
             };
@@ -67,7 +67,7 @@
                 }
             });
 
-            // 切换小或大菜单 
+            // 切换小或大菜单
             $MENU_TOGGLE.on('click', function() {
                 console.log('clicked - menu toggle');
 
@@ -112,8 +112,8 @@
         };
 
         init_sidebar();
-        
-       
+
+
 
 
 

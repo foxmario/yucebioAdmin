@@ -1,6 +1,6 @@
 <div class="x_panel">
     <div class="x_title">
-        <h2>批量添加项目</h2>
+        <h2>项目添加</h2>
         <ul class="nav navbar-right panel_toolbox">
             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
             </li>
@@ -167,6 +167,6 @@
         </div>
     </div>
     <div class="controllBtn">
-        <button type="button" class="btn btn-default" ng-click="addTask('sm',project)" ng-disabled="addForm.$invalid||addForm.$pristine||result>0">添加</button>
+        <button type="button" class="btn btn-default" ng-click="addTask('sm',project)" ng-disabled="addForm.$invalid||addForm.$pristine||result.length<=0">添加</button>
     </div>
 </div>

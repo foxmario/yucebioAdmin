@@ -14,7 +14,6 @@
 
             var href = $location.url();
             var baseUrl = 'http://192.168.1.211:8000/';
-            // var baseUrl = 'http://192.168.11.101:8000/';
             switch (href) {
                 case '/task':
                     var url = baseUrl + 'PMTaskHandle/view/';
@@ -69,18 +68,21 @@
                 if (href == '/project') {
                     $scope.data = {};
                     $scope.data.projectid = item.projectid;
-                    $http({
-                        method: 'post',
-                        url: baseUrl + 'ProjectHandle/complementhelp/',
-                        data: $scope.data
-                    }).then(function(response) {
-                        console.log(response.data)
-                        $scope.ordersList = response.data;
-                        $scope.ordersList.projectid = item.projectid;
-                    }, function() {})
+                    if($scope.items.isSelected){
+                        $http({
+                            method: 'post',
+                            url: baseUrl + 'ProjectHandle/complementhelp/',
+                            data: $scope.data
+                        }).then(function(response) {
+                            console.log(response.data)
+                            $scope.ordersList = response.data;
+                            $scope.ordersList.projectid = item.projectid;
+                        }, function() {})
+                    }else{
+                        $scope.ordersList =null;
+                    }
 
                 }
-
                 if (!$scope.items.isSelected) {
                     $scope.items = null;
                 }
@@ -370,7 +372,6 @@
                     $http({
                         method: 'post',
                         url: baseUrl + 'PatientHandle/init/',
-                        // url: 'http://192.168.1.185:8000/projectmanager/product/add',
                         data: $scope.patient
                     }).then(function(response) {
                         console.log(response.data);
@@ -419,9 +420,8 @@
             }
 
             //项目订单操作
-            $scope.orderOperate = function(size, value, item, $event) {
+            $scope.orderOperate = function(size, value, item) {
                 $scope.info = '是否' + value;
-                console.log($event);
                 var data = {};
                 data.projectid = item.projectid;
                 data.cmd = value;
