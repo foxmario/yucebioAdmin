@@ -24,12 +24,12 @@
             <table st-table='displayedCollection' st-safe-src="shortData.data" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                 <thead>
                     <tr class="frist-head">
-                        <th st-sort="suoxie" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc" st-sort-default="reverse">缩写</th>
+                        <th st-sort="suoxie" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">缩写</th>
                         <th st-sort="cn" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">中文全称</th>
                         <th st-sort="en" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">英文全称</th>
                         <th>
                             <input type="checkbox" ng-model="isDefinitions">名词解释</th>
-                        <th st-sort="time" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">最后更新</th>
+                        <th st-sort="time" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc" st-sort-default="reverse">最后更新</th>
                         <th st-sort="shenhe" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">更新提示</th>
                     </tr>
                     <tr>
@@ -197,7 +197,7 @@
                             <button type="button" class="btn btn-success btn-sm" ng-click="rejectCheck('lg')" ng-disabled="items.update==null||isUser" ng-if="control.state_reject>0">审核驳回</button>
                             <button type="button" class="btn btn-success btn-sm" ng-click="check('sm')" ng-disabled="items.update==null||isUser" ng-if="control.state>0">审核</button>
                             <button type="button" class="btn btn-danger btn-sm" ng-click="delete('sm',items)" ng-disabled="items._id==null" ng-if="control.remove>0">删除</button>
-                            <button type="button" class="btn btn-warning btn-sm" ng-click="newCreat('sm',items)">新建</button>
+                            <button type="button" class="btn btn-warning btn-sm" ng-click="newCreat('sm',items)">清空</button>
                             <button type="button" class="btn btn-default btn-sm" ng-click="add('sm',items)" ng-disabled="items._id!=null" ng-if="control.add>0">提交</button>
                             <button type="button" class="btn btn-default btn-sm" ng-click="add('sm',items)" ng-disabled="items._id==null" ng-if="control.change>0">修改</button>
                         </div>
