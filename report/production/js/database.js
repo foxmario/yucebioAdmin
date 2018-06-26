@@ -12,186 +12,6 @@
                 $scope.user = JSON.parse(USER).user;
             }
             // $scope.control = { state_reject: 1, state: 1, add: 1, remove: 1, change: 1 }
-            $scope.items = null;
-
-            $scope.rowCollection = [];
-            // //名词解释
-            // $rootScope.shortData = {
-            //     data: [{
-            //             short: 'MSI',
-            //             cname: '微卫星不稳定性',
-            //             ename: 'microsatellite instability',
-            //             rate: 1,
-            //             log: [{
-            //                 date: "2018-04-25 18:56:50",
-            //                 content: ",aaaaaa-->a",
-            //                 recorder: "张三",
-            //                 check: '孙悟空'
-            //             }],
-            //             update: { short: 'zsn', cname: '张苏纳', ename: 'zhangsuna', type: 'mutation' },
-            //             _id: 123,
-            //             definitions: 'MSI是指与正常组织相比，在肿瘤中某一微卫星由于重复单位的插入或缺失而造成的微卫星长度的任何改变，出现新的微卫星等位基因现象。',
-            //             infosource: 'https://search.nih.gov/search?utf8=%E2%9C%93&affiliate=nih&query=MSI&commit=Search',
-            //             remarks: '待审核',
-            //             state:'待审核'
-            //         },
-            //         {
-            //             short: 'l',
-            //             cname: '李',
-            //             ename: 'li',
-            //             rate: 1,
-            //             log: [{
-            //                 date: "2018-04-25 18:56:50",
-            //                 content: ",aaaaaa-->a",
-            //                 recorder: "tangjun",
-            //                 check: '唐僧'
-            //             }],
-            //             update: { short: 'lk', cname: '李逵', ename: 'likui' },
-            //             _id: 124,
-            //             definitions: 'MSI是指与正常组织相比，在肿瘤中某一微卫星由于重复单位的插入或缺失而造成的微卫星长度的任何改变，出现新的微卫星等位基因现象。',
-            //             infosource: 'https://search.nih.gov/search?utf8=%E2%9C%93&affiliate=nih&query=MSI&commit=Search',
-            //             remarks: '待审核'
-            //         },
-            //         {
-            //             short: 'w',
-            //             cname: '王',
-            //             ename: 'wang',
-            //             rate: 0,
-            //             _id: 125,
-            //             definitions: 'MSI是指与正常组织相比，在肿瘤中某一微卫星由于重复单位的插入或缺失而造成的微卫星长度的任何改变，出现新的微卫星等位基因现象。',
-            //             infosource: 'https://search.nih.gov/search?utf8=%E2%9C%93&affiliate=nih&query=MSI&commit=Search'
-            //         },
-            //         {
-            //             short: 'w',
-            //             cname: '王',
-            //             ename: 'wang',
-            //             rate: 1,
-            //             _id: 126,
-            //             definitions: 'MSI是指与正常组织相比，在肿瘤中某一微卫星由于重复单位的插入或缺失而造成的微卫星长度的任何改变，出现新的微卫星等位基因现象。',
-            //             infosource: 'https://search.nih.gov/search?utf8=%E2%9C%93&affiliate=nih&query=MSI&commit=Search'
-            //         },
-            //         {
-            //             short: 'w',
-            //             cname: '王',
-            //             ename: 'wang',
-            //             rate: 1,
-            //             _id: 127,
-            //             definitions: 'MSI是指与正常组织相比，在肿瘤中某一微卫星由于重复单位的插入或缺失而造成的微卫星长度的任何改变，出现新的微卫星等位基因现象。',
-            //             infosource: 'https://search.nih.gov/search?utf8=%E2%9C%93&affiliate=nih&query=MSI&commit=Search'
-            //         },
-            //         {
-            //             short: 'w',
-            //             cname: '王',
-            //             ename: 'wang',
-            //             rate: 1,
-            //             _id: 128,
-            //             definitions: 'MSI是指与正常组织相比，在肿瘤中某一微卫星由于重复单位的插入或缺失而造成的微卫星长度的任何改变，出现新的微卫星等位基因现象。',
-            //             infosource: 'https://search.nih.gov/search?utf8=%E2%9C%93&affiliate=nih&query=MSI&commit=Search'
-            //         },
-            //         {
-            //             short: 'w',
-            //             cname: '王',
-            //             ename: 'wang',
-            //             rate: 1,
-            //             _id: 129,
-            //             definitions: 'MSI是指与正常组织相比，在肿瘤中某一微卫星由于重复单位的插入或缺失而造成的微卫星长度的任何改变，出现新的微卫星等位基因现象。',
-            //             infosource: 'https://search.nih.gov/search?utf8=%E2%9C%93&affiliate=nih&query=MSI&commit=Search'
-            //         },
-            //         {
-            //             short: 'w',
-            //             cname: '王',
-            //             ename: 'wang',
-            //             rate: 1,
-            //             _id: 130,
-            //             definitions: 'MSI是指与正常组织相比，在肿瘤中某一微卫星由于重复单位的插入或缺失而造成的微卫星长度的任何改变，出现新的微卫星等位基因现象。',
-            //             infosource: 'https://search.nih.gov/search?utf8=%E2%9C%93&affiliate=nih&query=MSI&commit=Search'
-            //         },
-            //         {
-            //             short: 'w',
-            //             cname: '王',
-            //             ename: 'wang',
-            //             rate: 1,
-            //             _id: 131,
-            //             definitions: 'MSI是指与正常组织相比，在肿瘤中某一微卫星由于重复单位的插入或缺失而造成的微卫星长度的任何改变，出现新的微卫星等位基因现象。',
-            //             infosource: 'https://search.nih.gov/search?utf8=%E2%9C%93&affiliate=nih&query=MSI&commit=Search'
-            //         },
-            //         {
-            //             short: 'w',
-            //             cname: '王',
-            //             ename: 'wang',
-            //             rate: 1,
-            //             _id: 132,
-            //             definitions: 'MSI是指与正常组织相比，在肿瘤中某一微卫星由于重复单位的插入或缺失而造成的微卫星长度的任何改变，出现新的微卫星等位基因现象。',
-            //             infosource: 'https://search.nih.gov/search?utf8=%E2%9C%93&affiliate=nih&query=MSI&commit=Search'
-            //         },
-            //         {
-            //             short: 'w',
-            //             cname: '王',
-            //             ename: 'wang',
-            //             rate: 1,
-            //             _id: 133,
-            //             definitions: 'MSI是指与正常组织相比，在肿瘤中某一微卫星由于重复单位的插入或缺失而造成的微卫星长度的任何改变，出现新的微卫星等位基因现象。',
-            //             infosource: 'https://search.nih.gov/search?utf8=%E2%9C%93&affiliate=nih&query=MSI&commit=Search'
-            //         },
-            //         {
-            //             short: 'w',
-            //             cname: '王',
-            //             ename: 'wang',
-            //             rate: 1,
-            //             _id: 134,
-            //             definitions: 'MSI是指与正常组织相比，在肿瘤中某一微卫星由于重复单位的插入或缺失而造成的微卫星长度的任何改变，出现新的微卫星等位基因现象。',
-            //             infosource: 'https://search.nih.gov/search?utf8=%E2%9C%93&affiliate=nih&query=MSI&commit=Search'
-            //         },
-            //         {
-            //             short: 'w',
-            //             cname: '王',
-            //             ename: 'wang',
-            //             rate: 1,
-            //             _id: 135,
-            //             definitions: 'MSI是指与正常组织相比，在肿瘤中某一微卫星由于重复单位的插入或缺失而造成的微卫星长度的任何改变，出现新的微卫星等位基因现象。',
-            //             infosource: 'https://search.nih.gov/search?utf8=%E2%9C%93&affiliate=nih&query=MSI&commit=Search',
-            //             last_operetion:'liuyiyang',
-            //             update:{},
-            //             state: '待审核',
-            //         },
-            //         {
-            //             short: 'w',
-            //             cname: '王',
-            //             ename: 'wang',
-            //             rate: 1,
-            //             _id: 136,
-            //             definitions: 'MSI是指与正常组织相比，在肿瘤中某一微卫星由于重复单位的插入或缺失而造成的微卫星长度的任何改变，出现新的微卫星等位基因现象。',
-            //             infosource: 'https://search.nih.gov/search?utf8=%E2%9C%93&affiliate=nih&query=MSI&commit=Search',
-            //             update: { short: 'zsn', cname: '张苏纳', ename: 'zhangsuna', type: 'mutation' },
-            //             remarks: '待审核',
-                        
-            //              log: [{
-            //                 check:"tangjun",
-            //                 date: "2018-04-25 18:56:50",
-            //                 content: ",aaaaaa-->a",
-            //                 recorder: "张三",
-            //             },{
-            //                 check:"tangjun",
-            //                 date: "2018-04-25 18:56:50",
-            //                 content: ",aaaaaa-->a",
-            //                 recorder: "张三",
-            //             }],
-            //             message: '',
-            //             date: '2018-05-28 10:11:00',
-            //             state: '待审核',
-            //             last_operetion:' '
-            //         }
-            //     ]
-            // }
-
-         
-           
-
-
-      
-
-
-
 
             //获取url
             var href = $location.url();
@@ -290,6 +110,15 @@
                     upUrl = baseUrl + 'target_up/';
                     // downUrl = baseUrl + 'target_down/';
                     reUrl = baseUrl + 'target_reject/';
+                    break;
+                case '/nccn':
+                    url = baseUrl + 'NCCN_show/';
+                    sUrl = baseUrl + 'NCCN_submit/';
+                    delUrl = baseUrl + 'NCCN_delete/';
+                    checkUrl = baseUrl + 'NCCN_state/';
+                    upUrl = baseUrl + 'NCCN_up/';
+                    // downUrl = baseUrl + 'NCCN_down/';
+                    reUrl = baseUrl + 'NCCN_reject/';
                     break;
             }
             // console.log(url+'--'sUrl+'--'delUrl+'--'checkUrl+'--'+downUrl+'upUrl');
