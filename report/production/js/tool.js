@@ -33,7 +33,7 @@
                     leftColHeight = $LEFT_COL.eq(1).height() + $SIDEBAR_FOOTER.height(),
                     contentHeight = bodyHeight < leftColHeight ? leftColHeight : bodyHeight;
                 // normalize content
-                contentHeight -= $NAV_MENU.height() + footerHeight+34;
+                contentHeight -= $NAV_MENU.height() + footerHeight;
 
                 $RIGHT_COL.css('min-height', contentHeight);
             };

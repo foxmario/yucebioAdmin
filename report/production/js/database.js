@@ -15,17 +15,15 @@
 
             //获取url
             var href = $location.url();
-            // var baseUrl = 'http://192.168.1.139:8000/';
-            var baseUrl = 'http://192.168.1.139:8000/';
+            var baseUrl = 'http://192.168.1.211:8000/';
             var url, sUrl, delUrl, checkUrl, upUrl;
-               switch (href) {
+            switch (href) {
                 case '/abbr':
                     url = baseUrl + 'sigla_show/';
                     sUrl = baseUrl + 'sigla_submit/';
                     delUrl = baseUrl + 'sigla_delete/';
                     checkUrl = baseUrl + 'sigla_state/';
-                    // upUrl = baseUrl + 'sigla_up/';
-                    upUrl = baseUrl + 'analysis/';
+                    upUrl = baseUrl + 'sigla_up/';
                     // downUrl = baseUrl + 'sigla_down/';
                     reUrl = baseUrl + 'state_reject/';
                     break;
@@ -280,8 +278,8 @@
                     console.log(response.data);
                     // });
                 }, function(response) {
-                        // $scope.errorMsg = response.status + ': ' + response.data;
-                        $scope.errorMsg = '上传失败';
+                    // $scope.errorMsg = response.status + ': ' + response.data;
+                    $scope.errorMsg = '上传失败';
                 }, function(evt) {
                     // Math.min is to fix IE which reports 200% sometimes
                     file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
