@@ -14,13 +14,11 @@
             $FOOTER = $('footer');
 
         //设置用户名
-        var USER =  sessionStorage.getItem('user');
-           if(USER){
-             var $UNAME = JSON.parse(USER).user;
-                $('.name').html($UNAME);
-           }else{
-                 // window.location.href = 'login';
-           }
+        var USER = sessionStorage.getItem('user');
+        if (USER) {
+            var $UNAME = JSON.parse(USER).user;
+            $('.name').html($UNAME);
+        }
         // 工具条
         function init_sidebar() {
             // TODO: 这是一种简单的解决方法，也许我们可以改进这个

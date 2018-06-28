@@ -1073,7 +1073,7 @@
                 // 请求成功
                 var USER = sessionStorage.getItem('user');
                 if (!USER) {
-                    window.location.href = 'login';
+                    window.location.href = 'login.html';
                 }
                 return config || $q.when(config);
             },
