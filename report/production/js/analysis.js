@@ -54,6 +54,36 @@
 
 
 
+            $scope.uploadPic = function(file) {
+                $scope.file = file;
+                console.log($scope.name);
+                console.log($scope.file);
+                var data = { username: $scope.username, file: file ,type:$scope.type,name:$scope.name};
+                console.log(data);
+                file.upload = Upload.upload({
+                    url: '',
+                    data: data,
+                });
+
+                file.upload.then(function(response) {
+                    // $timeout(function() {
+                    file.result = response.data;
+                    console.log(response.data);
+                    // });
+                }, function(response) {
+                    // $scope.errorMsg = response.status + ': ' + response.data;
+                    $scope.errorMsg = response.status;
+                }, function(evt) {
+                    // Math.min is to fix IE which reports 200% sometimes
+                    file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+                });
+
+            }
+
+
+
+
+
 
 
 
@@ -86,126 +116,6 @@
 
 
     app.controller('ModalDemoCtrl', function($scope, $uibModal, $log, $timeout) {
-        $scope.infos = {
-            name: ''
-        };
-        $scope.delete = function(size, items) {
-            $scope.infos.name = '是否删除该信息，删除该信息需要通过审核';
-            var modalInstance = $uibModal.open({
-                templateUrl: 'myModalContent.html',
-                controller: 'ModalInstanceCtrl',
-                backdrop: "static",
-                size: size,
-                resolve: {
-                    infos1: function() {
-                        return $scope.infos;
-                    },
-                    btnname: function() {
-                        return $scope.name = 'delete';
-                    },
-                    datas: function() {
-                        return items;
-                    },
-                    urls: function() {
-                        return $scope.urls;
-                    },
-                    disable: function() {
-                        return;
-                    }
-                }
-            });
-
-
-
-
-
-        }
-
-
-
-
-        $scope.add = function(size) {
-            $scope.infos.name = '是否添加该信息';
-            var modalInstance = $uibModal.open({
-                templateUrl: 'myModalContent.html',
-                controller: 'ModalInstanceCtrl',
-                backdrop: "static",
-                size: size,
-                resolve: {
-                    infos1: function() {
-                        return $scope.infos;
-                    },
-                    btnname: function() {
-                        return $scope.name = 'add';
-                    },
-                    datas: function() {
-                        return $scope.items;
-                    },
-                    urls: function() {
-                        return $scope.urls;
-                    },
-                    disable: function() {
-                        return $scope.isdisabled;
-                    }
-
-                }
-            });
-        }
-
-
-        $scope.check = function(size) {
-            $scope.infos.name = '是否审核该信息';
-            var modalInstance = $uibModal.open({
-                templateUrl: 'myModalContent.html',
-                controller: 'ModalInstanceCtrl',
-                backdrop: "static",
-                size: size,
-                resolve: {
-                    infos1: function() {
-                        return $scope.infos;
-                    },
-                    btnname: function() {
-                        return $scope.name = 'check';
-                    },
-                    datas: function() {
-                        return $scope.items;
-                    },
-                    urls: function() {
-                        return $scope.urls;
-                    },
-                    disable: function() {
-                        return $scope.isdisabled;
-                    }
-                }
-            });
-        }
-
-        $scope.rejectCheck = function(size, itmes) {
-            $scope.infos.name = '原因';
-            var modalInstance = $uibModal.open({
-                templateUrl: 'rejectCheckModal.html',
-                controller: 'ModalInstanceCtrl',
-                backdrop: "static",
-                size: size,
-                resolve: {
-                    infos1: function() {
-                        return $scope.infos;
-                    },
-                    btnname: function() {
-                        return $scope.name = 'rejectCheck';
-                    },
-                    datas: function() {
-                        return $scope.items;
-                    },
-                    urls: function() {
-                        return $scope.urls;
-                    },
-                    disable: function() {
-                        return $scope.isdisabled;
-                    }
-                }
-            });
-        }
 
 
         $scope.toggleAnimation = function() {
@@ -223,82 +133,8 @@
         $scope.ok = function() {
             $uibModalInstance.close();
             switch (btnname) {
-                case 'delete':
-                    console.log('删除');
-                    console.log($scope.rowCollection);
-                    $rootScope.isdisabled = true;
-                    $http({
-                        method: 'post',
-                        url: urls.delUrl,
-                        data: $scope.rowCollection
-                    }).then(function successCallback() {
-
-                        $timeout(function() {
-                            $rootScope.getData();
-
-                        }, 25)
-                    }, function errorCallback() {
-                        console.log('请求失败');
-                    })
-
-
-
-                    break;
-
-                case 'add':
-                    console.log('添加');
-                    console.log(urls.sUrl)
-                    $rootScope.isdisabled = true;
-                    console.log($scope.rowCollection);
-                    if (!$scope.rowCollection) {
-                        alert('内容不能为空')
-                        return;
-                    }
-                    $http({
-                        method: 'post',
-                        url: urls.sUrl,
-                        data: $scope.rowCollection
-                    }).then(function successCallback() {
-                        $timeout(function() {
-                            $rootScope.getData();
-
-                        }, 25)
-                    }, function errorCallback() {
-                        console.log('请求失败');
-                    })
-
-                    break;
-                case 'rejectCheck':
-                    console.log();
-                    $scope.data = {};
-                    $scope.data.mid = $scope.rowCollection.mid;
-                    $scope.data.remarks = $scope.remarks;
-                    $http({
-                        method: 'post',
-                        url: urls.reUrl,
-                        data: $scope.data
-                    }).then(function(response) {
-                        $timeout(function() {
-                            $rootScope.getData();
-
-                        }, 25)
-                    }, function() {})
-                    break;
-                default:
-
-                    $http({
-                        method: 'post',
-                        url: urls.checkUrl,
-                        data: $scope.rowCollection
-                    }).then(function successCallback(response) {
-                        $timeout(function() {
-                            $rootScope.getData();
-
-                        }, 25)
-                    }, function errorCallback() {
-                        console.log('请求失败')
-                    })
-
+               case '':
+               break;
             }
         };
 

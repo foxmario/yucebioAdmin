@@ -57,7 +57,8 @@
             $rootScope.getData = function() {
                 $http({
                     method: 'get',
-                    url: url
+                    url: url,
+                    withCredentials: true
                 }).then(function(response) {
                         $rootScope.shortData = response.data;
                 }, function() {})

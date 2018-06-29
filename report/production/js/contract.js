@@ -43,8 +43,8 @@
             $rootScope.getData = function() {
                 $http({
                     method: 'get',
-                    url: url
-
+                    url: url,
+                    withCredentials: true
                 }).then(function(response) {
                     $timeout(function() {
                         $rootScope.shortData = response.data;
