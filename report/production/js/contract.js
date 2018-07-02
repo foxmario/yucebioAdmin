@@ -164,7 +164,7 @@
                 });
             }
 
-            //重置
+            //任务重置
             $scope.reset = function(size, item, $event) {
                 console.log('重置')
                 $event.stopPropagation();
@@ -770,7 +770,6 @@
             switch (btnname) {
                 case 'add':
                     console.log('添加');
-                    // $rootScope.isdisabled = true;
                     if (!$scope.rowCollection) {
                         return;
                     }
@@ -1018,31 +1017,6 @@
                         }, 5000)
                     }, function() {})
                     break;
-                default:
-
-                    $http({
-                        method: 'post',
-                        url: urls.checkUrl,
-                        data: $scope.rowCollection
-                    }).then(function successCallback(respons) {
-
-                    }, function errorCallback() {
-                        console.log('请求失败')
-                    })
-
-                    for (var i = 0; i < $scope.shortData.data.length; i++) {
-                        if ($scope.shortData.data[i]._id == $scope.rowCollection._id || ($scope.shortData.data[i].temIndex == $scope.rowCollection.temIndex && $scope.shortData.data[i].temIndex != null)) {
-                            for (var key in $scope.rowCollection.update) {
-                                $scope.shortData.data[i][key] = $scope.rowCollection.update[key];
-                            }
-
-                            $scope.shortData.data[i].update = null;
-                            $rootScope.getDesc($scope.shortData.data[i]);
-                            break;
-                        }
-                    }
-                    console.log('审核');
-                    // console.log($scope.shortData.data);
             }
         };
 
