@@ -265,8 +265,8 @@
                             </div>
                         </script>
                         <div class="controllBtn">
-                            <button type="button" class="btn btn-success btn-sm" ng-click="rejectCheck('lg')" ng-disabled="items.update==null||isUser" ng-if="control.state_reject>0">审核驳回</button>
-                            <button type="button" class="btn btn-success btn-sm" ng-click="check('sm')" ng-disabled="items.update==null||isUser" ng-if="control.state>0">审核</button>
+                            <button type="button" class="btn btn-success btn-sm" ng-click="rejectCheck('lg')" ng-disabled="items==''||!items.state||isUser" ng-if="control.state_reject>0">审核驳回</button>
+                            <button type="button" class="btn btn-success btn-sm" ng-click="check('sm')" ng-disabled="items==''||!items.state||isUser" ng-if="control.state>0">审核</button>
                             <button type="button" class="btn btn-danger btn-sm" ng-click="delete('sm',items)" ng-disabled="items._id==null" ng-if="control.remove>0">删除</button>
                             <button type="button" class="btn btn-warning btn-sm" ng-click="newCreat('sm',items)">新建</button>
                             <button type="button" class="btn btn-default btn-sm" ng-click="add('sm',items)" ng-disabled="items._id!=null" ng-if="control.add>0">提交</button>
