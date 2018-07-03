@@ -37,28 +37,50 @@
 
             // $rootScope.getData();
 
-            $rootScope.shortData = [{
-                number: '001',
-                reportType: '',
-                upDate: '2018-07-02 09:14:00',
-                status: '已上传'
-            }, {
-                number: '002',
-                reportType: '',
-                upDate: '2018-07-02 09:14:00',
-                status: '已生成报告'
-            }, {
-                number: '003',
-                reportType: '',
-                upDate: '2018-07-02 09:14:00',
-                status: '报告生成中'
-            }, {
-                number: '004',
-                reportType: '',
-                upDate: '2018-07-02 09:14:00',
-                status: '已生成报告'
-            }]
+            // $rootScope.shortData = [{
+            //     number: '001',
+            //     reportType: '',
+            //     upDate: '2018-07-02 09:14:00',
+            //     status: '已上传'
+            // }, {
+            //     number: '002',
+            //     reportType: '',
+            //     upDate: '2018-07-02 09:14:00',
+            //     status: '已生成报告'
+            // }, {
+            //     number: '003',
+            //     reportType: '',
+            //     upDate: '2018-07-02 09:14:00',
+            //     status: '报告生成中'
+            // }, {
+            //     number: '004',
+            //     reportType: '',
+            //     upDate: '2018-07-02 09:14:00',
+            //     status: '已生成报告'
+            // }]
 
+
+            $rootScope.shortData = [{
+                number: 'MT005020180314M001',
+                testType: '',
+                buildDate: '2018-07-02 09:14:00',
+                status: '待审核'
+            }, {
+                number: 'MT005020180314M002',
+                testType: '',
+                buildDate: '2018-07-02 09:14:00',
+                status: '已审核'
+            }, {
+                number: 'MT005020180314M003',
+                testType: '',
+                buildDate: '2018-07-02 09:14:00',
+                status: '已发布'
+            }, {
+                number: 'MT005020180314M004',
+                testType: '',
+                buildDate: '2018-07-02 09:14:00',
+                status: '待审核'
+            }]
 
             //获取表格的值
             $rootScope.getDesc = function(item) {
@@ -106,7 +128,7 @@
             }
 
 
-
+            //解读管理列表文件上传
             $scope.uploadPic = function(file) {
                 $scope.file = file;
                 console.log($scope.file);
@@ -153,12 +175,48 @@
 
 
 
+            //报告审核
+            //查看详细信息
+            $scope.getDetailed = function(item){
+                $scope.items = item;
+                $scope.index =2;
+            }
 
 
+            //在线预览
+            $scope.live = function(){
+                var pdfText = 'http://localhost:8080/测试/pdf/web/compressed.tracemonkey-pldi-09.pdf';
+                var pdfUrl = encodeURI("pdf/web/viewer.html?pdfText="+pdfText)
+                window.open(pdfUrl)
+                console.log($scope.items);
+            }
 
 
+            //确认审核
+            $scope.auditPass = function(size, item) {
+                $scope.items =item;
+                var modalInstance = $uibModal.open({
+                    templateUrl: 'myModalContent.html',
+                    controller: 'ModalInstanceCtrl',
+                    backdrop: "static",
+                    size: size,
+                    resolve: {
+                        infos1: function() {
+                            return $scope.infos;
+                        },
+                        btnname: function() {
+                            return $scope.name = 'auditPass';
+                        },
+                        datas: function() {
+                            return item;
+                        },
+                        urls: function() {
+                            return $scope.urls;
+                        }
 
-
+                    }
+                });
+            }
 
 
         }
@@ -212,6 +270,16 @@
                         console.log('请求失败')
                     })
                     break;
+                case 'auditPass':
+                    $http({
+                        method:'post',
+                        url:'',
+                        data:''
+                    }).then(function(){
+                        console.log('请求成功')
+                    },function(){
+                        console.log('请求失败')
+                    })
             }
         };
 

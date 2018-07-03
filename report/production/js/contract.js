@@ -739,11 +739,11 @@
         if (href == '/patient') {
             $http({
                 method: 'get',
-                url: baseUrl + 'PatientHandle/addproject/'
+                url: baseUrl + 'PatientHandle/addproject/',
+                withCredentials: true
             }).then(function(response) {
                 $scope.patientList = response.data;
                 $scope.result = [];
-                console.log(response.data);
                 //添加项目是否选中
                 $scope.select = function(item, event) {
                     var action = event.target;
