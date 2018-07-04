@@ -37,50 +37,92 @@
 
             // $rootScope.getData();
 
+
             // $rootScope.shortData = [{
-            //     number: '001',
-            //     reportType: '',
-            //     upDate: '2018-07-02 09:14:00',
-            //     status: '已上传'
-            // }, {
-            //     number: '002',
-            //     reportType: '',
-            //     upDate: '2018-07-02 09:14:00',
-            //     status: '已生成报告'
-            // }, {
-            //     number: '003',
-            //     reportType: '',
-            //     upDate: '2018-07-02 09:14:00',
-            //     status: '报告生成中'
-            // }, {
-            //     number: '004',
-            //     reportType: '',
-            //     upDate: '2018-07-02 09:14:00',
-            //     status: '已生成报告'
-            // }]
+            //             number: 'MT005020180314M001',
+            //             testType: '',
+            //             buildDate: '2018-07-02 09:14:00',
+            //             status: '待审核',
+            //             pdfLink: ''
+            //         }, {
+            //             number: 'MT005020180314M002',
+            //             testType: '',
+            //             buildDate: '2018-07-02 09:14:00',
+            //             status: '已审核',
+            //             pdfLink: 'http://localhost:8080/测试/pdf/web/compressed.tracemonkey-pldi-09.pdf'
+            //         }, {
+            //             number: 'MT005020180314M003',
+            //             testType: '',
+            //             buildDate: '2018-07-02 09:14:00',
+            //             status: '已发布'
+            //         }, {
+            //             number: 'MT005020180314M004',
+            //             testType: '',
+            //             buildDate: '2018-07-02 09:14:00',
+            //             status: '待审核',
+            //             pdfLink: 'http://localhost:8080/测试/pdf/web/compressed.tracemonkey-pldi-09.pdf'
+            //         }]
+            switch (href) {
+                case '/reportCheck':
+                    
+                    break;
+                case '/analysisAllot':
+                    $rootScope.shortData = [{
+                        number: '001',
+                        reportType: '',
+                        upDate: '2018-07-02 09:14:00',
+                        status: '已上传'
+                    }, {
+                        number: '002',
+                        reportType: '',
+                        upDate: '2018-07-02 09:14:00',
+                        status: '已生成报告',
+                        pdfLink: 'http://localhost:8080/测试/pdf/web/compressed.tracemonkey-pldi-09.pdf'
+                    }, {
+                        number: '003',
+                        reportType: '',
+                        upDate: '2018-07-02 09:14:00',
+                        status: '报告生成中'
+                    }, {
+                        number: '004',
+                        reportType: '',
+                        upDate: '2018-07-02 09:14:00',
+                        status: '已生成报告'
+                    }]
+                    break;
+                case '/selfTest':
+                    $rootScope.shortData = [{
+                        number: '18A00051AZ01',
+                        testType: 'YuceOne Plus',
+                        buildDate: '2018-07-02 09:14:00',
+                        status: '分析中',
+                        pdfLink: ''
+                    }, {
+                        number: '18A00051AZ02',
+                        testType: 'YuceOne ICIs',
+                        buildDate: '2018-07-02 09:14:00',
+                        status: '分析完毕',
+                        pdfLink: 'http://localhost:8080/测试/pdf/web/compressed.tracemonkey-pldi-09.pdf'
+                    }, {
+                        number: '18A00051AZ03',
+                        testType: 'YuceOneTarget',
+                        buildDate: '2018-07-02 09:14:00',
+                        status: '报告生成中'
+                    }, {
+                        number: '18A00051AZ04',
+                        testType: 'YuceOneTarget',
+                        buildDate: '2018-07-02 09:14:00',
+                        status: '报告已生成',
+                        pdfLink: 'http://localhost:8080/测试/pdf/web/compressed.tracemonkey-pldi-09.pdf'
+                    }]
+                    break;
+            }
 
 
-            $rootScope.shortData = [{
-                number: 'MT005020180314M001',
-                testType: '',
-                buildDate: '2018-07-02 09:14:00',
-                status: '待审核'
-            }, {
-                number: 'MT005020180314M002',
-                testType: '',
-                buildDate: '2018-07-02 09:14:00',
-                status: '已审核'
-            }, {
-                number: 'MT005020180314M003',
-                testType: '',
-                buildDate: '2018-07-02 09:14:00',
-                status: '已发布'
-            }, {
-                number: 'MT005020180314M004',
-                testType: '',
-                buildDate: '2018-07-02 09:14:00',
-                status: '待审核'
-            }]
+
+
+
+
 
             //获取表格的值
             $rootScope.getDesc = function(item) {
@@ -92,17 +134,17 @@
                 }
                 $scope.index = 2;
             }
-            
-            function loading ($scope){
+
+            function loading($scope) {
                 $scope.index = 1;
-                   $scope.load = function(number){
+                $scope.load = function(number) {
                     $scope.index = number;
                 }
             }
             loading($scope);
             //生成报告
             $scope.creatReport = function(size, item) {
-                $scope.items =item;
+                // $scope.items =item;
                 $scope.index = 1;
                 var modalInstance = $uibModal.open({
                     templateUrl: 'myModalContent.html',
@@ -152,7 +194,7 @@
 
             }
             //解读管理详细信息上传
-            $scope.upNewPic = function(file){
+            $scope.upNewPic = function(file) {
                 $scope.file = file;
                 var data = { username: $scope.username, file: file, type: $scope.type };
                 console.log(data);
@@ -177,24 +219,28 @@
 
             //报告审核
             //查看详细信息
-            $scope.getDetailed = function(item){
+            $scope.getDetailed = function(item) {
                 $scope.items = item;
-                $scope.index =2;
+                $scope.index = 2;
             }
 
 
             //在线预览
-            $scope.live = function(){
-                var pdfText = 'http://localhost:8080/测试/pdf/web/compressed.tracemonkey-pldi-09.pdf';
-                var pdfUrl = encodeURI("pdf/web/viewer.html?pdfText="+pdfText)
+            $scope.live = function() {
+                var pdfText = $scope.items.pdfLink;
+                var pdfUrl = encodeURI("pdf/web/viewer.html?pdfText=" + pdfText)
                 window.open(pdfUrl)
                 console.log($scope.items);
             }
 
-
+            //报告发布
+            $scope.issueReprot = function(item) {
+                $scope.index = 3;
+                $scope.items = item;
+            }
             //确认审核
             $scope.auditPass = function(size, item) {
-                $scope.items =item;
+                // $scope.items =item;
                 var modalInstance = $uibModal.open({
                     templateUrl: 'myModalContent.html',
                     controller: 'ModalInstanceCtrl',
@@ -217,13 +263,45 @@
                     }
                 });
             }
+            //确认发布
+            $scope.affirmIssue = function(size, item) {
 
+                var modalInstance = $uibModal.open({
+                    templateUrl: 'affirmModalContent.html',
+                    controller: 'ModalInstanceCtrl',
+                    backdrop: "static",
+                    size: size,
+                    resolve: {
+                        infos1: function() {
+                            return $scope.infos;
+                        },
+                        btnname: function() {
+                            return $scope.name = 'affirmIssue';
+                        },
+                        datas: function() {
+                            return item;
+                        },
+                        urls: function() {
+                            return $scope.urls;
+                        }
 
+                    }
+                });
+            }
+
+            //自检解读生成报告
+            $scope.testReport = function() {
+                $scope.index = 3;
+            }
+            //详细信息
+            $scope.tesDetail = function() {
+                $scope.index = 2;
+            }
         }
     ]);
 
 
-
+    //自动报告解读
 
 
     //路由
@@ -267,19 +345,31 @@
                     }).then(function() {
                         console.log('请求成功')
                     }, function() {
-                        console.log('请求失败')
+                        console.log('请求失败');
                     })
                     break;
                 case 'auditPass':
                     $http({
-                        method:'post',
-                        url:'',
-                        data:''
-                    }).then(function(){
+                        method: 'post',
+                        url: '',
+                        data: ''
+                    }).then(function() {
                         console.log('请求成功')
-                    },function(){
-                        console.log('请求失败')
-                    })
+                    }, function() {
+                        console.log('请求失败');
+                    });
+                    break;
+                case 'affirmIssue':
+                    $http({
+                        method: 'post',
+                        url: '',
+                        data: ''
+                    }).then(function() {
+
+                    }, function() {
+                        console.log('请求失败');
+                    });
+                    break;
             }
         };
 

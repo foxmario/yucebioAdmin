@@ -55,7 +55,7 @@
                         <td class="text-center">
                             <button class="btn-primary btn btn-xs" ng-if="item.status=='已发布'">查看报告</button>
                             <button class="btn-primary btn btn-xs" ng-if="item.status=='待审核'" ng-click="getDetailed(item)">详细信息</button>
-                            <button class="btn-primary btn btn-xs" ng-if="item.status=='已审核'" ng-click="getDesc(item)">报告发布</button>
+                            <button class="btn-primary btn btn-xs" ng-if="item.status=='已审核'" ng-click="issueReprot(item)">报告发布</button>
                         </td>
                     </tr>
                 </tbody>
@@ -75,20 +75,13 @@
     <div class="x_content">
         <div class="" role="tabpanel" data-example-id="togglable-tabs">
             <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-                <!-- <li role="presentation" class="active"><a id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">上传</a>
+                <li role="presentation" ng-class="{'active':index===2}"><a id="home-tab" role="tab" data-toggle="tab" aria-expanded="index===1?true:false" ng-click="load(2)" ng-show="items.status=='待审核'?true:false">详细信息</a>
                 </li>
-                <li role="presentation" class=""><a role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false" ng-show="items.status=='已生成报告'?true:false">详细信息</a>
-                </li> -->
-                <li role="presentation" ng-class="{'active':index===1}"><a id="home-tab" role="tab" data-toggle="tab" aria-expanded="index===1?true:false" ng-click="load(1)">详细信息</a>
+                <li role="presentation" class="" ng-class="{'active':index===3}" ng-click="load(3)"><a role="tab" id="profile-tab" data-toggle="tab" aria-expanded="index===3?true:false" ng-show="items.status=='已审核'?true:false">报告发布</a>
                 </li>
-                <li role="presentation" class="" ng-class="{'active':index===2}" ng-click="load(2)"><a role="tab" id="profile-tab" data-toggle="tab" aria-expanded="index===2?true:false" ng-show="items.status=='已审核'?true:false">报告发布</a>
-                </li>
-                <!-- <li role="presentation" class=""><a role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">审核</a>
-                </li> -->
             </ul>
             <div id="myTabContent" class="tab-content">
-                <!-- <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab"></div> -->
-                <div role="tabpanel" class="tab-pane fade" ng-class="{'active in':index===1}" id="tab_content1" aria-labelledby="home-tab" ng-class="{'active':index===1}">
+                <div role="tabpanel" class="tab-pane fade" ng-class="{'active in':index===2}" id="tab_content1" aria-labelledby="home-tab" ng-show="index===2?true:false">
                     <form name="myForm" class="form-horizontal">
                         <div class="form-group">
                             <label class="control-label col-md-2 col-sm-2 col-xs-12">报告编号<span class="required">*</span>
@@ -111,24 +104,24 @@
                             <label class="control-label col-md-2 col-sm-2 col-xs-12">审核意见<span class="required">*</span>
                             </label>
                             <div class="col-md-8 col-sm-8 col-xs-12">
-                                <select class="form-control" ng-model="report.check">
+                                <select class="form-control" ng-model="report.check" name="check" required>
                                     <option value="通过">通过</option>
                                     <option value="不通过">不通过</option>
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group" ng-show="report.check=='不通过'">
+                        <div class="form-group" ng-if="report.check=='不通过'">
                             <label class="control-label col-md-2 col-sm-2 col-xs-12">原因<span class="required">*</span>
                             </label>
                             <div class="col-md-8 col-sm-8 col-xs-12">
-                                <input type="text" class="form-control" ng-model="report.cause">
+                                <input type="text" class="form-control" ng-model="report.cause" name="cause" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-md-2 col-sm-2 col-xs-12"><span class="required"></span>
                             </label>
                             <div class="col-md-8 col-sm-8 col-xs-12">
-                                <button class="btn btn-primary btn-sm" ng-click="auditPass()" ng-disabled="!items">确认审核</button>
+                                <button class="btn btn-primary btn-sm" ng-click="auditPass('sm')" ng-disabled="myForm.check.$pristine||myForm.cause.$invalid">确认审核</button>
                             </div>
                         </div>
                     </form>
@@ -137,7 +130,19 @@
                             <h3 class="modal-title">消息</h3>
                         </div>
                         <div class="modal-body">
-                            <p>是否生成报告</p>
+                            <p>是否审核</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary" type="button" ng-click="ok()">确定</button>
+                            <button class="btn btn-warning" type="button" ng-click="cancel()">取消</button>
+                        </div>
+                    </script>
+                    <script type="text/ng-template" id="affirmModalContent.html">
+                        <div class="modal-header">
+                            <h3 class="modal-title">消息</h3>
+                        </div>
+                        <div class="modal-body">
+                            <p>是否发布</p>
                         </div>
                         <div class="modal-footer">
                             <button class="btn btn-primary" type="button" ng-click="ok()">确定</button>
@@ -145,49 +150,39 @@
                         </div>
                     </script>
                 </div>
-                <div role="tabpanel" class="tab-pane fade" ng-class="{'active in':index===2}" aria-labelledby="profile-tab" ng-show="items.status=='已审核'?true:false">
-                    <form name="newForm" class="form-horizontal">
+                <div role="tabpanel" class="tab-pane fade" ng-class="{'active in':index===3}" aria-labelledby="profile-tab" ng-show="index===3?true:false">
+                    <form name="issueForm" class="form-horizontal">
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12">报告发布<span class="required">*</span>
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12">报告编号<span class="required">*</span>
                             </label>
-                            <div class="col-md-7 col-sm-7 col-xs-12">
+                            <div class="col-md-8 col-sm-8 col-xs-12">
                                 <input type="text" class="form-control" ng-model="items.number" ng-readonly="true">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12">上传新版本<span class="required">*</span>
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12">发布方式<span class="required">*</span>
                             </label>
-                            <div class="col-md-7 col-sm-7 col-xs-12">
-                                <input type="file" ngf-select ng-model="newFile" name="filename" accept=".docx" required ngf-model-invalid="errorFile" style="float:left;">
-                                <a href="" style="float:right;font-size: 14px;" download="{{items.number}}" class="btn btn-primary btn-xs">下载报告</a>
+                            <div class="col-md-8 col-sm-8 col-xs-12">
+                                <select ng-model="method" class="form-control" required name="method">
+                                    <option value="下载">下载</option>
+                                    <option value="发送邮件">发送邮件</option>
+                                    <option value="在线发布">在线发布</option>
+                                </select>
                             </div>
-                            <i ng-show="newForm.file.$error.required">*请选择文件</i>
-                            <br>
                         </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12"><span class="required"></span>
+                        <div class="form-group" ng-if="method=='发送邮件'">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12">收件人<span class="required">*</span>
                             </label>
-                            <div class="col-md-7 col-sm-7 col-xs-12">
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:{{newFile.progress}}%" ng-bind="newFile.progress + '%'">
-                                    </div>
-                                </div>
+                            <div class="col-md-8 col-sm-8 col-xs-12">
+                                <input type="text" class="form-control" ng-model="eMail" name="eMail" required>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12"><span class="required"></span>
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12"><span class="required"></span>
                             </label>
-                            <div class="col-md-7 col-sm-7 col-xs-12">
-                                <button ng-disabled="!newForm.$valid" ng-click="upNewPic(newFile)" class="btn btn-primary btn-sm">上传</button>
-                                <button ng-click="newFile = null" ng-show="newFile" class="btn btn-danger btn-sm">移除</button>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12"><span class="required"></span>
-                            </label>
-                            <div class="col-md-7 col-sm-7 col-xs-12">
-                                <span ng-show="newFile.result"></span>
-                                <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
+                            <div class="col-md-8 col-sm-8 col-xs-12">
+                                <button class="btn btn-default btn-sm" ng-click="live()">在线预览</button>
+                                <button class="btn btn-primary btn-sm" ng-click="affirmIssue('sm')" ng-disabled="issueForm.method.$pristine||issueForm.eMail.$invalid">确认发布</button>
                             </div>
                         </div>
                     </form>
