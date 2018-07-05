@@ -1,21 +1,105 @@
 <div class="x_panel">
     <div class="x_title">
         <h2>化疗临床证据</h2>
-        <ul class="nav navbar-right panel_toolbox">
-            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-            </li>
-            <li class="dropdown">
-                <a href="javascript:vodi(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">设置1</a>
-                    </li>
-                    <li><a href="#">设置2</a>
-                    </li>
-                </ul>
-            </li>
-            <li><a class="close-link"><i class="fa fa-close"></i></a>
-            </li>
-        </ul>
+        <div class="btn-group pull-right" uib-dropdown>
+            <button id="single-button" type="button" class="btn btn-success btn-sm" uib-dropdown-toggle>
+                筛选 <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu filter" ng-click="$event.stopPropagation();">
+                <li>
+                    <input type="checkbox" ng-model="genname" ng-false-value=false ng-init="genname=true">
+                    <label>基因名称</label>
+                </li>
+                <li>
+                    <input type="checkbox" ng-model="nucleotide" ng-false-value=false ng-init="nucleotide=false">
+                    <label>核苷酸变化</label>
+                </li>
+                <li>
+                    <input type="checkbox" ng-model="amino_acid" ng-false-value=false ng-init="amino_acid=false">
+                    <label>氨基酸变化</label>
+                </li>
+                <li>
+                    <input type="checkbox" ng-model="gengroup" ng-false-value=false ng-init="gengroup=false">
+                    <label>基因组定位</label>
+                </li>
+                <li>
+                    <input type="checkbox" ng-model="rsnumber" ng-false-value=false ng-init="rsnumber=true">
+                    <label>rs号</label>
+                </li>
+                <li>
+                    <input type="checkbox" ng-model="gentype" ng-false-value=false ng-init="gentype=true">
+                    <label>基因型</label>
+                </li>
+                <li>
+                    <input type="checkbox" ng-model="tcname" ng-false-value=false ng-init="tcname=true">
+                    <label>通用名(中)</label>
+                </li>
+                <li>
+                    <input type="checkbox" ng-model="tename" ng-false-value=false ng-init="tename=false">
+                    <label>通用名(英)</label>
+                </li>
+                <li>
+                    <input type="checkbox" ng-model="pcname" ng-false-value=false ng-init="pcname=false">
+                    <label>商品名(中)</label>
+                </li>
+                <li>
+                    <input type="checkbox" ng-model="pename" ng-false-value=false ng-init="pename=false">
+                    <label>商品名(英)</label>
+                </li>
+                <li>
+                    <input type="checkbox" ng-model="drugclinic" ng-false-value=false ng-init="drugclinic=false">
+                    <label>临床实验名</label>
+                </li>
+                <li>
+                    <input type="checkbox" ng-model="disease" ng-false-value=false ng-init="disease=true">
+                    <label>适应症</label>
+                </li>
+                <li>
+                    <input type="checkbox" ng-model="effect" ng-false-value=false ng-init="effect=true">
+                    <label>疗效</label>
+                </li>
+                <li>
+                    <input type="checkbox" ng-model="toxicity" ng-false-value=false ng-init="toxicity=true">
+                    <label>毒副作用</label>
+                </li>
+                <li>
+                    <input type="checkbox" ng-model="dose" ng-false-value=false ng-init="dose=true">
+                    <label>药物剂量</label>
+                </li>
+                <li>
+                    <input type="checkbox" ng-model="metabolize" ng-false-value=false ng-init="metabolize=true">
+                    <label>药物代谢</label>
+                </li>
+                <li>
+                    <input type="checkbox" ng-model="note" ng-false-value=false ng-init="note=false">
+                    <label>临床注解</label>
+                </li>
+                <li>
+                    <input type="checkbox" ng-model="evsource" ng-false-value=false ng-init="evsource=false">
+                    <label>证据来源</label>
+                </li>
+                <li>
+                    <input type="checkbox" ng-model="isGrade" ng-false-value=false ng-init="isGrade=false">
+                    <label>证据等级</label>
+                </li>
+                <li>
+                    <input type="checkbox" ng-model="publishdate" ng-false-value=false ng-init="publishdate=false">
+                    <label>发布时间</label>
+                </li>
+                <li>
+                    <input type="checkbox" ng-model="infosource" ng-false-value=false ng-init="infosource=false">
+                    <label>信息来源</label>
+                </li>
+                <li>
+                    <input type="checkbox" ng-model="date" ng-false-value=false ng-init="date=true">
+                    <label>最后更新</label>
+                </li>
+                <li>
+                    <input type="checkbox" ng-model="state" ng-false-value=false ng-init="state=true">
+                    <label>更新提示</label>
+                </li>
+            </ul>
+        </div>
         <div class="clearfix"></div>
     </div>
     <!--stSafeSrc属性控制表格START-->
@@ -24,80 +108,134 @@
             <table st-table='displayedCollection' st-safe-src="shortData.data" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                 <thead>
                     <tr class="frist-head">
-                        <th st-sort="name" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">基因名称</th>
-                        <th st-sort="mark" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">rs号</th>
-                        <th st-sort="gentype" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">基因型</th>
-                        <th st-sort="tcname" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">通用名(中)</th>
-                        <th st-sort="disease" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">适应症</th>
-                        <th st-sort="effect" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">疗效</th>
-                        <th st-sort="toxicity" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">毒副作用</th>
-                        <th st-sort="dose" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">药物剂量</th>
-                        <th st-sort="daixie" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">药物代谢</th>
-                        <th>
-                            <input type="checkbox" ng-model="isNote">临床注解</th>
-                        <th st-sort="date" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc" st-sort-default="reverse">最后更新</th>
-                        <th st-sort="shenhe" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">更新提示</th>
+                        <th ng-show="genname" st-sort="genname" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">基因名称</th>
+                        <th ng-show="nucleotide" st-sort="nucleotide" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">核苷酸变化</th>
+                        <th ng-show="amino_acid" st-sort="amino_acid" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">氨基酸变化</th>
+                        <th ng-show="gengroup" st-sort="gengroup" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">基因组定位</th>
+                        <th ng-show="rsnumber" st-sort="rsnumber" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">rs号</th>
+                        <th ng-show="gentype" st-sort="gentype" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">基因型</th>
+                        <th ng-show="tcname" st-sort="tcname" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">通用名(中)</th>
+                        <th ng-show="tename" st-sort="tename" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">通用名(英)</th>
+                        <th ng-show="pcname" st-sort="pcname" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">商品名(中)</th>
+                        <th ng-show="pename" st-sort="pename" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">商品名(英)</th>
+                        <th ng-show="drugclinic" st-sort="drugclinic" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">临床实验名</th>
+                        <th ng-show="disease" st-sort="disease" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">适应症</th>
+                        <th ng-show="effect" st-sort="effect" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">疗效</th>
+                        <th ng-show="toxicity" st-sort="toxicity" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">毒副作用</th>
+                        <th ng-show="dose" st-sort="dose" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">药物剂量</th>
+                        <th ng-show="metabolize" st-sort="metabolize" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">药物代谢</th>
+                        <th ng-show="note" st-sort="note" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">临床注解</th>
+                        <th ng-show="evsource" st-sort="evsource" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">证据来源</th>
+                        <th ng-show="isGrade" st-sort="grade" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">证据等级</th>
+                        <th ng-show="publishdate" st-sort="publishdate" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">发布时间</th>
+                        <th ng-show="infosource" st-sort="infosource" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">信息来源</th>
+                        <th ng-show="date" st-sort="date" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc" st-sort-default="reverse">最后更新</th>
+                        <th ng-show="state" st-sort="state" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">更新提示</th>
                     </tr>
                     <tr>
-                        <th>
-                            <input st-search="gennanme" class="input-sm form-control" type="search" placeholder="查找 ..." />
+                        <th ng-show="genname">
+                            <input st-search="genname" class="input-sm form-control" type="search" placeholder="查找 ..." />
                         </th>
-                        <th>
+                        <th ng-show="nucleotide">
+                            <input st-search="nucleotide" class="input-sm form-control" type="search" placeholder="查找 ..." />
+                        </th>
+                        <th ng-show="amino_acid">
+                            <input st-search="amino_acid" class="input-sm form-control" type="search" placeholder="查找 ..." />
+                        </th>
+                        <th ng-show="gengroup">
+                            <input st-search="gengroup" class="input-sm form-control" type="search" placeholder="查找 ..." />
+                        </th>
+                        <th ng-show="rsnumber">
                             <input st-search="rsnumber" class="input-sm form-control" type="search" placeholder="查找 ..." />
                         </th>
-                        <th>
+                        <th ng-show="gentype">
                             <input st-search="gentype" class="input-sm form-control" type="search" placeholder="查找 ..." />
                         </th>
-                        <th>
+                        <th ng-show="tcname">
                             <input st-search="tcname" class="input-sm form-control" type="search" placeholder="查找 ..." />
                         </th>
-                        <th>
+                        <th ng-show="tename">
+                            <input st-search="tename" class="input-sm form-control" type="search" placeholder="查找 ..." />
+                        </th>
+                        <th ng-show="pcname">
+                            <input st-search="pcname" class="input-sm form-control" type="search" placeholder="查找 ..." />
+                        </th>
+                        <th ng-show="pcname">
+                            <input st-search="pcname" class="input-sm form-control" type="search" placeholder="查找 ..." />
+                        </th>
+                        <th ng-show="drugclinic">
+                            <input st-search="drugclinic" class="input-sm form-control" type="search" placeholder="查找 ..." />
+                        </th>
+                        <th ng-show="disease">
                             <input st-search="disease" class="input-sm form-control" type="search" placeholder="查找 ..." />
                         </th>
-                        <th>
+                        <th ng-show="effect">
                             <input st-search="effect" class="input-sm form-control" type="search" placeholder="查找 ..." />
                         </th>
-                        <th>
+                        <th ng-show="toxicity">
                             <input st-search="toxicity" class="input-sm form-control" type="search" placeholder="查找 ..." />
                         </th>
-                        <th>
+                        <th ng-show="dose">
                             <input st-search="dose" class="input-sm form-control" type="search" placeholder="查找 ..." />
                         </th>
-                        <th>
+                        <th ng-show="metabolize">
                             <input st-search="metabolize" class="input-sm form-control" type="search" placeholder="查找 ..." />
                         </th>
-                        <th>
+                        <th ng-show="note">
                             <input st-search="note" class="input-sm form-control" type="search" placeholder="查找 ..." />
                         </th>
-                        <th>
+                        <th ng-show="evsource">
+                            <input st-search="evsource" class="input-sm form-control" type="search" placeholder="查找 ..." />
+                        </th>
+                        <th ng-show="isGrade">
+                            <input st-search="grade" class="input-sm form-control" type="search" placeholder="查找 ..." />
+                        </th>
+                        <th ng-show="publishdate">
+                            <input st-search="publishdate" class="input-sm form-control" type="search" placeholder="查找 ..." />
+                        </th>
+                        <th ng-show="infosource">
+                            <input st-search="infosource" class="input-sm form-control" type="search" placeholder="查找 ..." />
+                        </th>
+                        <th ng-show="date">
                             <input st-search="date" class="input-sm form-control" placeholder="查找 ..." type="text" />
                         </th>
-                        <th>
+                        <th ng-show="state">
                             <input st-search="state" class="input-sm form-control" placeholder="查找 ..." type="text" />
                         </th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr st-select-row="item" st-select-mode="single" ng-repeat="item in displayedCollection" ng-click="getDesc(item)">
-                        <td>{{item.genname}}</td>
-                        <td>{{item.rsnumber}}</td>
-                        <td>{{item.gentype}}</td>
-                        <td>{{item.tcname}}</td>
-                        <td>{{item.disease}}</td>
-                        <td>{{item.effect}}</td>
-                        <td>{{item.toxicity}}</td>
-                        <td>{{item.dose}}</td>
-                        <td>{{item.metabolize}}</td>
-                        <td title="{{item.note}}"><span ng-show="isNote">{{item.note}}</span></td>
-                        <td>{{item.date}}</td>
-                        <td>
+                        <td ng-show="genname">{{item.genname}}</td>
+                        <td ng-show="nucleotide">{{item.nucleotide}}</td>
+                        <td ng-show="amino_acid">{{item.amino_acid}}</td>
+                        <td ng-show="gengroup">{{item.gengroup}}</td>
+                        <td ng-show="rsnumber">{{item.rsnumber}}</td>
+                        <td ng-show="gentype">{{item.gentype}}</td>
+                        <td ng-show="tcname">{{item.tcname}}</td>
+                        <td ng-show="tename">{{item.tename}}</td>
+                        <td ng-show="pcname">{{item.pcname}}</td>
+                        <td ng-show="pename">{{item.pename}}</td>
+                        <td ng-show="drugclinic">{{item.drugclinic}}</td>
+                        <td ng-show="disease">{{item.disease}}</td>
+                        <td ng-show="effect">{{item.effect}}</td>
+                        <td ng-show="toxicity">{{item.toxicity}}</td>
+                        <td ng-show="dose">{{item.dose}}</td>
+                        <td ng-show="metabolize">{{item.metabolize}}</td>
+                        <td ng-show="note">{{item.note}}</td>
+                        <td ng-show="evsource">{{item.evsource}}</td>
+                        <td ng-show="isGrade">{{item.grade}}</td>
+                        <td ng-show="publishdate">{{item.publishdate}}</td>
+                        <td ng-show="infosource">{{item.infosource}}</td>
+                        <td ng-show="date">{{item.date}}</td>
+                        <td ng-show="state">
                             <span class="badge bg-red">{{item.state}}</span>
                         </td>
                     </tr>
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="13" class="text-center">
+                        <td colspan="23" class="text-center">
                             <div st-pagination="" st-items-by-page="5" st-displayed-pages="7"></div>
                         </td>
                     </tr>

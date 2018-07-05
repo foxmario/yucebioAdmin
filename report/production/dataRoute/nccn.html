@@ -1,21 +1,33 @@
 <div class="x_panel">
     <div class="x_title">
         <h2>nccn指南推荐化疗药物</h2>
-        <ul class="nav navbar-right panel_toolbox">
-            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-            </li>
-            <li class="dropdown">
-                <a href="javacript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">设置1</a>
-                    </li>
-                    <li><a href="#">设置2</a>
-                    </li>
-                </ul>
-            </li>
-            <li><a class="close-link"><i class="fa fa-close"></i></a>
-            </li>
-        </ul>
+        <div class="btn-group pull-right" uib-dropdown>
+            <button id="single-button" type="button" class="btn btn-success btn-sm" uib-dropdown-toggle>
+                筛选 <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu filter" ng-click="$event.stopPropagation();">
+                <li>
+                    <input type="checkbox" ng-model="disease" ng-false-value=false ng-init="disease=true">
+                    <label>疾病</label>
+                </li>
+                <li>
+                    <input type="checkbox" ng-model="dcname" ng-false-value=false ng-init="dcname=true">
+                    <label>化疗药(中)</label>
+                </li>
+                <li>
+                    <input type="checkbox" ng-model="dename" ng-false-value=false ng-init="dename=true">
+                    <label>化疗药(英)</label>
+                </li>
+                <li>
+                    <input type="checkbox" ng-model="date" ng-false-value=false ng-init="date=true">
+                    <label>最后更新</label>
+                </li>
+                <li>
+                    <input type="checkbox" ng-model="state" ng-false-value=false ng-init="state=true">
+                    <label>更新提示</label>
+                </li>
+            </ul>
+        </div>
         <div class="clearfix"></div>
     </div>
     <!--stSafeSrc属性控制表格START-->
@@ -24,37 +36,37 @@
             <table st-table='displayedCollection' st-safe-src="shortData.data" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                 <thead>
                     <tr class="frist-head">
-                        <th st-sort="disease" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">疾病</th>
-                        <th st-sort="cn" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">化疗药(中)</th>
-                        <th st-sort="en" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">化疗药(英)</th>
-                        <th st-sort="time" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc" st-sort-default="reverse">最后更新</th>
-                        <th st-sort="shenhe" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">更新提示</th>
+                        <th ng-show="disease" st-sort="disease" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">疾病</th>
+                        <th ng-show="dcname" st-sort="dcname" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">化疗药(中)</th>
+                        <th ng-show="dename" st-sort="dename" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">化疗药(英)</th>
+                        <th ng-show="date" st-sort="date" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc" st-sort-default="reverse">最后更新</th>
+                        <th ng-show="state" st-sort="state" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">更新提示</th>
                     </tr>
                     <tr>
-                        <th>
+                        <th ng-show="disease">
                             <input st-search="disease" class="input-sm form-control" type="search" placeholder="查找 ..." />
                         </th>
-                        <th>
+                        <th ng-show="dcname">
                             <input st-search="dcname" class="input-sm form-control" type="search" placeholder="查找 ..." />
                         </th>
-                        <th>
+                        <th ng-show="dename">
                             <input st-search="dename" class="input-sm form-control" type="search" placeholder="查找 ..." />
                         </th>
-                        <th>
+                        <th ng-show="date">
                             <input st-search="date" class="input-sm form-control" type="search" placeholder="查找 ..." />
                         </th>
-                        <th>
+                        <th ng-show="state">
                             <input st-search="state" class="form-control input-sm" placeholder="查找 ..." type="text" />
                         </th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr st-select-row="item" st-select-mode="single" ng-repeat="item in displayedCollection" ng-click="getDesc(item)">
-                        <td>{{item.disease}}</td>
-                        <td>{{item.dcname}}</td>
-                        <td>{{item.dename}}</td>
-                        <td>{{item.date}}</td>
-                        <td>
+                        <td ng-show="disease">{{item.disease}}</td>
+                        <td ng-show="dcname">{{item.dcname}}</td>
+                        <td ng-show="dename">{{item.dename}}</td>
+                        <td ng-show="date">{{item.date}}</td>
+                        <td ng-show="state">
                             <span class="badge bg-red">{{item.state}}</span>
                         </td>
                     </tr>

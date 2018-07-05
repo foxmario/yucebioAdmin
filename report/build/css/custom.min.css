@@ -3799,6 +3799,7 @@ ul.project_files li a i {
 
 
 
+
 /*!
  * bootstrap-vertical-tabs - v1.2.1
  * https://dbtek.github.io/bootstrap-vertical-tabs
@@ -4923,4 +4924,11 @@ ul.notifications {
 textarea {
     overflow-x: hidden;
     resize: none;
+}
+
+
+/*下拉菜单*/
+
+.btn-group .filter li {
+    padding: 0 4px;
 }

@@ -1,21 +1,81 @@
 <div class="x_panel">
     <div class="x_title">
         <h2>药物信息</h2>
-        <ul class="nav navbar-right panel_toolbox">
-            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-            </li>
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">设置1</a>
-                    </li>
-                    <li><a href="#">设置2</a>
-                    </li>
-                </ul>
-            </li>
-            <li><a class="close-link"><i class="fa fa-close"></i></a>
-            </li>
-        </ul>
+        <div class="btn-group pull-right" uib-dropdown>
+            <button id="single-button" type="button" class="btn btn-success btn-sm" uib-dropdown-toggle>
+                筛选 <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu filter" ng-click="$event.stopPropagation();">
+                <li>
+                    <input type="checkbox" ng-model="drugnumber" ng-false-value=false ng-init="drugnumber=false">
+                    <label>编号</label>
+                </li>
+                <li>
+                    <input type="checkbox" ng-model="tcname" ng-false-value=false ng-init="tcname=true">
+                    <label>通用名(中)</label>
+                </li>
+                <li>
+                    <input type="checkbox" ng-model="tename" ng-false-value=false ng-init="tename=true">
+                    <label>通用名(英)</label>
+                </li>
+                <li>
+                    <input type="checkbox" ng-model="pcname" ng-false-value=false ng-init="pcname=false">
+                    <label>商品名(中)</label>
+                </li>
+                <li>
+                    <input type="checkbox" ng-model="pename" ng-false-value=false ng-init="pename=false">
+                    <label>商品名(英)</label>
+                </li>
+                <li>
+                    <input type="checkbox" ng-model="drugclinic" ng-false-value=false ng-init="drugclinic=true">
+                    <label>临床实验名称</label>
+                </li>
+                <li>
+                    <input type="checkbox" ng-model="drugtype" ng-false-value=false ng-init="drugtype=false">
+                    <label>类型</label>
+                </li>
+                <li>
+                    <input type="checkbox" ng-model="drugAction" ng-false-value=false ng-init="drugAction=false">
+                    <label>作用机制</label>
+                </li>
+                <li>
+                    <input type="checkbox" ng-model="reaction" ng-false-value=false ng-init="reaction=false">
+                    <label>不良反应</label>
+                </li>
+                <li>
+                    <input type="checkbox" ng-model="FDAstate" ng-false-value=false ng-init="FDAstate=true">
+                    <label>获批状态</label>
+                </li>
+                <li>
+                    <input type="checkbox" ng-model="FDAdetail" ng-false-value=false ng-init="FDAdetail=false">
+                    <label>获批详情</label>
+                </li>
+                <li>
+                    <input type="checkbox" ng-model="FDAdisease" ng-false-value=false ng-init="FDAdisease=false">
+                    <label>获批适应症</label>
+                </li>
+                <li>
+                    <input type="checkbox" ng-model="factory" ng-false-value=false ng-init="factory=false">
+                    <label>生产厂家</label>
+                </li>
+                <li>
+                    <input type="checkbox" ng-model="drugDesc" ng-false-value=false ng-init="drugDesc=false">
+                    <label>药物描述</label>
+                </li>
+                <li>
+                    <input type="checkbox" ng-model="infosource" ng-false-value=false ng-init="infosource=false">
+                    <label>信息来源</label>
+                </li>
+                <li>
+                    <input type="checkbox" ng-model="date" ng-false-value=false ng-init="date=true">
+                    <label>最后更新</label>
+                </li>
+                <li>
+                    <input type="checkbox" ng-model="state" ng-false-value=false ng-init="state=true">
+                    <label>更新提示</label>
+                </li>
+            </ul>
+        </div>
         <div class="clearfix"></div>
     </div>
     <!--stSafeSrc属性控制表格START-->
@@ -24,54 +84,104 @@
             <table st-table='displayedCollection' st-safe-src="shortData.data" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                 <thead>
                     <tr class="frist-head">
-                        <th st-sort="tcname" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">通用名(中)</th>
-                        <th st-sort="tename" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">通用名(英)</th>
-                        <th st-sort="drugclinic" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">临床实验名称</th>
-                        <th st-sort="FDAstate" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">获批状态</th>
-                        <th st-sort="FDAdisease" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">获批适应症</th>
-                        <th>
-                            <input type="checkbox" ng-model="isDrugdesc">药物描述</th>
-                        <th st-sort="date" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc" st-sort-default="reverse">最后更新</th>
-                        <th st-sort="shenhe" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">更新提示</th>
+                        <th ng-show="drugnumber" st-sort="drugnumber" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">编号</th>
+                        <th ng-show="tcname" st-sort="tcname" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">通用名(中)</th>
+                        <th ng-show="tename" st-sort="tename" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">通用名(英)</th>
+                        <th ng-show="pcname" st-sort="pcname" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">商品名(中)</th>
+                        <th ng-show="pename" st-sort="pename" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">商品名(英)</th>
+                        <th ng-show="drugclinic" st-sort="drugclinic" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">临床实验名称</th>
+                        <th ng-show="drugtype" st-sort="drugtype" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">类型</th>
+                        <th ng-show="drugAction" st-sort="drugAction" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">作用机制</th>
+                        <th ng-show="reaction" st-sort="reaction" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">不良反应</th>
+                        <th ng-show="FDAstate" st-sort="FDAstate" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">获批状态</th>
+                        <th ng-show="FDAdetail" st-sort="FDAdetail" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">获批详情</th>
+                        <th ng-show="FDAdisease" st-sort="FDAdisease" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">获批适应症</th>
+                        <th ng-show="factory" st-sort="factory" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">生产厂家</th>
+                        <th ng-show="drugDesc" st-sort="drugDesc" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">药物描述</th>
+                        <th ng-show="infosource" st-sort="infosource" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">信息来源</th>
+                        <th ng-show="date" st-sort="date" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc" st-sort-default="reverse">最后更新</th>
+                        <th ng-show="state" st-sort="state" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">更新提示</th>
                     </tr>
                     <tr>
-                        <th>
+                        <th ng-show="drugnumber">
+                            <input st-search="drugnumber" class="input-sm form-control" type="search" placeholder="查找 ..." />
+                        </th>
+                        <th ng-show="tcname">
                             <input st-search="tcname" class="input-sm form-control" type="search" placeholder="查找 ..." />
                         </th>
-                        <th>
+                        <th ng-show="tename">
                             <input st-search="tename" class="input-sm form-control" type="search" placeholder="查找 ..." />
                         </th>
-                        <th>
+                        <th ng-show="pcname">
+                            <input st-search="pcname" class="input-sm form-control" type="search" placeholder="查找 ..." />
+                        </th>
+                        <th ng-show="pename">
+                            <input st-search="pename" class="input-sm form-control" type="search" placeholder="查找 ..." />
+                        </th>
+                        <th ng-show="drugclinic">
                             <input st-search="drugclinic" class="input-sm form-control" type="search" placeholder="查找 ..." />
                         </th>
-                        <th>
+                        <th ng-show="drugtype">
+                            <input st-search="drugtype" class="input-sm form-control" type="search" placeholder="查找 ..." />
+                        </th>
+                        <th ng-show="drugAction">
+                            <input st-search="drugAction" class="input-sm form-control" type="search" placeholder="查找 ..." />
+                        </th>
+                        <th ng-show="reaction">
+                            <input st-search="reaction" class="input-sm form-control" type="search" placeholder="查找 ..." />
+                        </th>
+                        <th ng-show="FDAstate">
                             <input st-search="FDAstate" class="input-sm form-control" type="search" placeholder="查找 ..." />
                         </th>
-                        <th>
+                        <th ng-show="FDAdetail">
+                            <input st-search="FDAdetail" class="input-sm form-control" type="search" placeholder="查找 ..." />
+                        </th>
+                        <th ng-show="FDAdisease">
                             <input st-search="FDAdisease" class="input-sm form-control" type="search" placeholder="查找 ..." />
                         </th>
-                        <th colspan="3">
-                            <input st-search="" class="input-sm form-control" placeholder="查找 ..." type="text" />
+                        <th ng-show="factory">
+                            <input st-search="factory" class="input-sm form-control" type="search" placeholder="查找 ..." />
+                        </th>
+                        <th ng-show="drugDesc">
+                            <input st-search="drugDesc" class="input-sm form-control" type="search" placeholder="查找 ..." />
+                        </th>
+                        <th ng-show="infosource">
+                            <input st-search="infosource" class="input-sm form-control" type="search" placeholder="查找 ..." />
+                        </th>
+                        <th ng-show="date">
+                            <input st-search="date" class="input-sm form-control" type="search" placeholder="查找 ..." />
+                        </th>
+                        <th ng-show="state">
+                            <input st-search="state" class="input-sm form-control" placeholder="查找 ..." type="search" />
                         </th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr st-select-row="item" st-select-mode="single" ng-repeat="item in displayedCollection" ng-click="getDesc(item)">
-                        <td>{{item.tcname}}</td>
-                        <td>{{item.tename}}</td>
-                        <td>{{item.drugclinic}}</td>
-                        <td>{{item.FDAstate}}</td>
-                        <td>{{item.FDAdisease}}</td>
-                        <td title="{{item.drugDesc}}"><span ng-show="isDrugdesc">{{item.drugDesc}}</span></td>
-                        <td>{{item.date}}</td>
-                        <td>
+                        <td ng-show="drugnumber">{{item.drugnumber}}</td>
+                        <td ng-show="tcname">{{item.tcname}}</td>
+                        <td ng-show="tename">{{item.tename}}</td>
+                        <td ng-show="pcname">{{item.pcname}}</td>
+                        <td ng-show="pename">{{item.pename}}</td>
+                        <td ng-show="drugclinic">{{item.drugclinic}}</td>
+                        <td ng-show="drugtype">{{item.drugtype}}</td>
+                        <td ng-show="drugAction">{{item.drugAction}}</td>
+                        <td ng-show="reaction">{{item.reaction}}</td>
+                        <td ng-show="FDAstate">{{item.FDAstate}}</td>
+                        <td ng-show="FDAdetail">{{item.FDAdetail}}</td>
+                        <td ng-show="FDAdisease">{{item.FDAdisease}}</td>
+                        <td ng-show="factory">{{item.factory}}</td>
+                        <td ng-show="drugDesc">{{item.drugDesc}}</td>
+                        <td ng-show="infosource">{{item.infosource}}</td>
+                        <td ng-show="date">{{item.date}}</td>
+                        <td ng-show="state">
                             <span class="badge bg-red">{{item.state}}</span>
                         </td>
                     </tr>
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="10" class="text-center">
+                        <td colspan="17" class="text-center">
                             <div st-pagination="" st-items-by-page="5" st-displayed-pages="7"></div>
                         </td>
                     </tr>
