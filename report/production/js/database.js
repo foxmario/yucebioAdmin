@@ -504,7 +504,7 @@
                     break;
                 case 'rejectCheck':
                     $scope.data = {};
-                    $scope.data.mid = $scope.rowCollection.mid;
+                    $scope.data._id = $scope.rowCollection._id;
                     $scope.data.remarks = $scope.remarks;
                     $http({
                         method: 'post',

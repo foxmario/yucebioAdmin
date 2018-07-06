@@ -71,7 +71,7 @@
                         <th ng-show="nucleotide" st-sort="nucleotide" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">核苷酸变化</th>
                         <th ng-show="amino_acid" st-sort="amino_acid" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">氨基酸变化</th>
                         <th ng-show="gengroup" st-sort="gengroup" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">基因组定位</th>
-                        <th ng-show="rsdetail">变异描述</th>
+                        <th ng-show="rsdetail" st-sort="rsdetail" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">变异描述</th>
                         <th ng-show="isClinic" st-sort="clinic" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">临床意义</th>
                         <th ng-show="infosource" st-sort="infosource" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">信息来源</th>
                         <th ng-show="date" st-sort="date" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc" st-sort-default="reverse">最后更新</th>
@@ -135,7 +135,7 @@
                 <tfoot>
                     <tr>
                         <td colspan="12" class="text-center">
-                            <div st-pagination="" st-items-by-page="5" st-displayed-pages="7"></div>
+                            <div st-pagination="" st-items-by-page="10" st-displayed-pages="7"></div>
                         </td>
                     </tr>
                 </tfoot>
