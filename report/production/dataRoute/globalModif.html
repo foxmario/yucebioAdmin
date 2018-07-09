@@ -1,0 +1,154 @@
+<div class="x_panel">
+    <div class="x_title">
+        <h2>全局修改</h2>
+        <ul class="nav navbar-right panel_toolbox">
+            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+            </li>
+            <li class="dropdown">
+                <a href="javacript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">设置1</a>
+                    </li>
+                    <li><a href="#">设置2</a>
+                    </li>
+                </ul>
+            </li>
+            <li><a class="close-link"><i class="fa fa-close"></i></a>
+            </li>
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+    <!--stSafeSrc属性控制表格START-->
+    <div class="x_content">
+        <div class="table-responsive">
+            <table st-table='displayedCollection' st-safe-src="shortData.data" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                <thead>
+                    <tr class="frist-head">
+                        <th st-sort="oldWord" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">名称(旧)</th>
+                        <th st-sort="newWord" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">名称(新)</th>
+                        <th st-sort="recorder" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">记录人</th>
+                        <th st-sort="check" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">审核人</th>
+                        <th st-sort="remarks" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">修改意见</th>
+                        <th st-sort="date" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc" st-sort-default="reverse">最后更新</th>
+                        <th st-sort="state" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">更新提示</th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <input st-search="oldWord" class="input-sm form-control" type="search" placeholder="查找 ..." />
+                        </th>
+                        <th>
+                            <input st-search="newWord" class="input-sm form-control" type="search" placeholder="查找 ..." />
+                        </th>
+                        <th>
+                            <input st-search="recorder" class="input-sm form-control" type="search" placeholder="查找 ..." />
+                        </th>
+                        <th>
+                            <input st-search="check" class="input-sm form-control" type="search" placeholder="查找 ..." />
+                        </th>
+                        <th>
+                            <input st-search="remarks" class="input-sm form-control" type="search" placeholder="查找 ..." />
+                        </th>
+                        <th>
+                            <input st-search="date" class="form-control input-sm" placeholder="查找 ..." type="search" />
+                        </th>
+                        <th>
+                            <input st-search="state" class="form-control input-sm" placeholder="查找 ..." type="search" />
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr st-select-row="item" st-select-mode="single" ng-repeat="item in displayedCollection" ng-click="getDesc(item)">
+                        <td>{{item.oldWord}}</td>
+                        <td>{{item.newWord}}</td>
+                        <td>{{item.recorder}}</td>
+                        <td>{{item.check}}</td>
+                        <td>{{item.remarks}}</td>
+                        <td>{{item.date}}</td>
+                        <td>
+                            <span class="badge bg-red">{{item.state}}</span>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="7" class="text-center">
+                            <div st-pagination="" st-items-by-page="10" st-displayed-pages="7"></div>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+    <!--stSafeSrc属性控制表格END-->
+</div>
+<div class="x_panel">
+    <div class="x_content">
+        <div class="" role="tabpanel" data-example-id="togglable-tabs">
+            <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                <li role="presentation" class="active"><a id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">详情</a>
+                </li>
+            </ul>
+            <div id="myTabContent" class="tab-content">
+                <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
+                    <div class="col-xs-12">
+                        <form class="form-horizontal form-label-left">
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">名称(旧)<span class="required">*</span>
+                                </label>
+                                <div class="col-md-10 col-sm-10 col-xs-12">
+                                    <input type="text" class="form-control" ng-model="items.oldWord">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">名称(新)<span class="required">*</span>
+                                </label>
+                                <div class="col-md-10 col-sm-10 col-xs-12">
+                                    <input type="text" class="form-control" ng-model="items.newWord">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div ng-controller="ModalDemoCtrl">
+                        <script type="text/ng-template" id="myModalContent.html">
+                            <div class="modal-header">
+                                <h3 class="modal-title">消息</h3>
+                            </div>
+                            <div class="modal-body">
+                                <p>{{infos.name}}</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" type="button" ng-click="ok()">确定</button>
+                                <button class="btn btn-warning" type="button" ng-click="cancel()">取消</button>
+                            </div>
+                        </script>
+                        <script type="text/ng-template" id="rejectCheckModal.html">
+                            <div class="modal-header">
+                                <h3 class="modal-title">消息</h3>
+                            </div>
+                            <div class="modal-body">
+                                <p>{{infos.name}}</p>
+                                <form class="form-horizontal">
+                                    <textarea class="form-control" rows="3" ng-model="remarks"></textarea>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" type="button" ng-click="ok()">确定</button>
+                                <button class="btn btn-warning" type="button" ng-click="cancel()">取消</button>
+                            </div>
+                        </script>
+                        <div class="controllBtn">
+                            <button type="button" class="btn btn-success btn-sm" ng-click="rejectCheck('lg')" ng-disabled="items==''||!items.state||isUser" ng-if="control.state_reject>0">审核驳回</button>
+                            <button type="button" class="btn btn-success btn-sm" ng-click="check('sm')" ng-disabled="items==''||!items.state||isUser" ng-if="control.state>0">审核</button>
+                            <button type="button" class="btn btn-warning btn-sm" ng-click="newCreat('sm',items)">新建</button>
+                            <button type="button" class="btn btn-default btn-sm" ng-click="add('sm',items)" ng-disabled="items._id!=null||items==null" ng-if="control.add>0">提交</button>
+                            <button type="button" class="btn btn-primary btn-sm" ng-click="recover('sm',items)" ng-disabled="items._id==null">恢复</button>
+                        </div>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" aria-labelledby="profile-tab">
+                    <p>{{items.remarks}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

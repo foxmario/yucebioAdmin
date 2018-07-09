@@ -27,6 +27,10 @@
                     <label>信息来源</label>
                 </li>
                 <li>
+                    <input type="checkbox" ng-model="last_operetion" ng-false-value=false ng-init="last_operetion=false">
+                    <label>记录人</label>
+                </li>
+                <li>
                     <input type="checkbox" ng-model="date" ng-false-value=false ng-init="date=true">
                     <label>最后更新</label>
                 </li>
@@ -49,6 +53,7 @@
                         <th st-sort="ename" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc" ng-show="ename">英文全称</th>
                         <th ng-show="definitions" st-sort="definitions" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">名词解释</th>
                         <th ng-show="infosource" st-sort="infosource" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">信息来源</th>
+                        <th ng-show="last_operetion" st-sort="last_operetion" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">记录人</th>
                         <th st-sort="date" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc" st-sort-default="reverse" ng-show="date">最后更新</th>
                         <th st-sort="state" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc" ng-show="state">更新提示</th>
                     </tr>
@@ -68,6 +73,9 @@
                         <th ng-show="infosource">
                             <input st-search="infosource" class="input-sm form-control" type="search" placeholder="查找 ..." />
                         </th>
+                        <th ng-show="last_operetion">
+                            <input st-search="last_operetion" class="input-sm form-control" type="search" placeholder="查找 ..." />
+                        </th>
                         <th ng-show="date">
                             <input st-search="date" class="form-control input-sm" placeholder="查找 ..." type="search" />
                         </th>
@@ -83,6 +91,7 @@
                         <td ng-show="ename">{{item.ename}}</td>
                         <td ng-show="definitions">{{item.definitions}}</td>
                         <td ng-show="infosource">{{item.infosource}}</td>
+                        <td ng-show="last_operetion">{{item.last_operetion}}</td>
                         <td ng-show="date">{{item.date}}</td>
                         <td ng-show="state">
                             <span class="badge bg-red">{{item.state}}</span>

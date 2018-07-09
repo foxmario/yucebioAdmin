@@ -25,8 +25,8 @@
                 <thead>
                     <tr class="frist-head">
                         <th st-sort="suoxie" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">报告编号</th>
-                        <th st-sort="cn" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">报告类型</th>
-                        <th st-sort="en" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc" st-sort-default="reverse">上传日期</th>
+                        <th st-sort="cn" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">检测类型</th>
+                        <th st-sort="en" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc" st-sort-default="reverse">报告生成日期</th>
                         <th>状态</th>
                         <th st-sort="time" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">操作</th>
                     </tr>
@@ -35,7 +35,7 @@
                             <input st-search="number" class="input-sm form-control" type="search" placeholder="查找 ..." />
                         </th>
                         <th>
-                            <input st-search="testType" class="input-sm form-control" type="search" placeholder="查找 ..." />
+                            <input st-search="reportType" class="input-sm form-control" type="search" placeholder="查找 ..." />
                         </th>
                         <th>
                             <input st-search="buildDate" class="input-sm form-control" type="search" placeholder="查找 ..." />
@@ -47,9 +47,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="item in displayedCollection track by $index">
+                    <tr ng-repeat="item in displayedCollection">
                         <td>{{item.number}}</td>
-                        <td>{{item.testType}}</td>
+                        <td>{{item.reportType}}</td>
                         <td>{{item.buildDate}}</td>
                         <td>{{item.status}}</td>
                         <td class="text-center">
@@ -75,7 +75,7 @@
     <div class="x_content">
         <div class="" role="tabpanel" data-example-id="togglable-tabs">
             <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-                <li role="presentation" ng-class="{'active':index===2}"><a id="home-tab" role="tab" data-toggle="tab" aria-expanded="index===1?true:false" ng-click="load(2)" ng-show="items.status=='待审核'?true:false">详细信息</a>
+                <li role="presentation" ng-class="{'active':index===2}"><a id="home-tab" role="tab" data-toggle="tab" aria-expanded="index===2?true:false" ng-click="load(2)" ng-show="index===2?true:false">详细信息</a>
                 </li>
                 <li role="presentation" class="" ng-class="{'active':index===3}" ng-click="load(3)"><a role="tab" id="profile-tab" data-toggle="tab" aria-expanded="index===3?true:false" ng-show="items.status=='已审核'?true:false">报告发布</a>
                 </li>

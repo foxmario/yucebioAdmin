@@ -64,7 +64,22 @@
             //         }]
             switch (href) {
                 case '/reportCheck':
-                    
+                    $rootScope.shortData = [{
+                        number:'001',
+                        reportType:'',
+                        upDate:'2018-07-02 09:14:00',
+                        status:'待审核'
+                    },{
+                        number:'002',
+                        reportType:'',
+                        upDate:'2018-07-02 09:14:00',
+                        status:'已审核'
+                    },{
+                        number:'003',
+                        reportType:'',
+                        upDate:'2018-07-02 09:14:00',
+                        status:'已发布'
+                    }]
                     break;
                 case '/analysisAllot':
                     $rootScope.shortData = [{

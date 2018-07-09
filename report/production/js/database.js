@@ -118,6 +118,12 @@
                     // downUrl = baseUrl + 'NCCN_down/';
                     reUrl = baseUrl + 'NCCN_reject/';
                     break;
+                case '/globalModif':
+                    url = baseUrl + 'replace_show/';
+                    checkUrl = baseUrl + 'replace_state/';
+                    reUrl = baseUrl + 'replace_reject/';
+                    $scope.recoverUrl = baseUrl + 'replace_rollBack/';
+                    break;
             }
             // console.log(url+'--'sUrl+'--'delUrl+'--'checkUrl+'--'+downUrl+'upUrl');
             $rootScope.urls = { url: url, sUrl: sUrl, delUrl: delUrl, checkUrl: checkUrl, upUrl: upUrl, reUrl: reUrl };
@@ -139,7 +145,9 @@
             }
 
             $rootScope.getData();
-
+            // $rootScope.shortData = {data:[
+            //         {_id:'001',oldWord:'444',newWord:'555',recorder:'李四',check:'王五',remarks:'错误描述'}
+            //     ]}
             //获取表格的值
             $rootScope.getDesc = function(item) {
                 console.log(item)
@@ -213,13 +221,13 @@
                 'CFDA',
                 'Clinical',
                 'FDA',
-                'FDA,CFDA',
-                'Phase1',
-                'Phase1/2',
-                'Phase2',
-                'Phase2/3',
-                'Phase3',
-                'Phase4',
+                'FDA，CFDA',
+                'Phase 1',
+                'Phase 1/2',
+                'Phase 2',
+                'Phase 2/3',
+                'Phase 3',
+                'Phase 4',
                 'Preclinical'
 
             ]
@@ -246,24 +254,19 @@
                 'Level 3A',
                 'Level 3B',
                 'Level 3C',
-                'Level 3D',
-                'Level 3E',
-                'Level 3F',
                 'Level 4A',
                 'Level 4B',
-                'Level 4C',
-                'Level 4D',
                 'Level 5',
                 'Level 6'
             ]
             //化疗证据等级
             $scope.chemoGrade = [
-                'Level 1A',
-                'Level 1B',
-                'Level 2A',
-                'Level 2B',
-                'Level 3',
-                'Level 4'
+                '1A',
+                '1B',
+                '2A',
+                '2B',
+                '3',
+                '4'
 
             ]
 
@@ -397,6 +400,30 @@
             });
         }
 
+        $scope.recover = function(size){
+            $scope.infos.name = '是否恢复到替换前的状态';
+            var modalInstance = $uibModal.open({
+                templateUrl: 'myModalContent.html',
+                controller: 'ModalInstanceCtrl',
+                backdrop: "static",
+                size: size,
+                resolve: {
+                    infos1: function() {
+                        return $scope.infos;
+                    },
+                    btnname: function() {
+                        return $scope.name = 'recover';
+                    },
+                    datas: function() {
+                        return $scope.items;
+                    },
+                    urls: function() {
+                        return $scope.recoverUrl;
+                    }
+
+                }
+            });
+        }
 
         $scope.check = function(size) {
             $scope.infos.name = '是否审核该信息';
@@ -516,6 +543,22 @@
 
                         }, 25)
                     }, function() {})
+                    break;
+                case 'recover':
+                    $scope.data = {};
+                    $scope.data._id = $scope.rowCollection._id;
+                    console.log(urls)
+                    $http({
+                        method:'post',
+                        url:urls,
+                        data:$scope.data
+                    }).then(function(response){
+                        $timeout(function(){
+                            $rootScope.getData();
+                        },25)
+                    },function(){
+                        console.log('请求失败');
+                    })
                     break;
                 default:
 
