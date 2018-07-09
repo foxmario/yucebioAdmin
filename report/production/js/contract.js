@@ -17,9 +17,11 @@
             switch (href) {
                 case '/task':
                     var url = baseUrl + 'PMTaskHandle/view/';
+                    var listUrl = baseUrl + 'PMTaskHandle/allocate/';
                     $http({
                         method: 'get',
-                        url: baseUrl + 'PMTaskHandle/allocate/'
+                        url: listUrl,
+                        withCredentials: true
                     }).then(function(response) {
                         $scope.allotList = response.data;
                     }, function() {});
@@ -72,6 +74,7 @@
                         $http({
                             method: 'post',
                             url: baseUrl + 'ProjectHandle/complementhelp/',
+                            withCredentials: true,
                             data: $scope.data
                         }).then(function(response) {
                             console.log(response.data)
