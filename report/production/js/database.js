@@ -122,6 +122,7 @@
                     url = baseUrl + 'replace_show/';
                     checkUrl = baseUrl + 'replace_state/';
                     reUrl = baseUrl + 'replace_reject/';
+                    sUrl = baseUrl + 'global_replace/';
                     $scope.recoverUrl = baseUrl + 'replace_rollBack/';
                     break;
             }
@@ -145,9 +146,6 @@
             }
 
             $rootScope.getData();
-            // $rootScope.shortData = {data:[
-            //         {_id:'001',oldWord:'444',newWord:'555',recorder:'李四',check:'王五',remarks:'错误描述'}
-            //     ]}
             //获取表格的值
             $rootScope.getDesc = function(item) {
                 console.log(item)
@@ -400,7 +398,7 @@
             });
         }
 
-        $scope.recover = function(size){
+        $scope.recover = function(size) {
             $scope.infos.name = '是否恢复到替换前的状态';
             var modalInstance = $uibModal.open({
                 templateUrl: 'myModalContent.html',
@@ -549,14 +547,14 @@
                     $scope.data._id = $scope.rowCollection._id;
                     console.log(urls)
                     $http({
-                        method:'post',
-                        url:urls,
-                        data:$scope.data
-                    }).then(function(response){
-                        $timeout(function(){
+                        method: 'post',
+                        url: urls,
+                        data: $scope.data
+                    }).then(function(response) {
+                        $timeout(function() {
                             $rootScope.getData();
-                        },25)
-                    },function(){
+                        }, 25)
+                    }, function() {
                         console.log('请求失败');
                     })
                     break;
@@ -590,7 +588,7 @@
             request: function(config) {
                 // 请求成功
                 var USER = sessionStorage.getItem('user');
-                if(!USER){
+                if (!USER) {
                     window.location.href = 'login.html';
                 }
                 return config || $q.when(config);
