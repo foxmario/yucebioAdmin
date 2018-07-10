@@ -35,7 +35,7 @@
                             <input st-search="number" class="input-sm form-control" type="search" placeholder="查找 ..." />
                         </th>
                         <th>
-                            <input st-search="reportType" class="input-sm form-control" type="search" placeholder="查找 ..." />
+                            <input st-search="testType" class="input-sm form-control" type="search" placeholder="查找 ..." />
                         </th>
                         <th>
                             <input st-search="buildDate" class="input-sm form-control" type="search" placeholder="查找 ..." />
@@ -49,7 +49,7 @@
                 <tbody>
                     <tr ng-repeat="item in displayedCollection">
                         <td>{{item.number}}</td>
-                        <td>{{item.reportType}}</td>
+                        <td>{{item.testType}}</td>
                         <td>{{item.buildDate}}</td>
                         <td>{{item.status}}</td>
                         <td class="text-center">
@@ -170,11 +170,11 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group" ng-if="method=='发送邮件'">
+                        <div class="form-group" ng-show="method=='发送邮件'">
                             <label class="control-label col-md-2 col-sm-2 col-xs-12">收件人<span class="required">*</span>
                             </label>
                             <div class="col-md-8 col-sm-8 col-xs-12">
-                                <input type="text" class="form-control" ng-model="eMail" name="eMail" required>
+                                <input type="text" class="form-control" ng-model="eAddress" name="eAddress" required>
                             </div>
                         </div>
                         <div class="form-group">
@@ -182,7 +182,7 @@
                             </label>
                             <div class="col-md-8 col-sm-8 col-xs-12">
                                 <button class="btn btn-default btn-sm" ng-click="live()">在线预览</button>
-                                <button class="btn btn-primary btn-sm" ng-click="affirmIssue('sm')" ng-disabled="issueForm.method.$pristine||issueForm.eMail.$invalid">确认发布</button>
+                                <button class="btn btn-primary btn-sm" ng-click="affirmIssue('sm',items)" ng-disabled="issueForm.method.$pristine||issueForm.eAddress.$invalid">确认发布</button>
                             </div>
                         </div>
                     </form>

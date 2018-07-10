@@ -38,47 +38,31 @@
             // $rootScope.getData();
 
 
-            // $rootScope.shortData = [{
-            //             number: 'MT005020180314M001',
-            //             testType: '',
-            //             buildDate: '2018-07-02 09:14:00',
-            //             status: '待审核',
-            //             pdfLink: ''
-            //         }, {
-            //             number: 'MT005020180314M002',
-            //             testType: '',
-            //             buildDate: '2018-07-02 09:14:00',
-            //             status: '已审核',
-            //             pdfLink: 'http://localhost:8080/测试/pdf/web/compressed.tracemonkey-pldi-09.pdf'
-            //         }, {
-            //             number: 'MT005020180314M003',
-            //             testType: '',
-            //             buildDate: '2018-07-02 09:14:00',
-            //             status: '已发布'
-            //         }, {
-            //             number: 'MT005020180314M004',
-            //             testType: '',
-            //             buildDate: '2018-07-02 09:14:00',
-            //             status: '待审核',
-            //             pdfLink: 'http://localhost:8080/测试/pdf/web/compressed.tracemonkey-pldi-09.pdf'
-            //         }]
             switch (href) {
                 case '/reportCheck':
                     $rootScope.shortData = [{
-                        number:'001',
-                        reportType:'',
-                        upDate:'2018-07-02 09:14:00',
-                        status:'待审核'
-                    },{
-                        number:'002',
-                        reportType:'',
-                        upDate:'2018-07-02 09:14:00',
-                        status:'已审核'
-                    },{
-                        number:'003',
-                        reportType:'',
-                        upDate:'2018-07-02 09:14:00',
-                        status:'已发布'
+                        number: 'MT005020180314M001',
+                        testType: 'YuceOne Plus',
+                        buildDate: '2018-07-02 09:14:00',
+                        status: '待审核',
+                        pdfLink: ''
+                    }, {
+                        number: 'MT005020180314M002',
+                        testType: 'YuceOne ICIs',
+                        buildDate: '2018-07-02 09:14:00',
+                        status: '已审核',
+                        pdfLink: 'http://localhost:8080/测试/pdf/web/compressed.tracemonkey-pldi-09.pdf'
+                    }, {
+                        number: 'MT005020180314M003',
+                        testType: 'YuceOne ICIs',
+                        buildDate: '2018-07-02 09:14:00',
+                        status: '已发布'
+                    }, {
+                        number: 'MT005020180314M004',
+                        testType: 'YuceOne ICIs',
+                        buildDate: '2018-07-02 09:14:00',
+                        status: '待审核',
+                        pdfLink: 'http://localhost:8080/测试/pdf/web/compressed.tracemonkey-pldi-09.pdf'
                     }]
                     break;
                 case '/analysisAllot':
@@ -193,7 +177,7 @@
                 console.log(data);
                 file.upload = Upload.upload({
                     url: '',
-                    data: data,
+                    data: data
                 });
 
                 file.upload.then(function(response) {
@@ -209,27 +193,54 @@
 
             }
             //解读管理详细信息上传
-            $scope.upNewPic = function(file) {
-                $scope.file = file;
-                var data = { username: $scope.username, file: file, type: $scope.type };
-                console.log(data);
-                file.upload = Upload.upload({
-                    url: '',
-                    data: data,
-                });
+            $scope.upNewPic = function(items) {
+                console.log(items);
+                if (items.newFile) {
+                    $scope.file = items.newFile;
+                    items.newFile.upload = Upload.upload({
+                        url: '',
+                        data: items
+                    });
 
-                file.upload.then(function(response) {
-                    file.result = response.data;
-                    console.log(response.data);
-                }, function(response) {
-                    // $scope.errorMsg = response.status;
-                }, function(evt) {
-                    // Math.min is to fix IE which reports 200% sometimes
-                    file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
-                });
+                    items.newFile.upload.then(function(response) {
+                        items.newFile.result = response.data;
+                        console.log(response.data);
+                    }, function(response) {
+                        // $scope.errorMsg = response.status;
+                    }, function(evt) {
+                        // Math.min is to fix IE which reports 200% sometimes
+                        items.newFile.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+                    });
+                } else {
+                    $http({
+                        method: 'post',
+                        url: '',
+                        data: items
+                    }).then(function(response) {
+                        // console.log(response.data);
+                    }, function() {
+                        console.log('请求失败')
+                    })
+                }
+
+
             }
 
+            //外包报告上传
+            $scope.reportUp = function(file) {
+                $scope.file = file;
+                $scope.file.upLoad = Upload.upload({
+                    url: '',
+                    data: ''
+                })
+                $scope.file.upLoad.then(function(response) {
 
+                }, function(response) {
+                    console.log('请求失败')
+                }, function(evt) {
+                    file.progress = Math.min(100, parseInt(100.0 + evt.loaded / evt.total));
+                })
+            }
 
 
             //报告审核
@@ -280,7 +291,6 @@
             }
             //确认发布
             $scope.affirmIssue = function(size, item) {
-
                 var modalInstance = $uibModal.open({
                     templateUrl: 'affirmModalContent.html',
                     controller: 'ModalInstanceCtrl',
@@ -294,6 +304,10 @@
                             return $scope.name = 'affirmIssue';
                         },
                         datas: function() {
+                            item.method = $scope.method;
+                            if (item.method == '发送邮件') {
+                                item.eAddress = $scope.eAddress;
+                            }
                             return item;
                         },
                         urls: function() {
@@ -305,8 +319,9 @@
             }
 
             //自检解读生成报告
-            $scope.testReport = function() {
+            $scope.testReport = function(item) {
                 $scope.index = 3;
+                $scope.items = item;
             }
             //详细信息
             $scope.tesDetail = function() {
@@ -353,6 +368,7 @@
             $uibModalInstance.close();
             switch (btnname) {
                 case 'creatReport':
+                    console.log($scope.rowCollection);
                     $http({
                         method: 'post',
                         url: '',
@@ -375,6 +391,7 @@
                     });
                     break;
                 case 'affirmIssue':
+                    console.log($scope.rowCollection);
                     $http({
                         method: 'post',
                         url: '',
