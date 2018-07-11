@@ -47,6 +47,14 @@
                     <label>敏感性</label>
                 </li>
                 <li>
+                    <input type="checkbox" ng-model="therapy_stage" ng-false-value=false ng-init="therapy_stage=false">
+                    <label>治疗阶段</label>
+                </li>
+                <li>
+                    <input type="checkbox" ng-model="ORR" ng-false-value=false ng-init="ORR=false">
+                    <label>ORR</label>
+                </li>
+                <li>
                     <input type="checkbox" ng-model="note" ng-false-value=false ng-init="note=false">
                     <label>临床注解</label>
                 </li>
@@ -98,6 +106,8 @@
                         <th ng-show="drugclinic" st-sort="drugclinic" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">临床试验名</th>
                         <th ng-show="disease" st-sort="disease" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">适应症</th>
                         <th ng-show="sensibility" st-sort="sensibility" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">敏感性</th>
+                        <th ng-show="therapy_stage" st-sort="therapy_stage" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">治疗阶段</th>
+                        <th ng-show="ORR" st-sort="ORR" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">ORR</th>
                         <th ng-show="note" st-sort="note" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">临床注解</th>
                         <th ng-show="evsource" st-sort="evsource" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">证据来源</th>
                         <th ng-show="isGrade" st-sort="grade" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">证据等级</th>
@@ -138,6 +148,12 @@
                         <th ng-show="sensibility">
                             <input st-search="sensibility" class="input-sm form-control" type="search" placeholder="查找 ..." />
                         </th>
+                        <th ng-show="therapy_stage">
+                            <input st-search="therapy_stage" class="input-sm form-control" type="search" placeholder="查找 ..." />
+                        </th>
+                        <th ng-show="ORR">
+                            <input st-search="ORR" class="input-sm form-control" type="search" placeholder="查找 ..." />
+                        </th>
                         <th ng-show="note">
                             <input st-search="note" class="input-sm form-control" type="search" placeholder="查找 ..." />
                         </th>
@@ -176,6 +192,8 @@
                         <td ng-show="drugclinic">{{item.drugclinic}}</td>
                         <td ng-show="disease">{{item.disease}}</td>
                         <td ng-show="sensibility">{{item.sensibility}}</td>
+                        <td ng-show="therapy_stage">{{item.therapy_stage}}</td>
+                        <td ng-show="ORR">{{item.ORR}}</td>
                         <td ng-show="note">{{item.note}}</td>
                         <td ng-show="evsource">{{item.evsource}}</td>
                         <td ng-show="isGrade">{{item.grade}}</td>
@@ -287,6 +305,20 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">治疗阶段<span class="required">*</span>
+                                </label>
+                                <div class="col-md-10 col-sm-10 col-xs-12">
+                                    <input type="text" class="form-control" ng-readonly="true" ng-model="items.update.therapy_stage">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">ORR<span class="required">*</span>
+                                </label>
+                                <div class="col-md-10 col-sm-10 col-xs-12">
+                                    <input type="text" class="form-control" ng-readonly="true" ng-model="items.update.ORR">
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label class="control-label col-md-2 col-sm-2 col-xs-12">临床注解<span class="required">*</span>
                                 </label>
                                 <div class="col-md-10 col-sm-10 col-xs-12">
@@ -394,6 +426,20 @@
                                 </label>
                                 <div class="col-md-10 col-sm-10 col-xs-12">
                                     <select class="select2_single form-control" tabindex="-1" ng-model="items.sensibility" ng-options="x for x in sensitivity"></select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">治疗阶段<span class="required">*</span>
+                                </label>
+                                <div class="col-md-10 col-sm-10 col-xs-12">
+                                    <input type="text" class="form-control" ng-model="items.therapy_stage">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">ORR<span class="required">*</span>
+                                </label>
+                                <div class="col-md-10 col-sm-10 col-xs-12">
+                                    <input type="text" class="form-control" ng-model="items.ORR">
                                 </div>
                             </div>
                             <div class="form-group">
