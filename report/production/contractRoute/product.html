@@ -243,7 +243,7 @@
                     </script>
                     <div class="controllBtn">
                         <button type="button" class="btn btn-warning btn-sm" ng-click="newCreat('sm',items)">新建</button>
-                        <button type="button" class="btn btn-default btn-sm" ng-click="add('sm',items)" ng-disabled="items&&items.isSelected">提交</button>
+                        <button type="button" class="btn btn-default btn-sm" ng-click="add('sm',items)" ng-disabled="items&&items.isSelected||!items">提交</button>
                         <button type="button" class="btn btn-default btn-sm" ng-click="add('sm',items)" ng-disabled="!items||!items.isSelected">修改</button>
                     </div>
                 </div>
