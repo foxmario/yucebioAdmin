@@ -54,7 +54,7 @@
                         <th>
                             <select st-search="tag">
                                 <option value="">所有</option>
-                                <option ng-repeat="item in displayedCollection | unique:'tag'" value="{{item.tag}}">{{item.tag}}</option>
+                                <option ng-repeat="item in shortData.data | unique:'tag'" value="{{item.tag}}">{{item.tag}}</option>
                             </select>
                         </th>
                         <th colspan="6">
@@ -63,13 +63,13 @@
                         <th>
                             <select st-search="status">
                                 <option value="">所有</option>
-                                <option ng-repeat="item in displayedCollection | unique:'status'" value="{{item.status}}">{{item.status}}</option>
+                                <option ng-repeat="item in shortData.data | unique:'status'" value="{{item.status}}">{{item.status}}</option>
                             </select>
                         </th>
                         <th>
                             <select st-search="delay">
                                 <option value="">所有</option>
-                                <option ng-repeat="item in displayedCollection | unique:'delay'" value="{{item.delay}}">{{item.delay}}</option>
+                                <option ng-repeat="item in shortData.data | unique:'delay'" value="{{item.delay}}">{{item.delay}}</option>
                             </select>
                         </th>
                         <th></th>

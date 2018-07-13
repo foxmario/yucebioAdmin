@@ -60,31 +60,31 @@
                         <th>
                             <select st-search="status">
                                 <option value="">所有</option>
-                                <option ng-repeat="item in displayedCollection | unique:'status'" value="{{item.status}}">{{item.status}}</option>
+                                <option ng-repeat="item in shortData.data | unique:'status'" value="{{item.status}}">{{item.status}}</option>
                             </select>
                         </th>
                         <th>
                             <select st-search="expstatus">
                                 <option value="">所有</option>
-                                <option ng-repeat="item in displayedCollection | unique:'expstatus'" value="{{item.expstatus}}">{{item.expstatus}}</option>
+                                <option ng-repeat="item in shortData.data | unique:'expstatus'" value="{{item.expstatus}}">{{item.expstatus}}</option>
                             </select>
                         </th>
                         <th>
                             <select st-search="anastatus">
                                 <option value="">所有</option>
-                                <option ng-repeat="item in displayedCollection | unique:'anastatus'" value="{{item.anastatus}}">{{item.anastatus}}</option>
+                                <option ng-repeat="item in shortData.data | unique:'anastatus'" value="{{item.anastatus}}">{{item.anastatus}}</option>
                             </select>
                         </th>
                         <th>
                             <select st-search="jiedu_status">
                                 <option value="">所有</option>
-                                <option ng-repeat="item in displayedCollection | unique:'jiedu_status'" value="{{item.jiedu_status}}">{{item.jiedu_status}}</option>
+                                <option ng-repeat="item in shortData.data | unique:'jiedu_status'" value="{{item.jiedu_status}}">{{item.jiedu_status}}</option>
                             </select>
                         </th>
                         <th>
                             <select st-search="reportstatus">
                                 <option value="">所有</option>
-                                <option ng-repeat="item in displayedCollection | unique:'reportstatus'" value="{{item.reportstatus}}">{{item.reportstatus}}</option>
+                                <option ng-repeat="item in shortData.data | unique:'reportstatus'" value="{{item.reportstatus}}">{{item.reportstatus}}</option>
                             </select>
                         </th>
                         <th></th>

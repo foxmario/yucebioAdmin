@@ -737,9 +737,13 @@
     //任务管理任务状态
     app.filter('unique', function() {
         return function(arr, field) {
-            var o = {},
+            if(arr){
+                var o = {},
                 i, l = arr.length,
                 r = [];
+            }else{
+                return false;
+            }
             for (i = 0; i < l; i += 1) {
                 o[arr[i][field]] = arr[i];
             }

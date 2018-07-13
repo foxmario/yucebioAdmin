@@ -70,7 +70,7 @@
                 if (href == '/project') {
                     $scope.data = {};
                     $scope.data.projectid = item.projectid;
-                    if($scope.items.isSelected){
+                    if ($scope.items.isSelected) {
                         $http({
                             method: 'post',
                             url: baseUrl + 'ProjectHandle/complementhelp/',
@@ -81,8 +81,8 @@
                             $scope.ordersList = response.data;
                             $scope.ordersList.projectid = item.projectid;
                         }, function() {});
-                    }else{
-                        $scope.ordersList =null;
+                    } else {
+                        $scope.ordersList = null;
                     }
 
                 }
@@ -1031,9 +1031,13 @@
     //任务管理任务状态
     app.filter('unique', function() {
         return function(arr, field) {
-            var o = {},
-                i, l = arr.length,
-                r = [];
+            if (arr) {
+                var o = {},
+                    i, l = arr.length,
+                    r = [];
+            } else {
+                return false;
+            }
             for (i = 0; i < l; i += 1) {
                 o[arr[i][field]] = arr[i];
             }

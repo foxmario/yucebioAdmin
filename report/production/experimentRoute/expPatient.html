@@ -40,19 +40,19 @@
                         <th>
                             <select st-search="infostatus">
                                 <option value="">所有</option>
-                                <option ng-repeat="item in displayedCollection | unique:'infostatus'" value="{{item.infostatus}}">{{item.infostatus}}</option>
+                                <option ng-repeat="item in shortData.data | unique:'infostatus'" value="{{item.infostatus}}">{{item.infostatus}}</option>
                             </select>
                         </th>
                         <th>
                             <select st-search="samplestatus">
                                 <option value="">所有</option>
-                                <option ng-repeat="item in displayedCollection | unique:'samplestatus'" value="{{item.samplestatus}}">{{item.samplestatus}}</option>
+                                <option ng-repeat="item in shortData.data | unique:'samplestatus'" value="{{item.samplestatus}}">{{item.samplestatus}}</option>
                             </select>
                         </th>
                         <th>
                             <select st-search="taskstatus">
                                 <option value="">所有</option>
-                                <option ng-repeat="item in displayedCollection | unique:'taskstatus'" value="{{item.taskstatus}}">{{item.taskstatus}}</option>
+                                <option ng-repeat="item in shortData.data | unique:'taskstatus'" value="{{item.taskstatus}}">{{item.taskstatus}}</option>
                             </select>
                         </th>
                     </tr>
