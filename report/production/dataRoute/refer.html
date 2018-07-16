@@ -271,7 +271,7 @@
                             </div>
                             <div class="form-group">
                                 <button ng-click="picFile = null" ng-show="picFile" class="btn btn-danger btn-sm">移除</button>
-                                <button ng-disabled="!myForm.$valid" ng-click="uploadPic(picFile)" class="btn btn-primary btn-sm">上传</button>
+                                <button ng-disabled="!myForm.$valid" ng-click="uploadPic(picFile)" class="btn btn-primary btn-sm" ng-if="control.add>0">上传</button>
                             </div>
                             <div class="form-group">
                                 <div class="progress">
