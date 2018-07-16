@@ -48,10 +48,7 @@
                     url: url,
                     withCredentials: true
                 }).then(function(response) {
-                    $timeout(function() {
-                        $rootScope.shortData = response.data;
-                    }, 100);
-
+                    $rootScope.shortData = response.data;
                 }, function() {})
             }
             $rootScope.getData();
