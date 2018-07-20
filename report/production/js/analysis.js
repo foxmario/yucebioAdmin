@@ -18,107 +18,110 @@
 
             //获取url
             var href = $location.url();
-
-            // if (href) {
-            //     $rootScope.getData = function() {
-            //         $http({
-            //             method: 'get',
-            //             url: '',
-            //             withCredentials: true
-            //         }).then(function successCallback(respons) {
-            //             $rootScope.shortData = respons.data;
-            //         }, function errorCallback(respons) {
-            //             // document.write(respons.data);
-            //             console.log('请求失败');
-            //         })
-            //     }
-
-            // }
-
-            // $rootScope.getData();
+            var baseUrl = 'http//192.168.1.211:8000/';
+           
 
 
             switch (href) {
                 case '/reportCheck':
-                    $rootScope.shortData = [{
-                        number: 'MT005020180314M001',
-                        testType: 'YuceOne Plus',
-                        buildDate: '2018-07-02 09:14:00',
-                        status: '待审核',
-                        pdfLink: ''
-                    }, {
-                        number: 'MT005020180314M002',
-                        testType: 'YuceOne ICIs',
-                        buildDate: '2018-07-02 09:14:00',
-                        status: '已审核',
-                        pdfLink: 'http://localhost:8080/测试/pdf/web/compressed.tracemonkey-pldi-09.pdf'
-                    }, {
-                        number: 'MT005020180314M003',
-                        testType: 'YuceOne ICIs',
-                        buildDate: '2018-07-02 09:14:00',
-                        status: '已发布'
-                    }, {
-                        number: 'MT005020180314M004',
-                        testType: 'YuceOne ICIs',
-                        buildDate: '2018-07-02 09:14:00',
-                        status: '待审核',
-                        pdfLink: 'http://localhost:8080/测试/pdf/web/compressed.tracemonkey-pldi-09.pdf'
-                    }]
+                    // $rootScope.shortData = [{
+                    //     number: 'MT005020180314M001',
+                    //     testType: 'YuceOne Plus',
+                    //     buildDate: '2018-07-02 09:14:00',
+                    //     status: '待审核',
+                    //     pdfLink: ''
+                    // }, {
+                    //     number: 'MT005020180314M002',
+                    //     testType: 'YuceOne ICIs',
+                    //     buildDate: '2018-07-02 09:14:00',
+                    //     status: '已审核',
+                    //     pdfLink: 'http://localhost:8080/测试/pdf/web/compressed.tracemonkey-pldi-09.pdf'
+                    // }, {
+                    //     number: 'MT005020180314M003',
+                    //     testType: 'YuceOne ICIs',
+                    //     buildDate: '2018-07-02 09:14:00',
+                    //     status: '已发布'
+                    // }, {
+                    //     number: 'MT005020180314M004',
+                    //     testType: 'YuceOne ICIs',
+                    //     buildDate: '2018-07-02 09:14:00',
+                    //     status: '待审核',
+                    //     pdfLink: 'http://localhost:8080/测试/pdf/web/compressed.tracemonkey-pldi-09.pdf'
+                    // }]
+                    var show = baseUrl + 'report_states/';
                     break;
                 case '/analysisAllot':
-                    $rootScope.shortData = [{
-                        number: '001',
-                        reportType: '',
-                        upDate: '2018-07-02 09:14:00',
-                        status: '已上传'
-                    }, {
-                        number: '002',
-                        reportType: '',
-                        upDate: '2018-07-02 09:14:00',
-                        status: '已生成报告',
-                        pdfLink: 'http://localhost:8080/测试/pdf/web/compressed.tracemonkey-pldi-09.pdf'
-                    }, {
-                        number: '003',
-                        reportType: '',
-                        upDate: '2018-07-02 09:14:00',
-                        status: '报告生成中'
-                    }, {
-                        number: '004',
-                        reportType: '',
-                        upDate: '2018-07-02 09:14:00',
-                        status: '已生成报告'
-                    }]
+                    // $rootScope.shortData = [{
+                    //     number: '001',
+                    //     reportType: '',
+                    //     upDate: '2018-07-02 09:14:00',
+                    //     status: '已上传'
+                    // }, {
+                    //     number: '002',
+                    //     reportType: '',
+                    //     upDate: '2018-07-02 09:14:00',
+                    //     status: '已生成报告',
+                    //     pdfLink: 'http://localhost:8080/测试/pdf/web/compressed.tracemonkey-pldi-09.pdf'
+                    // }, {
+                    //     number: '003',
+                    //     reportType: '',
+                    //     upDate: '2018-07-02 09:14:00',
+                    //     status: '报告生成中'
+                    // }, {
+                    //     number: '004',
+                    //     reportType: '',
+                    //     upDate: '2018-07-02 09:14:00',
+                    //     status: '已生成报告'
+                    // }]
+                    var show = baseUrl + 'report_showW/';
                     break;
                 case '/selfTest':
-                    $rootScope.shortData = [{
-                        number: '18A00051AZ01',
-                        testType: 'YuceOne Plus',
-                        buildDate: '2018-07-02 09:14:00',
-                        status: '分析中',
-                        pdfLink: ''
-                    }, {
-                        number: '18A00051AZ02',
-                        testType: 'YuceOne ICIs',
-                        buildDate: '2018-07-02 09:14:00',
-                        status: '分析完毕',
-                        pdfLink: 'http://localhost:8080/测试/pdf/web/compressed.tracemonkey-pldi-09.pdf'
-                    }, {
-                        number: '18A00051AZ03',
-                        testType: 'YuceOneTarget',
-                        buildDate: '2018-07-02 09:14:00',
-                        status: '报告生成中'
-                    }, {
-                        number: '18A00051AZ04',
-                        testType: 'YuceOneTarget',
-                        buildDate: '2018-07-02 09:14:00',
-                        status: '报告已生成',
-                        pdfLink: 'http://localhost:8080/测试/pdf/web/compressed.tracemonkey-pldi-09.pdf'
-                    }]
+                    // $rootScope.shortData = [{
+                    //     number: '18A00051AZ01',
+                    //     testType: 'YuceOne Plus',
+                    //     buildDate: '2018-07-02 09:14:00',
+                    //     status: '分析中',
+                    //     pdfLink: ''
+                    // }, {
+                    //     number: '18A00051AZ02',
+                    //     testType: 'YuceOne ICIs',
+                    //     buildDate: '2018-07-02 09:14:00',
+                    //     status: '分析完毕',
+                    //     pdfLink: 'http://localhost:8080/测试/pdf/web/compressed.tracemonkey-pldi-09.pdf'
+                    // }, {
+                    //     number: '18A00051AZ03',
+                    //     testType: 'YuceOneTarget',
+                    //     buildDate: '2018-07-02 09:14:00',
+                    //     status: '报告生成中'
+                    // }, {
+                    //     number: '18A00051AZ04',
+                    //     testType: 'YuceOneTarget',
+                    //     buildDate: '2018-07-02 09:14:00',
+                    //     status: '报告已生成',
+                    //     pdfLink: 'http://localhost:8080/测试/pdf/web/compressed.tracemonkey-pldi-09.pdf'
+                    // }]
+                    var show = baseUrl + 'report_showZ/';
                     break;
             }
 
 
+             if (href) {
+                $rootScope.getData = function() {
+                    $http({
+                        method: 'get',
+                        url: show,
+                        withCredentials: true
+                    }).then(function successCallback(respons) {
+                        $rootScope.shortData = respons.data;
+                    }, function errorCallback(respons) {
+                        // document.write(respons.data);
+                        console.log('请求失败');
+                    })
+                }
 
+            }
+
+            $rootScope.getData();
 
 
 
