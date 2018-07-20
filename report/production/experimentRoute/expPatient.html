@@ -63,12 +63,12 @@
                             {{item.patientid}}
                         </td>
                         <td>{{item.patientname}}</td>
-                        <td>{{item.age}}</td>
-                        <td>{{item.gender}}</td>
+                        <td class="text-center">{{item.age}}</td>
+                        <td class="text-center">{{item.gender}}</td>
                         <td>{{item.tumortype}}</td>
-                        <td>{{item.infostatus}}</td>
-                        <td>{{item.samplestatus}}</td>
-                        <td>{{item.taskstatus}}</td>
+                        <td class="text-center">{{item.infostatus}}</td>
+                        <td class="text-center">{{item.samplestatus}}</td>
+                        <td class="text-center">{{item.taskstatus}}</td>
                     </tr>
                 </tbody>
                 <tfoot>
@@ -268,7 +268,7 @@
                         </form>
                     </div>
                     <div class="controllBtn">
-                        <button type="button" class="btn btn-default" ng-click="addPatient(patient)" ng-disabled="patientForm.$invalid||patientForm.$pristine">添加</button>
+                        <button type="button" class="btn btn-primary" ng-click="addPatient(patient)" ng-disabled="patientForm.$invalid||patientForm.$pristine">添加</button>
                     </div>
                 </div>
                 <div role="tabpanel" class="tab-pane fade" aria-labelledby="profile-tab">

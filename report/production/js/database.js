@@ -493,12 +493,12 @@
                         method: 'post',
                         url: urls.delUrl,
                         data: $scope.rowCollection
-                    }).then(function successCallback() {
-
+                    }).then(function successCallback(response) {
+                        $rootScope.message = response.data;
                         $timeout(function() {
                             $rootScope.getData();
-
-                        }, 25)
+                            $rootScope.message = null;
+                        }, 25);
                     }, function errorCallback() {
                         console.log('请求失败');
                     })
@@ -517,11 +517,12 @@
                         method: 'post',
                         url: urls.sUrl,
                         data: $scope.rowCollection
-                    }).then(function successCallback() {
+                    }).then(function successCallback(response) {
+                        $rootScope.message = response.data;
                         $timeout(function() {
                             $rootScope.getData();
-
-                        }, 25)
+                            $rootScope.message = null;
+                        }, 25);
                     }, function errorCallback() {
                         console.log('请求失败');
                     })
@@ -536,10 +537,11 @@
                         url: urls.reUrl,
                         data: $scope.data
                     }).then(function(response) {
+                        $rootScope.message = response.data;
                         $timeout(function() {
                             $rootScope.getData();
-
-                        }, 25)
+                            $rootScope.message = null;
+                        }, 25);
                     }, function() {})
                     break;
                 case 'recover':
@@ -551,9 +553,11 @@
                         url: urls,
                         data: $scope.data
                     }).then(function(response) {
+                        $rootScope.message = response.data;
                         $timeout(function() {
                             $rootScope.getData();
-                        }, 25)
+                            $rootScope.message = null;
+                        }, 25);
                     }, function() {
                         console.log('请求失败');
                     })
@@ -565,10 +569,11 @@
                         url: urls.checkUrl,
                         data: $scope.rowCollection
                     }).then(function successCallback(response) {
+                        $rootScope.message = response.data;
                         $timeout(function() {
                             $rootScope.getData();
-
-                        }, 25)
+                            $rootScope.message = null;
+                        }, 25);
                     }, function errorCallback() {
                         console.log('请求失败')
                     })

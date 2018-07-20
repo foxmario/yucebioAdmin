@@ -77,16 +77,16 @@
                 </thead>
                 <tbody>
                     <tr st-select-row="item" st-select-mode="single" ng-repeat="item in displayedCollection" ng-click="getDesc(item)">
-                        <td>{{item.tag}}</td>
+                        <td class="text-center">{{item.tag}}</td>
                         <td>{{item.projectid}}</td>
                         <td>{{item.duty}}</td>
                         <td>{{item.start_time.$date|date:'yyyy-MM-dd HH:mm'}}</td>
                         <td>{{item.deadline.$date|date:'yyyy-MM-dd HH:mm'}}</td>
                         <td>{{item.starttime}}</td>
                         <td>{{item.duration}}</td>
-                        <td>{{item.status}}</td>
-                        <td>{{item.delay}}</td>
-                        <td>
+                        <td class="text-center">{{item.status}}</td>
+                        <td class="text-center">{{item.delay}}</td>
+                        <td class="text-center">
                             <select ng-change="orderOperate('sm',value,item)" ng-model="value">
                                 <option value="审核">审核</option>
                                 <option value="暂停">暂停</option>

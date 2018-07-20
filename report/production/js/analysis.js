@@ -228,10 +228,16 @@
 
             //外包报告上传
             $scope.reportUp = function(file) {
+                $scope.data ={};
+                $scope.data.file = file;
                 $scope.file = file;
+                $scope.data.number = $scope.items.number;
+                $scope.data.reportType = $scope.reportType;
+                console.log($scope.data);
                 $scope.file.upLoad = Upload.upload({
-                    url: '',
-                    data: ''
+                    url: 'http://192.168.1.138:8000/report_buildW/',
+                    data: $scope.data,
+                    withCredentials: true
                 })
                 $scope.file.upLoad.then(function(response) {
 

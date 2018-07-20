@@ -104,8 +104,8 @@
                         <th ng-show="drugDesc" st-sort="drugDesc" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">药物描述</th>
                         <th ng-show="infosource" st-sort="infosource" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">信息来源</th>
                         <th ng-show="last_operetion" st-sort="last_operetion" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">记录人</th>
-                        <th ng-show="date" st-sort="date" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc" st-sort-default="reverse">最后更新</th>
-                        <th ng-show="state" st-sort="state" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">更新提示</th>
+                        <th ng-show="date" st-sort="date" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">最后更新</th>
+                        <th ng-show="state" st-sort="state" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc" st-sort-default="reverse">更新提示</th>
                     </tr>
                     <tr>
                         <th ng-show="drugnumber">
@@ -435,6 +435,13 @@
                                 </div>
                             </div>
                         </form>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="alert alert-success alert-dismissible fade in" role="alert" ng-if="message">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                            </button>
+                            <strong>提示：</strong> {{message}}
+                        </div>
                     </div>
                     <div ng-controller="ModalDemoCtrl">
                         <script type="text/ng-template" id="myModalContent.html">
