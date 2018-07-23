@@ -321,153 +321,328 @@
                     </div>
                 </div>
                 <div role="tabpanel" class="tab-pane fade" aria-labelledby="profile-tab">
-                    <div class="col-xs-12 col-sm-6">
-                        <form class="form-horizontal form-label-left">
-                            <div class="form-group">
-                                <label class="control-label col-md-2 col-sm-2 col-xs-12">患者编号<span class="required">*</span>
-                                </label>
-                                <div class="col-md-10 col-sm-10 col-xs-12">
-                                    <input type="text" class="form-control" ng-model="items.patientid" ng-readonly="true">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-lg-4">
+                            <form class="form-horizontal form-label-left">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="control-label col-md-2 col-sm-2 col-xs-12">患者编号<span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-10 col-sm-10 col-xs-12">
+                                            <input type="text" class="form-control" ng-model="items.patientid" ng-readonly="true">
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-2 col-sm-2 col-xs-12">患者姓名<span class="required">*</span>
-                                </label>
-                                <div class="col-md-10 col-sm-10 col-xs-12">
-                                    <input type="text" class="form-control" ng-model="items.patientname" ng-readonly="true">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="control-label col-md-2 col-sm-2 col-xs-12">患者姓名<span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-10 col-sm-10 col-xs-12">
+                                            <input type="text" class="form-control" ng-model="items.patientname" ng-readonly="true">
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-2 col-sm-2 col-xs-12">肿瘤类型<span class="required">*</span>
-                                </label>
-                                <div class="col-md-10 col-sm-10 col-xs-12">
-                                    <input type="text" class="form-control" ng-model="items.tumortype">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="control-label col-md-2 col-sm-2 col-xs-12">肿瘤类型<span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-10 col-sm-10 col-xs-12">
+                                            <input type="text" class="form-control" ng-model="items.tumortype">
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-2 col-sm-2 col-xs-12">患者性别<span class="required">*</span>
-                                </label>
-                                <div class="col-md-10 col-sm-10 col-xs-12">
-                                    <input type="text" class="form-control" ng-model="items.gender" ng-readonly="true">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="control-label col-md-2 col-sm-2 col-xs-12">患者性别<span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-10 col-sm-10 col-xs-12">
+                                            <input type="text" class="form-control" ng-model="items.gender" ng-readonly="true">
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-2 col-sm-2 col-xs-12">患者年龄<span class="required">*</span>
-                                </label>
-                                <div class="col-md-10 col-sm-10 col-xs-12">
-                                    <input type="text" class="form-control" ng-model="items.age" ng-readonly="true">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="control-label col-md-2 col-sm-2 col-xs-12">患者年龄<span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-10 col-sm-10 col-xs-12">
+                                            <input type="text" class="form-control" ng-model="items.age" ng-readonly="true">
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-2 col-sm-2 col-xs-12">肿瘤分级<span class="required">*</span>
-                                </label>
-                                <div class="col-md-10 col-sm-10 col-xs-12">
-                                    <input type="text" class="form-control" ng-model="items.level">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="control-label col-md-2 col-sm-2 col-xs-12">肿瘤分级<span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-10 col-sm-10 col-xs-12">
+                                            <input type="text" class="form-control" ng-model="items.level">
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-2 col-sm-2 col-xs-12">送检单位<span class="required">*</span>
-                                </label>
-                                <div class="col-md-10 col-sm-10 col-xs-12">
-                                    <input type="text" class="form-control" ng-model="items.hospital">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="control-label col-md-2 col-sm-2 col-xs-12">送检单位<span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-10 col-sm-10 col-xs-12">
+                                            <input type="text" class="form-control" ng-model="items.hospital">
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-2 col-sm-2 col-xs-12">家族遗传史<span class="required">*</span>
-                                </label>
-                                <div class="col-md-10 col-sm-10 col-xs-12">
-                                    <input type="text" class="form-control" ng-model="items.relative">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="control-label col-md-2 col-sm-2 col-xs-12">家族遗传史<span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-10 col-sm-10 col-xs-12">
+                                            <input type="text" class="form-control" ng-model="items.relative">
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-2 col-sm-2 col-xs-12">吸烟史<span class="required">*</span>
-                                </label>
-                                <div class="col-md-10 col-sm-10 col-xs-12">
-                                    <input type="text" class="form-control" ng-model="items.smoker">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="control-label col-md-2 col-sm-2 col-xs-12">吸烟史<span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-10 col-sm-10 col-xs-12">
+                                            <input type="text" class="form-control" ng-model="items.smoker">
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-2 col-sm-2 col-xs-12">个人病史<span class="required">*</span>
-                                </label>
-                                <div class="col-md-10 col-sm-10 col-xs-12">
-                                    <input type="text" class="form-control" ng-model="items.mhistory">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="control-label col-md-2 col-sm-2 col-xs-12">个人病史<span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-10 col-sm-10 col-xs-12">
+                                            <input type="text" class="form-control" ng-model="items.mhistory">
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="col-xs-12 col-sm-6">
-                        <form class="form-horizontal form-label-left">
-                            <div class="form-group">
-                                <label class="control-label col-md-2 col-sm-2 col-xs-12">PDL1治疗<span class="required">*</span>
-                                </label>
-                                <div class="col-md-10 col-sm-10 col-xs-12">
-                                    <input type="text" class="form-control" ng-model="items.PDL1">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="control-label col-md-2 col-sm-2 col-xs-12">肿瘤规范名称<span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-10 col-sm-10 col-xs-12">
+                                            <input type="text" class="form-control" ng-model="items.tumorName">
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-2 col-sm-2 col-xs-12">MSI/MMR<span class="required">*</span>
-                                </label>
-                                <div class="col-md-10 col-sm-10 col-xs-12">
-                                    <input type="text" class="form-control" ng-model="items.MSIMMR">
+                            </form>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-lg-4">
+                            <form class="form-horizontal form-label-left">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="control-label col-md-2 col-sm-2 col-xs-12">PDL1治疗<span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-10 col-sm-10 col-xs-12">
+                                            <input type="text" class="form-control" ng-model="items.PDL1">
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-2 col-sm-2 col-xs-12">手术史<span class="required">*</span>
-                                </label>
-                                <div class="col-md-10 col-sm-10 col-xs-12">
-                                    <input type="text" class="form-control" ng-model="items.sugery">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="control-label col-md-2 col-sm-2 col-xs-12">MSI/MMR<span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-10 col-sm-10 col-xs-12">
+                                            <input type="text" class="form-control" ng-model="items.MSIMMR">
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-2 col-sm-2 col-xs-12">化疗史<span class="required">*</span>
-                                </label>
-                                <div class="col-md-10 col-sm-10 col-xs-12">
-                                    <input type="text" class="form-control" ng-model="items.chemshistory">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="control-label col-md-2 col-sm-2 col-xs-12">手术史<span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-10 col-sm-10 col-xs-12">
+                                            <input type="text" class="form-control" ng-model="items.sugery">
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-2 col-sm-2 col-xs-12">靶向治疗史<span class="required">*</span>
-                                </label>
-                                <div class="col-md-10 col-sm-10 col-xs-12">
-                                    <input type="text" class="form-control" ng-model="items.targethistory">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="control-label col-md-2 col-sm-2 col-xs-12">化疗史<span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-10 col-sm-10 col-xs-12">
+                                            <input type="text" class="form-control" ng-model="items.chemshistory">
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-2 col-sm-2 col-xs-12">免疫治疗史<span class="required">*</span>
-                                </label>
-                                <div class="col-md-10 col-sm-10 col-xs-12">
-                                    <input type="text" class="form-control" ng-model="items.immuhistory">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="control-label col-md-2 col-sm-2 col-xs-12">靶向治疗史<span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-10 col-sm-10 col-xs-12">
+                                            <input type="text" class="form-control" ng-model="items.targethistory">
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-2 col-sm-2 col-xs-12">器官移植史<span class="required">*</span>
-                                </label>
-                                <div class="col-md-10 col-sm-10 col-xs-12">
-                                    <input type="text" class="form-control" ng-model="items.explant">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="control-label col-md-2 col-sm-2 col-xs-12">免疫治疗史<span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-10 col-sm-10 col-xs-12">
+                                            <input type="text" class="form-control" ng-model="items.immuhistory">
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-2 col-sm-2 col-xs-12">过往基因检测结果<span class="required">*</span>
-                                </label>
-                                <div class="col-md-10 col-sm-10 col-xs-12">
-                                    <input type="text" class="form-control" ng-model="items.genetest">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="control-label col-md-2 col-sm-2 col-xs-12">器官移植史<span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-10 col-sm-10 col-xs-12">
+                                            <input type="text" class="form-control" ng-model="items.explant">
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-2 col-sm-2 col-xs-12">经办人（销售）<span class="required">*</span>
-                                </label>
-                                <div class="col-md-10 col-sm-10 col-xs-12">
-                                    <input type="text" class="form-control" ng-model="items.sales">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="control-label col-md-2 col-sm-2 col-xs-12">过往基因检测结果<span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-10 col-sm-10 col-xs-12">
+                                            <input type="text" class="form-control" ng-model="items.genetest">
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-2 col-sm-2 col-xs-12">原始报告<span class="required">*</span>
-                                </label>
-                                <div class="col-md-10 col-sm-10 col-xs-12">
-                                    <input type="file" class="form-control" ng-model="items.initFile" style="height: 100%;" accept="image/*" ngf-select>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="control-label col-md-2 col-sm-2 col-xs-12">经办人（销售）<span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-10 col-sm-10 col-xs-12">
+                                            <input type="text" class="form-control" ng-model="items.sales">
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </form>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="control-label col-md-2 col-sm-2 col-xs-12">样本类型<span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-10 col-sm-10 col-xs-12">
+                                            <input type="text" class="form-control" ng-model="items.sampleType">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="control-label col-md-2 col-sm-2 col-xs-12">公司盖章<span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-10 col-sm-10 col-xs-12">
+                                            <select ng-model="items.company" class="form-control">
+                                                <option value="是">是</option>
+                                                <option value="否">否</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-lg-4">
+                            <form class="form-horizontal">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="control-label col-md-2 col-sm-2 col-xs-12">电子邮箱<span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-10 col-sm-10 col-xs-12">
+                                            <input type="text" class="form-control" ng-model="items.email">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="control-label col-md-2 col-sm-2 col-xs-12">样本编号<span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-10 col-sm-10 col-xs-12">
+                                            <input type="text" class="form-control" ng-model="items.sampleId">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="control-label col-md-2 col-sm-2 col-xs-12">取样部位<span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-10 col-sm-10 col-xs-12">
+                                            <input type="text" class="form-control" ng-model="items.location">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="control-label col-md-2 col-sm-2 col-xs-12">报告日期<span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-10 col-sm-10 col-xs-12">
+                                            <input type="text" class="form-control" ng-model="items.reportDate">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="control-label col-md-2 col-sm-2 col-xs-12">报告编号<span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-10 col-sm-10 col-xs-12">
+                                            <input type="text" class="form-control" ng-model="items.reportId">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="control-label col-md-2 col-sm-2 col-xs-12">实验负责人<span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-10 col-sm-10 col-xs-12">
+                                            <input type="text" class="form-control" ng-model="items.experiment">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="control-label col-md-2 col-sm-2 col-xs-12">报告审核人<span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-10 col-sm-10 col-xs-12">
+                                            <input type="text" class="form-control" ng-model="items.check">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="control-label col-md-2 col-sm-2 col-xs-12">采样日期<span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-10 col-sm-10 col-xs-12">
+                                            <input type="text" class="form-control" ng-model="items.gatheDate">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="control-label col-md-2 col-sm-2 col-xs-12">收样日期<span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-10 col-sm-10 col-xs-12">
+                                            <input type="text" class="form-control" ng-model="items.receiveDate">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="control-label col-md-2 col-sm-2 col-xs-12">解读负责人<span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-10 col-sm-10 col-xs-12">
+                                            <input type="text" class="form-control" ng-model="items.analysis">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="control-label col-md-2 col-sm-2 col-xs-12">肿瘤纯度评估<span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-10 col-sm-10 col-xs-12">
+                                            <input type="text" class="form-control" ng-model="items.tumorPurity">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="control-label col-md-2 col-sm-2 col-xs-12">原始报告<span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-10 col-sm-10 col-xs-12">
+                                            <input type="file" class="form-control" ng-model="items.initFile" style="height: 100%;" accept="image/*" ngf-select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                     <div class="controllBtn">
                         <button class="btn btn-primary" ng-click="ptModify(items)" ng-disabled="!items.isSelected">修改</button>

@@ -54,7 +54,7 @@
                         <td>{{item.status}}</td>
                         <td class="text-center">
                             <button class="btn-primary btn btn-xs" ng-if="item.status=='已上传'" ng-click="creatReport('sm',item)">生成报告</button>
-                            <button class="btn-primary btn btn-xs" ng-if="item.status=='已生成报告'" ng-click="getDesc(item)">详细信息</button>
+                            <button class="btn-primary btn btn-xs" ng-if="item.status=='报告已生成'" ng-click="getDesc(item)">详细信息</button>
                         </td>
                     </tr>
                 </tbody>

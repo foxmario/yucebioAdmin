@@ -18,8 +18,8 @@
 
             //获取url
             var href = $location.url();
-            // var baseUrl = 'http://192.168.1.211:8000/';
-            var baseUrl = 'http://192.168.1.138:8000/';
+            var baseUrl = 'http://192.168.1.211:8000/';
+            // var baseUrl = 'http://192.168.1.138:8000/';
            
 
 
