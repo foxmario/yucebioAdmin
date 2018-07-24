@@ -1,21 +1,73 @@
 <div class="x_panel">
     <div class="x_title">
         <h2>产品管理</h2>
-        <ul class="nav navbar-right panel_toolbox">
-            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-            </li>
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">设置1</a>
-                    </li>
-                    <li><a href="#">设置2</a>
-                    </li>
-                </ul>
-            </li>
-            <li><a class="close-link"><i class="fa fa-close"></i></a>
-            </li>
-        </ul>
+        <div class="btn-group pull-right" uib-dropdown>
+            <button id="single-button" type="button" class="btn btn-success btn-sm" uib-dropdown-toggle>
+                筛选 <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu filter" ng-click="$event.stopPropagation();">
+                <li>
+                    <input type="checkbox" ng-model="productid" ng-false-value=false ng-init="productid=true">
+                    <label>产品编号</label>
+                </li>
+                <li>
+                    <input type="checkbox" ng-model="productname" ng-false-value=false ng-init="productname=true">
+                    <label>产品名称</label>
+                </li>
+                <li>
+                    <input type="checkbox" ng-model="book" ng-false-value=false ng-init="book=false">
+                    <label>产品手册</label>
+                </li>
+                <li>
+                    <input type="checkbox" ng-model="config" ng-false-value=false ng-init="config=false">
+                    <label>产品配置</label>
+                </li>
+                <li>
+                    <input type="checkbox" ng-model="period" ng-false-value=false ng-init="period=false">
+                    <label>产品周期</label>
+                </li>
+                <li>
+                    <input type="checkbox" ng-model="normaltype" ng-false-value=false ng-init="normaltype=true">
+                    <label>样本类型(control)</label>
+                </li>
+                <li>
+                    <input type="checkbox" ng-model="normalsize" ng-false-value=false ng-init="normalsize=true">
+                    <label>测序数据量(control)</label>
+                </li>
+                <li>
+                    <input type="checkbox" ng-model="tumortype" ng-false-value=false ng-init="tumortype=true">
+                    <label>样本类型(case)</label>
+                </li>
+                <li>
+                    <input type="checkbox" ng-model="tumorsize" ng-false-value=false ng-init="tumorsize=true">
+                    <label>测序数据量(case)</label>
+                </li>
+                <li>
+                    <input type="checkbox" ng-model="platform" ng-false-value=false ng-init="platform=false">
+                    <label>技术平台</label>
+                </li>
+                <li>
+                    <input type="checkbox" ng-model="bestuptime" ng-false-value=false ng-init="bestuptime=false">
+                    <label>最优上机时间</label>
+                </li>
+                <li>
+                    <input type="checkbox" ng-model="worstuptime" ng-false-value=false ng-init="worstuptime=false">
+                    <label>最坏上机时间</label>
+                </li>
+                <li>
+                    <input type="checkbox" ng-model="chip" ng-false-value=false ng-init="chip=true">
+                    <label>生产芯片</label>
+                </li>
+                <li>
+                    <input type="checkbox" ng-model="strategy" ng-false-value=false ng-init="strategy=false">
+                    <label>测序策略</label>
+                </li>
+                <li>
+                    <input type="checkbox" ng-model="moletag" ng-false-value=false ng-init="moletag=true">
+                    <label>分子标签建库</label>
+                </li>
+            </ul>
+        </div>
         <div class="clearfix"></div>
     </div>
     <!--stSafeSrc属性控制表格START-->
@@ -24,21 +76,21 @@
             <table st-table='displayedCollection' st-safe-src="shortData.data" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0">
                 <thead>
                     <tr class="frist-head">
-                        <th st-sort="taskNumber" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">产品编号</th>
-                        <th st-sort="taskStatu" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">产品名称</th>
-                        <th st-sort="studyStatu" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">产品手册</th>
-                        <th st-sort="cancerType" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">产品配置</th>
-                        <th st-sort="personNumber" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">产品周期</th>
-                        <th st-sort="personName" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">样本类型(control)</th>
-                        <th st-sort="normalsize" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">测序数据量(control)</th>
-                        <th st-sort="tumortype" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">样本类型(case)</th>
-                        <th st-sort="tumorsize" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">测序数据量(case)</th>
-                        <th st-sort="platform" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">技术平台</th>
-                        <th st-sort="bestuptime" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">最优上机时间</th>
-                        <th st-sort="worstuptime" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">最坏上机时间</th>
-                        <th st-sort="chip" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">生产芯片</th>
-                        <th st-sort="strategy" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">测序策略</th>
-                        <th st-sort="moletag" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">分子标签建库</th>
+                        <th ng-show="productid" st-sort="productid" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">产品编号</th>
+                        <th ng-show="productname" st-sort="productname" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">产品名称</th>
+                        <th ng-show="book" st-sort="book" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">产品手册</th>
+                        <th ng-show="config" st-sort="config" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">产品配置</th>
+                        <th ng-show="period" st-sort="period" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">产品周期</th>
+                        <th ng-show="normaltype" st-sort="normaltype" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">样本类型(control)</th>
+                        <th ng-show="normalsize" st-sort="normalsize" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">测序数据量(control)</th>
+                        <th ng-show="tumortype" st-sort="tumortype" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">样本类型(case)</th>
+                        <th ng-show="tumorsize" st-sort="tumorsize" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">测序数据量(case)</th>
+                        <th ng-show="platform" st-sort="platform" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">技术平台</th>
+                        <th ng-show="bestuptime" st-sort="bestuptime" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">最优上机时间</th>
+                        <th ng-show="worstuptime" st-sort="worstuptime" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">最坏上机时间</th>
+                        <th ng-show="chip" st-sort="chip" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">生产芯片</th>
+                        <th ng-show="strategy" st-sort="strategy" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">测序策略</th>
+                        <th ng-show="moletag" st-sort="moletag" st-skip-natural="true" st-class-ascent="font fa-sort-amount-asc" st-class-descent="font fa-sort-amount-desc">分子标签建库</th>
                     </tr>
                     <tr>
                         <th colspan="16">
@@ -48,23 +100,23 @@
                 </thead>
                 <tbody>
                     <tr st-select-row="item" st-select-mode="single" ng-repeat="item in displayedCollection" ng-click="getDesc(item)">
-                        <td class="text-center">
+                        <td ng-show="productid" class="text-center">
                             {{item.productid}}
                         </td>
-                        <td>{{item.productname}}</td>
-                        <td>{{item.book}}</td>
-                        <td>{{item.config}}</td>
-                        <td>{{item.period}}</td>
-                        <td>{{item.normaltype}}</td>
-                        <td>{{item.normalsize}}</td>
-                        <td>{{item.tumortype}}</td>
-                        <td>{{item.tumorsize}}</td>
-                        <td>{{item.platform}}</td>
-                        <td>{{item.bestuptime}}</td>
-                        <td>{{item.worstuptime}}</td>
-                        <td>{{item.chip}}</td>
-                        <td>{{item.strategy}}</td>
-                        <td>{{item.moletag}}</td>
+                        <td ng-show="productname">{{item.productname}}</td>
+                        <td ng-show="book">{{item.book}}</td>
+                        <td ng-show="config">{{item.config}}</td>
+                        <td ng-show="period">{{item.period}}</td>
+                        <td ng-show="normaltype">{{item.normaltype}}</td>
+                        <td ng-show="normalsize">{{item.normalsize}}</td>
+                        <td ng-show="tumortype">{{item.tumortype}}</td>
+                        <td ng-show="tumorsize">{{item.tumorsize}}</td>
+                        <td ng-show="platform">{{item.platform}}</td>
+                        <td ng-show="bestuptime">{{item.bestuptime}}</td>
+                        <td ng-show="worstuptime">{{item.worstuptime}}</td>
+                        <td ng-show="chip">{{item.chip}}</td>
+                        <td ng-show="strategy">{{item.strategy}}</td>
+                        <td ng-show="moletag">{{item.moletag}}</td>
                     </tr>
                 </tbody>
                 <tfoot>
@@ -249,7 +301,7 @@
                     <div class="login_wrapper">
                         <form name="myForm">
                             <fieldset>
-                                <legend>文件上传</legend>
+                                <legend>文件上传 <a href="templateExcel/产品批量导入表.xlsx" style="float:right;">模版下载</a></legend></legend>
                                 <div class="form-group">
                                     <input type="file" ngf-select ng-model="picFile" name="filename" accept=".xlsx" required ngf-model-invalid="errorFile">
                                     <i ng-show="myForm.file.$error.required">*请选择文件</i>

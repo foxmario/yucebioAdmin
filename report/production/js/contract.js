@@ -93,22 +93,23 @@
                 delete items.samples;
                 delete items.infostatus;
                 delete items.isSelected;
-                $http({
-                    method: 'post',
-                    url: baseUrl + 'PatientHandle/modify/',
-                    data: items
-                }).then(function(response) {
-                    $rootScope.getData();
-                    var data = response.data;
-                    $scope.error = data.error;
-                    $scope.success = data.success;
-                    $scope.warning = data.warning;
-                    $timeout(function() {
-                        $scope.error = null;
-                        $scope.success = null;
-                        $scope.warning = null;
-                    }, 10000)
-                }, function() {})
+                console.log(items);
+                // $http({
+                //     method: 'post',
+                //     url: baseUrl + 'PatientHandle/modify/',
+                //     data: items
+                // }).then(function(response) {
+                //     $rootScope.getData();
+                //     var data = response.data;
+                //     $scope.error = data.error;
+                //     $scope.success = data.success;
+                //     $scope.warning = data.warning;
+                //     $timeout(function() {
+                //         $scope.error = null;
+                //         $scope.success = null;
+                //         $scope.warning = null;
+                //     }, 10000)
+                // }, function() {})
             }
 
             //任务分配
