@@ -18,112 +18,118 @@
 
             //获取url
             var href = $location.url();
-            var baseUrl = 'http://192.168.1.211:8000/';
-            // var baseUrl = 'http://192.168.1.138:8000/';
-           
+            // var baseUrl = 'http://192.168.1.211:8000/';
+            var baseUrl = 'http://192.168.1.138:8000/';
+
 
 
             switch (href) {
                 case '/reportCheck':
-                    // $rootScope.shortData = [{
-                    //     number: 'MT005020180314M001',
-                    //     testType: 'YuceOne Plus',
-                    //     buildDate: '2018-07-02 09:14:00',
-                    //     status: '待审核',
-                    //     pdfLink: ''
-                    // }, {
-                    //     number: 'MT005020180314M002',
-                    //     testType: 'YuceOne ICIs',
-                    //     buildDate: '2018-07-02 09:14:00',
-                    //     status: '已审核',
-                    //     pdfLink: 'http://localhost:8080/测试/pdf/web/compressed.tracemonkey-pldi-09.pdf'
-                    // }, {
-                    //     number: 'MT005020180314M003',
-                    //     testType: 'YuceOne ICIs',
-                    //     buildDate: '2018-07-02 09:14:00',
-                    //     status: '已发布'
-                    // }, {
-                    //     number: 'MT005020180314M004',
-                    //     testType: 'YuceOne ICIs',
-                    //     buildDate: '2018-07-02 09:14:00',
-                    //     status: '待审核',
-                    //     pdfLink: 'http://localhost:8080/测试/pdf/web/compressed.tracemonkey-pldi-09.pdf'
-                    // }]
+                    $rootScope.shortData = {
+                        data: [{
+                            number: 'MT005020180314M001',
+                            testType: 'YuceOne Plus',
+                            buildDate: '2018-07-02 09:14:00',
+                            status: '待审核',
+                            pdfLink: ''
+                        }, {
+                            number: 'MT005020180314M002',
+                            testType: 'YuceOne ICIs',
+                            buildDate: '2018-07-02 09:14:00',
+                            status: '已审核',
+                            pdfLink: 'http://localhost:8080/测试/pdf/web/compressed.tracemonkey-pldi-09.pdf'
+                        }, {
+                            number: 'MT005020180314M003',
+                            testType: 'YuceOne ICIs',
+                            buildDate: '2018-07-02 09:14:00',
+                            status: '已发布'
+                        }, {
+                            number: 'MT005020180314M004',
+                            testType: 'YuceOne ICIs',
+                            buildDate: '2018-07-02 09:14:00',
+                            status: '待审核',
+                            pdfLink: 'http://localhost:8080/测试/pdf/web/compressed.tracemonkey-pldi-09.pdf'
+                        }]
+                    };
                     var show = baseUrl + 'report_states/';
                     break;
                 case '/analysisAllot':
-                    // $rootScope.shortData = [{
-                    //     number: '001',
-                    //     reportType: '',
-                    //     upDate: '2018-07-02 09:14:00',
-                    //     status: '已上传'
-                    // }, {
-                    //     number: '002',
-                    //     reportType: '',
-                    //     upDate: '2018-07-02 09:14:00',
-                    //     status: '已生成报告',
-                    //     pdfLink: 'http://localhost:8080/测试/pdf/web/compressed.tracemonkey-pldi-09.pdf'
-                    // }, {
-                    //     number: '003',
-                    //     reportType: '',
-                    //     upDate: '2018-07-02 09:14:00',
-                    //     status: '报告生成中'
-                    // }, {
-                    //     number: '004',
-                    //     reportType: '',
-                    //     upDate: '2018-07-02 09:14:00',
-                    //     status: '已生成报告'
-                    // }]
+                    $rootScope.shortData = {
+                        data: [{
+                            number: '001',
+                            reportType: '',
+                            upDate: '2018-07-02 09:14:00',
+                            status: '已上传'
+                        }, {
+                            number: '002',
+                            reportType: '',
+                            upDate: '2018-07-02 09:14:00',
+                            status: '报告已生成',
+                            pdfLink: 'http://localhost:8080/测试/pdf/web/compressed.tracemonkey-pldi-09.pdf'
+                        }, {
+                            number: '003',
+                            reportType: '',
+                            upDate: '2018-07-02 09:14:00',
+                            status: '报告生成中'
+                        }, {
+                            number: '004',
+                            reportType: '',
+                            upDate: '2018-07-02 09:14:00',
+                            status: '报告已生成'
+                        }]
+                    };
                     var show = baseUrl + 'report_showW/';
                     break;
                 case '/selfTest':
-                    // $rootScope.shortData = [{
-                    //     number: '18A00051AZ01',
-                    //     testType: 'YuceOne Plus',
-                    //     buildDate: '2018-07-02 09:14:00',
-                    //     status: '分析中',
-                    //     pdfLink: ''
-                    // }, {
-                    //     number: '18A00051AZ02',
-                    //     testType: 'YuceOne ICIs',
-                    //     buildDate: '2018-07-02 09:14:00',
-                    //     status: '分析完毕',
-                    //     pdfLink: 'http://localhost:8080/测试/pdf/web/compressed.tracemonkey-pldi-09.pdf'
-                    // }, {
-                    //     number: '18A00051AZ03',
-                    //     testType: 'YuceOneTarget',
-                    //     buildDate: '2018-07-02 09:14:00',
-                    //     status: '报告生成中'
-                    // }, {
-                    //     number: '18A00051AZ04',
-                    //     testType: 'YuceOneTarget',
-                    //     buildDate: '2018-07-02 09:14:00',
-                    //     status: '报告已生成',
-                    //     pdfLink: 'http://localhost:8080/测试/pdf/web/compressed.tracemonkey-pldi-09.pdf'
-                    // }]
+                    $rootScope.shortData = {
+                        data: [{
+                            number: '18A00051AZ01',
+                            testType: 'YuceOne Plus',
+                            buildDate: '2018-07-02 09:14:00',
+                            status: '分析中',
+                            pdfLink: ''
+                        }, {
+                            number: '18A00051AZ02',
+                            testType: 'YuceOne ICIs',
+                            buildDate: '2018-07-02 09:14:00',
+                            status: '分析完毕',
+                            pdfLink: 'http://localhost:8080/测试/pdf/web/compressed.tracemonkey-pldi-09.pdf'
+                        }, {
+                            number: '18A00051AZ03',
+                            testType: 'YuceOneTarget',
+                            buildDate: '2018-07-02 09:14:00',
+                            status: '报告生成中'
+                        }, {
+                            number: '18A00051AZ04',
+                            testType: 'YuceOneTarget',
+                            buildDate: '2018-07-02 09:14:00',
+                            status: '报告已生成',
+                            pdfLink: 'http://localhost:8080/测试/pdf/web/compressed.tracemonkey-pldi-09.pdf'
+                        }]
+                    };
                     var show = baseUrl + 'report_showZ/';
                     break;
             }
 
 
-             if (href) {
-                console.log(show);
-                $rootScope.getData = function() {
-                    $http({
-                        method: 'get',
-                        url: show,
-                        withCredentials: true
-                    }).then(function successCallback(respons) {
-                        $rootScope.shortData = respons.data;
-                    }, function errorCallback(respons) {
-                        // document.write(respons.data);
-                        console.log('请求失败');
-                    })
-                }
+            //  if (href) {
+            //     console.log(show);
+            //     $rootScope.getData = function() {
+            //         $http({
+            //             method: 'get',
+            //             url: show,
+            //             withCredentials: true
+            //         }).then(function successCallback(respons) {
+            //             $rootScope.shortData = respons.data;
+            //         }, function errorCallback(respons) {
+            //             // document.write(respons.data);
+            //             console.log('请求失败');
+            //         })
+            //     }
 
-            }
+            // }
 
-            $rootScope.getData();
+            // $rootScope.getData();
 
 
 
@@ -177,11 +183,10 @@
             //解读管理列表文件上传
             $scope.uploadPic = function(file) {
                 $scope.file = file;
-                console.log($scope.file);
-                var data = { username: $scope.username, file: file, type: $scope.type };
+                var data = { number: $scope.items.number, file: file };
                 console.log(data);
                 file.upload = Upload.upload({
-                    url: '',
+                    url: baseUrl+'report_state/',
                     data: data
                 });
 
@@ -189,10 +194,8 @@
                     file.result = response.data;
                     console.log(response.data);
                 }, function(response) {
-                    // $scope.errorMsg = response.status + ': ' + response.data;
                     $scope.errorMsg = response.status;
                 }, function(evt) {
-                    // Math.min is to fix IE which reports 200% sometimes
                     file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
                 });
 
@@ -203,7 +206,7 @@
                 if (items.newFile) {
                     $scope.file = items.newFile;
                     items.newFile.upload = Upload.upload({
-                        url: '',
+                        url: baseUrl+'report_buildZ/',
                         data: items
                     });
 
@@ -219,7 +222,7 @@
                 } else {
                     $http({
                         method: 'post',
-                        url: '',
+                        url: baseUrl+'report_buildZ/',
                         data: items
                     }).then(function(response) {
                         // console.log(response.data);
@@ -233,14 +236,14 @@
 
             //外包报告上传
             $scope.reportUp = function(file) {
-                $scope.data ={};
+                $scope.data = {};
                 $scope.data.file = file;
                 $scope.file = file;
                 $scope.data.number = $scope.items.number;
                 $scope.data.reportType = $scope.reportType;
                 console.log($scope.data);
                 $scope.file.upLoad = Upload.upload({
-                    url: 'http://192.168.1.138:8000/report_buildW/',
+                    url: baseUrl+'report_buildW/',
                     data: $scope.data,
                     withCredentials: true
                 })
@@ -374,7 +377,7 @@
         $scope.infos = infos1;
         $scope.rowCollection = datas;
         $scope.newCollection = [];
-
+        var baseUrl = 'http://192.168.1.138:8000/'
         $scope.ok = function() {
             $uibModalInstance.close();
             switch (btnname) {
@@ -393,7 +396,7 @@
                 case 'auditPass':
                     $http({
                         method: 'post',
-                        url: '',
+                        url: baseUrl + 'report_state/',
                         data: ''
                     }).then(function() {
                         console.log('请求成功')
@@ -403,10 +406,11 @@
                     break;
                 case 'affirmIssue':
                     console.log($scope.rowCollection);
+
                     $http({
                         method: 'post',
-                        url: '',
-                        data: ''
+                        url: baseUrl + 'report_end/',
+                        data: $scope.rowCollection
                     }).then(function() {
 
                     }, function() {

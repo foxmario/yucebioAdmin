@@ -94,6 +94,7 @@
                 delete items.infostatus;
                 delete items.isSelected;
                 console.log(items);
+                console.log(baseUrl + 'PatientHandle/modify/');
                 $http({
                     method: 'post',
                     url: baseUrl + 'PatientHandle/modify/',
